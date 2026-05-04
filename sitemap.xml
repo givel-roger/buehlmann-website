@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://buehlmann-soehne.ch/</loc><changefreq>monthly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://buehlmann-soehne.ch/leistungen.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://buehlmann-soehne.ch/portfolio.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://buehlmann-soehne.ch/blog.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://buehlmann-soehne.ch/maler-luzern.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://buehlmann-soehne.ch/maler-einfamilienhaus.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://buehlmann-soehne.ch/maler-mehrfamilienhaus.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>

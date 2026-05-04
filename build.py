@@ -73,7 +73,7 @@ PAGES = [
         "h1": "Fassadenrenovation in Luzern",
         "lead": "Eine schöne, dichte Fassade schützt Ihr Haus jahrzehntelang. Wir analysieren den Bestand, sanieren Risse, streichen wetterfest und garantieren bis zu 10 Jahre auf das Resultat.",
         "meta": "Fassadenrenovation Luzern: Fassade streichen, sanieren und dämmen mit Bühlmann Söhne AG. Schweizer Qualität, 10 Jahre Garantie, Festpreis-Offerte.",
-        "image": "https://images.unsplash.com/photo-1599619351208-3e6c839d6828?w=1600&q=80",
+        "image": "https://images.unsplash.com/photo-1572120360610-d971b9d7767c?w=1600&q=80",
         "sections": [
             ("Fassadenanalyse vor jedem Anstrich", "Untergrund-Prüfung mit Feuchtemessgerät und Haftungstest, Risskartierung, Bestimmung der bestehenden Beschichtung. Erst dann definieren wir System und Anstrichaufbau."),
             ("Ihr Vorteil: Schweizer Qualitätsprodukte", "Wir setzen auf KEIM (mineralische Silikatfarben), Caparol AmphiSilan und Sikkens — geprüfte Systeme mit Dampfdurchlässigkeit, UV-Schutz und Algenwiderstand."),
@@ -133,7 +133,7 @@ PAGES = [
         "h1": "Altbau-Renovation und Denkmalpflege",
         "lead": "Stuck, Holzdecken, historische Putze: Altbauten brauchen einen Spezialisten, der mit traditionellen Techniken arbeitet — ohne den Charakter des Hauses zu zerstören.",
         "meta": "Altbau Renovation Luzern: Denkmalpflege, Stucksanierung, historische Putze und Lasurtechniken. Bühlmann Söhne AG, seit 1924 in Familienhand.",
-        "image": "https://images.unsplash.com/photo-1503602642458-232111445657?w=1600&q=80",
+        "image": "https://images.unsplash.com/photo-1464146072230-91cabc968266?w=1600&q=80",
         "sections": [
             ("Kompetenz seit 1924", "Vier Generationen Familienbetrieb. Wir kennen die Techniken, die unsere Grossväter angewendet haben — und kombinieren sie mit moderner Materialwissenschaft."),
             ("Historische Putze & Stuckaturen", "Kalkputz, Sumpfkalkfarben, Stuckergänzung mit Originalrezeptur. Wir arbeiten regelmässig im Auftrag der kantonalen Denkmalpflege Luzern."),
@@ -393,9 +393,9 @@ PAGES = [
 
 NAV_LINKS = [
     ("index.html", "Home"),
-    ("index.html#leistungen", "Leistungen"),
-    ("index.html#portfolio", "Portfolio"),
-    ("index.html#blog", "Blog"),
+    ("leistungen.html", "Leistungen"),
+    ("portfolio.html", "Portfolio"),
+    ("blog.html", "Blog"),
     ("kontakt.html", "Kontakt"),
 ]
 
@@ -625,8 +625,8 @@ def index_page() -> str:
     """Home page — keeps the existing video hero, gets the multi-page nav."""
     services = [
         ("Innenmalerei", "innenmalerei.html", "Wände & Decken streichen, Wandgestaltung, Tapezierarbeiten.", "https://images.unsplash.com/photo-1505691938895-1758d7feb511?w=1200&q=80"),
-        ("Fassadenrenovation", "fassadenrenovation.html", "Fassade streichen & sanieren mit 10 Jahren Garantie.", "https://images.unsplash.com/photo-1599619351208-3e6c839d6828?w=1200&q=80"),
-        ("Altbau-Renovation", "altbau-renovation.html", "Denkmalpflege, Stuck und historische Putze seit 1924.", "https://images.unsplash.com/photo-1503602642458-232111445657?w=1200&q=80"),
+        ("Fassadenrenovation", "fassadenrenovation.html", "Fassade streichen & sanieren mit 10 Jahren Garantie.", "https://images.unsplash.com/photo-1572120360610-d971b9d7767c?w=1200&q=80"),
+        ("Altbau-Renovation", "altbau-renovation.html", "Denkmalpflege, Stuck und historische Putze seit 1924.", "https://images.unsplash.com/photo-1464146072230-91cabc968266?w=1200&q=80"),
         ("Farbberatung", "farbberatung.html", "Zertifizierte Farbdesignerin, drei Konzeptvarianten.", "https://images.unsplash.com/photo-1562663474-6cbb3eaa4d14?w=1200&q=80"),
         ("Maler für Einfamilienhaus", "maler-einfamilienhaus.html", "Innen, aussen, mit Festpreis und ein Ansprechpartner.", "https://images.unsplash.com/photo-1625602812206-5ec545ca1231?w=1200&q=80"),
         ("Wohnung streichen", "wohnung-streichen.html", "Mieterwohnung in 48–72 h bezugsfertig.", "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=1200&q=80"),
@@ -635,8 +635,8 @@ def index_page() -> str:
         ("Geschäftsräume & Büro", "maler-gewerbe-buero.html", "Renovation ohne Betriebsausfall, auch nachts.", "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=1600&q=80"),
         ("Tapezieren", "tapezieren-luzern.html", "Vlies, Designtapeten, Fototapeten — sauber & blasenfrei.", "https://images.unsplash.com/photo-1505691938895-1758d7feb511?w=1200&q=80"),
         ("Spritzlackierung", "spritzlackierung.html", "Türen, Schränke, Küchenfronten — wie neu lackiert.", "https://images.unsplash.com/photo-1604689598793-b8bf1dc445a1?w=1600&q=80"),
-        ("Balkon streichen", "balkon-streichen.html", "Wasserdichte Balkonböden, Geländer, Brüstungen.", "https://images.unsplash.com/photo-1503602642458-232111445657?w=1200&q=80"),
-        ("Schimmel entfernen", "schimmel-entfernen.html", "Schimmelsanierung mit Ursachenanalyse, dauerhafte Lösung.", "https://images.unsplash.com/photo-1503602642458-232111445657?w=1200&q=80"),
+        ("Balkon streichen", "balkon-streichen.html", "Wasserdichte Balkonböden, Geländer, Brüstungen.", "https://images.unsplash.com/photo-1572120360610-d971b9d7767c?w=1200&q=80"),
+        ("Schimmel entfernen", "schimmel-entfernen.html", "Schimmelsanierung mit Ursachenanalyse, dauerhafte Lösung.", "https://images.unsplash.com/photo-1505691938895-1758d7feb511?w=1200&q=80"),
     ]
 
     geo_pages = [
@@ -656,7 +656,7 @@ def index_page() -> str:
         for name, href in geo_pages
     )
 
-    services_html = "\n".join(
+    services_html_short = "\n".join(
         f'<a href="{href}" class="bg-white border border-slate-200 group hover:border-primary-container transition-all duration-500 overflow-hidden block">'
         f'<div class="h-56 overflow-hidden"><img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="{title}" src="{img}" /></div>'
         f'<div class="p-6">'
@@ -664,7 +664,7 @@ def index_page() -> str:
         f'<p class="text-on-surface-variant font-body-md mb-4">{desc}</p>'
         f'<span class="font-label-md text-primary border-b border-primary/20 pb-1 group-hover:border-primary transition-all uppercase">Mehr erfahren →</span>'
         f'</div></a>'
-        for title, href, desc, img in services
+        for title, href, desc, img in services[:6]
     )
 
     schema = (
@@ -721,15 +721,18 @@ def index_page() -> str:
   </div>
 </header>
 
-<section id="leistungen" class="py-24 bg-white">
+<section class="py-20 bg-white">
   <div class="max-w-7xl mx-auto px-6 md:px-8">
-    <div class="text-center mb-16">
+    <div class="text-center mb-12">
       <span class="font-label-md text-primary-container tracking-widest uppercase mb-4 block">Unsere Leistungen</span>
-      <h2 class="font-headline-lg text-primary text-4xl">9 Spezialgebiete — eine Familie, ein Anspruch</h2>
-      <p class="font-body-lg text-on-surface-variant mt-4 max-w-2xl mx-auto">Jede Seite ist eine eigene Landingpage mit Detailinformation, FAQ und Festpreis-Hinweisen für Ihr spezifisches Anliegen.</p>
+      <h2 class="font-headline-lg text-primary text-4xl">Schweizer Malerhandwerk in vier Generationen</h2>
+      <p class="font-body-lg text-on-surface-variant mt-4 max-w-2xl mx-auto">Sechs unserer 13 Spezialgebiete im Überblick — die ganze Liste finden Sie auf der Leistungsseite.</p>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {services_html}
+      {services_html_short}
+    </div>
+    <div class="text-center mt-12">
+      <a href="leistungen.html" class="inline-block border-2 border-primary text-primary font-label-md px-10 py-4 rounded-lg uppercase tracking-widest hover:bg-primary hover:text-white transition-all">Alle 13 Leistungen ansehen →</a>
     </div>
   </div>
 </section>
@@ -780,8 +783,216 @@ def index_page() -> str:
 """).strip()
 
 
+SERVICES_LIST = [
+    ("Innenmalerei", "innenmalerei.html", "Wände & Decken streichen, Wandgestaltung, Tapezierarbeiten.", "https://images.unsplash.com/photo-1505691938895-1758d7feb511?w=1200&q=80"),
+    ("Fassadenrenovation", "fassadenrenovation.html", "Fassade streichen & sanieren mit 10 Jahren Garantie.", "https://images.unsplash.com/photo-1572120360610-d971b9d7767c?w=1200&q=80"),
+    ("Altbau-Renovation", "altbau-renovation.html", "Denkmalpflege, Stuck und historische Putze seit 1924.", "https://images.unsplash.com/photo-1464146072230-91cabc968266?w=1200&q=80"),
+    ("Farbberatung", "farbberatung.html", "Zertifizierte Farbdesignerin, drei Konzeptvarianten.", "https://images.unsplash.com/photo-1562663474-6cbb3eaa4d14?w=1200&q=80"),
+    ("Maler für Einfamilienhaus", "maler-einfamilienhaus.html", "Innen, aussen, mit Festpreis und ein Ansprechpartner.", "https://images.unsplash.com/photo-1625602812206-5ec545ca1231?w=1200&q=80"),
+    ("Wohnung streichen", "wohnung-streichen.html", "Mieterwohnung in 48–72 h bezugsfertig.", "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=1200&q=80"),
+    ("Maler für Mehrfamilienhaus", "maler-mehrfamilienhaus.html", "Treppenhäuser, Fassaden und ganze Liegenschaften.", "https://images.unsplash.com/photo-1503174971373-b1f69850bded?w=1200&q=80"),
+    ("Maler für Neubau", "maler-neubau.html", "Erstanstrich Q4, Designflächen, 0-Mängel-Übergabe.", "https://images.unsplash.com/photo-1604689598793-b8bf1dc445a1?w=1600&q=80"),
+    ("Geschäftsräume & Büro", "maler-gewerbe-buero.html", "Renovation ohne Betriebsausfall, auch nachts.", "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=1600&q=80"),
+    ("Tapezieren", "tapezieren-luzern.html", "Vlies, Designtapeten, Fototapeten — sauber & blasenfrei.", "https://images.unsplash.com/photo-1505691938895-1758d7feb511?w=1200&q=80"),
+    ("Spritzlackierung", "spritzlackierung.html", "Türen, Schränke, Küchenfronten — wie neu lackiert.", "https://images.unsplash.com/photo-1604689598793-b8bf1dc445a1?w=1600&q=80"),
+    ("Balkon streichen", "balkon-streichen.html", "Wasserdichte Balkonböden, Geländer, Brüstungen.", "https://images.unsplash.com/photo-1572120360610-d971b9d7767c?w=1200&q=80"),
+    ("Schimmel entfernen", "schimmel-entfernen.html", "Schimmelsanierung mit Ursachenanalyse, dauerhafte Lösung.", "https://images.unsplash.com/photo-1505691938895-1758d7feb511?w=1200&q=80"),
+]
+
+GEO_LIST = [
+    ("Maler Luzern", "maler-luzern.html"),
+    ("Maler Kriens", "maler-kriens.html"),
+    ("Maler Emmen", "maler-emmen.html"),
+    ("Maler Zug", "maler-zug.html"),
+    ("Maler Sursee", "maler-sursee.html"),
+    ("Maler Stans / Nidwalden", "maler-stans-nidwalden.html"),
+]
+
+PORTFOLIO_PROJECTS = [
+    ("Villa am Vierwaldstättersee", "Wohnen", "Komplette Innen- und Fassadenrenovation einer Architektenvilla, 2025.", "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1600&q=80"),
+    ("Stadthaus Altstadt Luzern", "Denkmalpflege", "Restaurierung der Stuckdecken und Fassade, in Zusammenarbeit mit der Denkmalpflege.", "https://images.unsplash.com/photo-1464146072230-91cabc968266?w=1600&q=80"),
+    ("Mehrfamilienhaus Kriens", "Liegenschaft", "Sanierung Fassade & Treppenhäuser, 24 Wohnungen, Bauzeit 8 Wochen.", "https://images.unsplash.com/photo-1503174971373-b1f69850bded?w=1600&q=80"),
+    ("Loft Zug-West", "Innenmalerei", "Spachteltechnik Q4 und Sichtbeton-Optik im Designer-Loft, 220 m².", "https://images.unsplash.com/photo-1505691938895-1758d7feb511?w=1600&q=80"),
+    ("Boutique-Hotel Bürgenstock", "Gewerbe", "Renovation der Suiten während Saisonschluss, Termin eingehalten.", "https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=1600&q=80"),
+    ("Reiheneinfamilienhaus Sursee", "Wohnen", "Aussenfassade mit mineralischer Silikatfarbe, 10 Jahre Garantie.", "https://images.unsplash.com/photo-1572120360610-d971b9d7767c?w=1600&q=80"),
+    ("Penthouse Stadt Luzern", "Innenmalerei", "Designwände mit Effektputz und Beton-Optik, 4 Wochen Bauzeit.", "https://images.unsplash.com/photo-1503174971373-b1f69850bded?w=1600&q=80"),
+    ("Bürogebäude Emmen", "Gewerbe", "Komplette Renovation der Büroflächen während laufendem Betrieb.", "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=1600&q=80"),
+    ("Einfamilienhaus Horw", "Wohnen", "Aussenfassade und Holzläden, mit Farbberatung im Voraus.", "https://images.unsplash.com/photo-1625602812206-5ec545ca1231?w=1600&q=80"),
+]
+
+BLOG_POSTS = [
+    ("Die Psychologie von Tiefblau in der modernen Architektur", "design", "24. Mai 2026", "Designtrends", "Wie der gezielte Einsatz dunkler Töne Räume, Tiefe und Prestige im zeitgenössischen Wohnbau neu definiert. Wir zeigen drei Projekte aus Luzern, in denen Tiefblau die Hauptrolle spielt.", "https://images.unsplash.com/photo-1562663474-6cbb3eaa4d14?w=1600&q=80"),
+    ("Nachhaltiger Oberflächenschutz für das 21. Jahrhundert", "tech", "18. Mai 2026", "Technologie", "Wie wir umweltfreundliche Materialien einsetzen, ohne Kompromisse bei der legendären Schweizer Langlebigkeit. Mit Übersicht über unsere bevorzugten Schweizer Premium-Hersteller.", "https://images.unsplash.com/photo-1618220252344-8ec99ec624b1?w=1600&q=80"),
+    ("Was kostet ein Maler in Luzern wirklich?", "ratgeber", "10. Mai 2026", "Ratgeber", "Festpreis-Offerte versus Stundensatz: Wir zeigen Ihnen, worauf Sie bei einem Malerangebot achten müssen — und welche versteckten Kosten in günstigen Offerten lauern.", "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=1600&q=80"),
+    ("Fassade streichen: Welche Jahreszeit ist die beste?", "ratgeber", "2. Mai 2026", "Ratgeber", "Temperatur, Luftfeuchtigkeit, Sonneneinstrahlung — wir erklären, warum Mai bis September die ideale Bauzeit für eine Fassadenrenovation in der Schweiz ist.", "https://images.unsplash.com/photo-1572120360610-d971b9d7767c?w=1600&q=80"),
+    ("Schimmel an der Wand: Sofort handeln oder ignorieren?", "ratgeber", "20. April 2026", "Ratgeber", "Drei Anzeichen, dass Schimmel mehr als kosmetisch ist — und warum Sie nicht mit dem Anstrich überstreichen sollten, ohne die Ursache zu kennen.", "https://images.unsplash.com/photo-1505691938895-1758d7feb511?w=1600&q=80"),
+    ("Tapezieren statt streichen: Wann lohnt sich Tapete?", "design", "12. April 2026", "Designtrends", "Vlies, Glasfaser, Designtapete — wir zeigen, wann Tapete dem Anstrich überlegen ist und welche Tapeten in modernen Schweizer Wohnungen gerade angesagt sind.", "https://images.unsplash.com/photo-1505691938895-1758d7feb511?w=1600&q=80"),
+]
+
+
+def leistungen_page() -> str:
+    services_html = "\n".join(
+        f'<a href="{href}" class="bg-white border border-slate-200 group hover:border-primary-container transition-all duration-500 overflow-hidden block">'
+        f'<div class="h-56 overflow-hidden"><img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="{title}" src="{img}" /></div>'
+        f'<div class="p-6">'
+        f'<h3 class="font-headline-md text-primary mb-3">{title}</h3>'
+        f'<p class="text-on-surface-variant font-body-md mb-4">{desc}</p>'
+        f'<span class="font-label-md text-primary border-b border-primary/20 pb-1 group-hover:border-primary transition-all uppercase">Mehr erfahren →</span>'
+        f'</div></a>'
+        for title, href, desc, img in SERVICES_LIST
+    )
+    return dedent(f"""
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="de">
+<head>
+{HEAD_BASE}
+<title>Leistungen – Bühlmann Söhne AG | Maler Luzern</title>
+<meta name="description" content="Alle Leistungen von Bühlmann Söhne AG: Innenmalerei, Fassadenrenovation, Altbau-Sanierung, Farbberatung, Tapezieren — Schweizer Malerhandwerk seit 1924." />
+<link rel="canonical" href="{SITE_URL}/leistungen.html" />
+<meta name="robots" content="index, follow" />
+</head>
+<body class="bg-background text-on-surface antialiased">
+
+{header_html('leistungen')}
+
+<header class="bg-primary text-white pt-44 md:pt-56 pb-16 mt-0">
+  <div class="max-w-7xl mx-auto px-6 md:px-8 text-center">
+    <span class="font-label-md text-secondary-fixed tracking-[0.3em] uppercase mb-4 block">Unsere Leistungen</span>
+    <h1 class="font-headline-xl text-4xl md:text-6xl mb-6">13 Spezialgebiete für Ihr Projekt</h1>
+    <p class="font-body-lg text-white/80 max-w-2xl mx-auto">Von der Akzentwand im Schlafzimmer bis zur Fassade des Mehrfamilienhauses — alles aus einer Hand, mit Schweizer Präzision seit 1924.</p>
+  </div>
+</header>
+
+<section class="py-20 bg-white">
+  <div class="max-w-7xl mx-auto px-6 md:px-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {services_html}
+    </div>
+  </div>
+</section>
+
+<section class="py-16 bg-surface-container-low">
+  <div class="max-w-3xl mx-auto px-6 md:px-8 text-center">
+    <h2 class="font-headline-lg text-primary text-3xl md:text-4xl mb-6">Nicht das Richtige dabei?</h2>
+    <p class="font-body-lg text-on-surface-variant mb-8">Sprechen Sie mit uns — wir realisieren auch Spezialwünsche und kombinieren mehrere Leistungen zu einer Komplett-Renovation.</p>
+    <a href="kontakt.html" class="inline-block bg-secondary-container text-primary font-label-md px-10 py-5 rounded-lg uppercase tracking-widest hover:opacity-90 transition-all active:scale-95 shadow-xl">Kontakt aufnehmen</a>
+  </div>
+</section>
+
+{FOOTER}
+</body></html>
+""").strip()
+
+
+def portfolio_page() -> str:
+    projects_html = "\n".join(
+        f'<article class="group">'
+        f'<div class="aspect-[4/3] overflow-hidden bg-slate-100 mb-4">'
+        f'<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="{title}" src="{img}" />'
+        f'</div>'
+        f'<span class="font-label-md text-slate-400 uppercase block mb-2">{cat}</span>'
+        f'<h3 class="font-headline-md text-primary mb-2">{title}</h3>'
+        f'<p class="text-on-surface-variant font-body-md">{desc}</p>'
+        f'</article>'
+        for title, cat, desc, img in PORTFOLIO_PROJECTS
+    )
+    return dedent(f"""
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="de">
+<head>
+{HEAD_BASE}
+<title>Portfolio – Referenzprojekte | Bühlmann Söhne AG Luzern</title>
+<meta name="description" content="Referenzprojekte der Bühlmann Söhne AG: Villen, Mehrfamilienhäuser, Hotels und Denkmalpflege in Luzern, Zug und der Innerschweiz." />
+<link rel="canonical" href="{SITE_URL}/portfolio.html" />
+<meta name="robots" content="index, follow" />
+</head>
+<body class="bg-background text-on-surface antialiased">
+
+{header_html('portfolio')}
+
+<header class="bg-primary text-white pt-44 md:pt-56 pb-16">
+  <div class="max-w-7xl mx-auto px-6 md:px-8 text-center">
+    <span class="font-label-md text-secondary-fixed tracking-[0.3em] uppercase mb-4 block">Portfolio</span>
+    <h1 class="font-headline-xl text-4xl md:text-6xl mb-6">Unsere Meisterwerke</h1>
+    <p class="font-body-lg text-white/80 max-w-2xl mx-auto">Eine Auswahl der eindrücklichsten Projekte aus den letzten Jahren in Luzern und der Innerschweiz.</p>
+  </div>
+</header>
+
+<section class="py-20 bg-white">
+  <div class="max-w-7xl mx-auto px-6 md:px-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+      {projects_html}
+    </div>
+  </div>
+</section>
+
+<section class="py-16 bg-primary text-white text-center">
+  <div class="max-w-3xl mx-auto px-6 md:px-8">
+    <h2 class="font-headline-lg text-3xl md:text-4xl mb-6">Ihr Projekt als nächstes Meisterwerk?</h2>
+    <p class="font-body-lg text-white/80 mb-8">Erste Beratung kostenlos. Festpreis-Offerte innert 5 Werktagen.</p>
+    <a href="kontakt.html" class="inline-block bg-secondary-container text-primary font-label-md px-10 py-5 rounded-lg uppercase tracking-widest hover:opacity-90 transition-all active:scale-95 shadow-xl">Offerte anfragen</a>
+  </div>
+</section>
+
+{FOOTER}
+</body></html>
+""").strip()
+
+
+def blog_page() -> str:
+    posts_html = "\n".join(
+        f'<article class="grid md:grid-cols-2 gap-8 items-center mb-16">'
+        f'<div class="aspect-[4/3] overflow-hidden bg-slate-50">'
+        f'<img class="w-full h-full object-cover hover:scale-105 transition-transform duration-700" alt="{title}" src="{img}" />'
+        f'</div>'
+        f'<div>'
+        f'<div class="flex items-center gap-4 mb-3">'
+        f'<span class="font-label-md text-slate-400 uppercase">{date}</span>'
+        f'<span class="w-1 h-1 bg-slate-400 rounded-full"></span>'
+        f'<span class="font-label-md text-primary tracking-widest uppercase">{cat}</span>'
+        f'</div>'
+        f'<h2 class="font-headline-md text-primary text-2xl md:text-3xl mb-4">{title}</h2>'
+        f'<p class="font-body-md text-on-surface-variant">{excerpt}</p>'
+        f'</div>'
+        f'</article>'
+        for title, slug, date, cat, excerpt, img in BLOG_POSTS
+    )
+    return dedent(f"""
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="de">
+<head>
+{HEAD_BASE}
+<title>Blog & Ratgeber – Maler-Wissen aus Luzern | Bühlmann Söhne AG</title>
+<meta name="description" content="Ratgeber-Artikel zu Malerarbeiten, Fassadenrenovation, Schimmelsanierung und Farbgestaltung aus 100 Jahren Erfahrung." />
+<link rel="canonical" href="{SITE_URL}/blog.html" />
+<meta name="robots" content="index, follow" />
+</head>
+<body class="bg-background text-on-surface antialiased">
+
+{header_html('blog')}
+
+<header class="bg-primary text-white pt-44 md:pt-56 pb-16">
+  <div class="max-w-7xl mx-auto px-6 md:px-8 text-center">
+    <span class="font-label-md text-secondary-fixed tracking-[0.3em] uppercase mb-4 block">Blog & Ratgeber</span>
+    <h1 class="font-headline-xl text-4xl md:text-6xl mb-6">Einblicke & Inspiration</h1>
+    <p class="font-body-lg text-white/80 max-w-2xl mx-auto">Wissen aus der Praxis: Was ein Maler weiss, was Sie als Bauherr/Eigentümer wissen sollten.</p>
+  </div>
+</header>
+
+<section class="py-20 bg-white">
+  <div class="max-w-5xl mx-auto px-6 md:px-8">
+    {posts_html}
+  </div>
+</section>
+
+{FOOTER}
+</body></html>
+""").strip()
+
+
 def sitemap_xml() -> str:
-    urls = ["", *(f"{p['slug']}.html" for p in PAGES)]
+    extra = ["leistungen.html", "portfolio.html", "blog.html"]
+    urls = ["", *extra, *(f"{p['slug']}.html" for p in PAGES)]
     items = "\n".join(
         f"  <url><loc>{SITE_URL}/{u}</loc><changefreq>monthly</changefreq><priority>{'1.0' if u == '' else '0.8'}</priority></url>"
         for u in urls
@@ -795,11 +1006,14 @@ def robots_txt() -> str:
 
 def main():
     (ROOT / "index.html").write_text(index_page())
+    (ROOT / "leistungen.html").write_text(leistungen_page())
+    (ROOT / "portfolio.html").write_text(portfolio_page())
+    (ROOT / "blog.html").write_text(blog_page())
     for p in PAGES:
         (ROOT / f"{p['slug']}.html").write_text(landing_page(p))
     (ROOT / "sitemap.xml").write_text(sitemap_xml())
     (ROOT / "robots.txt").write_text(robots_txt())
-    print(f"Generated index + {len(PAGES)} landing pages + sitemap + robots")
+    print(f"Generated index + 3 main pages + {len(PAGES)} landing pages + sitemap + robots")
 
 
 if __name__ == "__main__":

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="de">
+<head>
+<meta charset="utf-8" />
+<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+<link rel="icon" type="image/png" href="assets/logo.png" />
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: { extend: {
+      colors: {
+        "primary": "#000a3f", "primary-container": "#001a72", "on-primary": "#ffffff",
+        "secondary-container": "#fddc00", "secondary-fixed": "#ffe24a",
+        "on-surface": "#1a1c1e", "on-surface-variant": "#454651",
+        "surface": "#f9f9fc", "surface-container-low": "#f3f3f6",
+        "surface-container": "#eeeef0", "background": "#f9f9fc",
+      },
+      borderRadius: { DEFAULT: "0.125rem", lg: "0.25rem", xl: "0.5rem" },
+      fontFamily: { sans: ["Inter", "system-ui", "sans-serif"] },
+    } },
+  };
+</script>
+<style>
+  body { font-family: "Inter", system-ui, sans-serif; }
+  .material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    display: inline-block; line-height: 1;
+  }
+  .font-headline-xl { font-size: 48px; line-height: 1.1; letter-spacing: -0.02em; font-weight: 700; }
+  .font-headline-lg { font-size: 32px; line-height: 1.2; letter-spacing: -0.01em; font-weight: 600; }
+  .font-headline-md { font-size: 24px; line-height: 1.3; font-weight: 600; }
+  .font-body-lg    { font-size: 18px; line-height: 1.6; font-weight: 400; }
+  .font-body-md    { font-size: 16px; line-height: 1.5; font-weight: 400; }
+  .font-label-md   { font-size: 14px; line-height: 1; letter-spacing: 0.05em; font-weight: 600; }
+  .hero-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; }
+  .hero-overlay { position: absolute; inset: 0; z-index: 1; background: linear-gradient(180deg, rgba(0,10,63,0.6) 0%, rgba(0,10,63,0.85) 100%); }
+  .prose-content p { margin-bottom: 1rem; }
+  .prose-content h2 { font-size: 28px; font-weight: 600; color: #000a3f; margin: 2.5rem 0 1rem; line-height: 1.2; }
+</style>
+<title>Blog & Ratgeber – Maler-Wissen aus Luzern | Bühlmann Söhne AG</title>
+<meta name="description" content="Ratgeber-Artikel zu Malerarbeiten, Fassadenrenovation, Schimmelsanierung und Farbgestaltung aus 100 Jahren Erfahrung." />
+<link rel="canonical" href="https://buehlmann-soehne.ch/blog.html" />
+<meta name="robots" content="index, follow" />
+</head>
+<body class="bg-background text-on-surface antialiased">
+
+<nav class="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm">
+  <div class="flex justify-between items-center max-w-7xl mx-auto px-6 md:px-8 h-40 md:h-52 gap-6">
+    <a href="index.html" class="flex items-center gap-3 shrink-0">
+      <img src="assets/logo.png" alt="Bühlmann Söhne AG — Maler Luzern" class="h-32 md:h-44 w-auto" />
+    </a>
+    <div class="hidden md:flex items-center space-x-8">
+      <a class="text-slate-600 font-medium hover:text-primary transition-colors font-label-md uppercase whitespace-nowrap" href="index.html">Home</a>
+  <a class="text-slate-600 font-medium hover:text-primary transition-colors font-label-md uppercase whitespace-nowrap" href="leistungen.html">Leistungen</a>
+  <a class="text-slate-600 font-medium hover:text-primary transition-colors font-label-md uppercase whitespace-nowrap" href="portfolio.html">Portfolio</a>
+  <a class="text-primary font-bold border-b-2 border-primary pb-1 font-label-md uppercase whitespace-nowrap" href="blog.html">Blog</a>
+  <a class="text-slate-600 font-medium hover:text-primary transition-colors font-label-md uppercase whitespace-nowrap" href="kontakt.html">Kontakt</a>
+    </div>
+    <div class="flex items-center space-x-3 shrink-0">
+      <a class="hidden xl:flex items-center text-slate-600 font-medium hover:text-primary transition-colors font-label-md uppercase" href="tel:+41410000000">
+        <span class="material-symbols-outlined mr-2">call</span>Anrufen
+      </a>
+      <a href="kontakt.html" class="bg-primary-container text-white px-5 py-3 rounded-lg font-label-md uppercase tracking-widest hover:bg-primary transition-all active:scale-95 whitespace-nowrap">
+        Offerte
+      </a>
+    </div>
+  </div>
+</nav>
+
+<header class="bg-primary text-white pt-44 md:pt-56 pb-16">
+  <div class="max-w-7xl mx-auto px-6 md:px-8 text-center">
+    <span class="font-label-md text-secondary-fixed tracking-[0.3em] uppercase mb-4 block">Blog & Ratgeber</span>
+    <h1 class="font-headline-xl text-4xl md:text-6xl mb-6">Einblicke & Inspiration</h1>
+    <p class="font-body-lg text-white/80 max-w-2xl mx-auto">Wissen aus der Praxis: Was ein Maler weiss, was Sie als Bauherr/Eigentümer wissen sollten.</p>
+  </div>
+</header>
+
+<section class="py-20 bg-white">
+  <div class="max-w-5xl mx-auto px-6 md:px-8">
+    <article class="grid md:grid-cols-2 gap-8 items-center mb-16"><div class="aspect-[4/3] overflow-hidden bg-slate-50"><img class="w-full h-full object-cover hover:scale-105 transition-transform duration-700" alt="Die Psychologie von Tiefblau in der modernen Architektur" src="https://images.unsplash.com/photo-1562663474-6cbb3eaa4d14?w=1600&q=80" /></div><div><div class="flex items-center gap-4 mb-3"><span class="font-label-md text-slate-400 uppercase">24. Mai 2026</span><span class="w-1 h-1 bg-slate-400 rounded-full"></span><span class="font-label-md text-primary tracking-widest uppercase">Designtrends</span></div><h2 class="font-headline-md text-primary text-2xl md:text-3xl mb-4">Die Psychologie von Tiefblau in der modernen Architektur</h2><p class="font-body-md text-on-surface-variant">Wie der gezielte Einsatz dunkler Töne Räume, Tiefe und Prestige im zeitgenössischen Wohnbau neu definiert. Wir zeigen drei Projekte aus Luzern, in denen Tiefblau die Hauptrolle spielt.</p></div></article>
+<article class="grid md:grid-cols-2 gap-8 items-center mb-16"><div class="aspect-[4/3] overflow-hidden bg-slate-50"><img class="w-full h-full object-cover hover:scale-105 transition-transform duration-700" alt="Nachhaltiger Oberflächenschutz für das 21. Jahrhundert" src="https://images.unsplash.com/photo-1618220252344-8ec99ec624b1?w=1600&q=80" /></div><div><div class="flex items-center gap-4 mb-3"><span class="font-label-md text-slate-400 uppercase">18. Mai 2026</span><span class="w-1 h-1 bg-slate-400 rounded-full"></span><span class="font-label-md text-primary tracking-widest uppercase">Technologie</span></div><h2 class="font-headline-md text-primary text-2xl md:text-3xl mb-4">Nachhaltiger Oberflächenschutz für das 21. Jahrhundert</h2><p class="font-body-md text-on-surface-variant">Wie wir umweltfreundliche Materialien einsetzen, ohne Kompromisse bei der legendären Schweizer Langlebigkeit. Mit Übersicht über unsere bevorzugten Schweizer Premium-Hersteller.</p></div></article>
+<article class="grid md:grid-cols-2 gap-8 items-center mb-16"><div class="aspect-[4/3] overflow-hidden bg-slate-50"><img class="w-full h-full object-cover hover:scale-105 transition-transform duration-700" alt="Was kostet ein Maler in Luzern wirklich?" src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=1600&q=80" /></div><div><div class="flex items-center gap-4 mb-3"><span class="font-label-md text-slate-400 uppercase">10. Mai 2026</span><span class="w-1 h-1 bg-slate-400 rounded-full"></span><span class="font-label-md text-primary tracking-widest uppercase">Ratgeber</span></div><h2 class="font-headline-md text-primary text-2xl md:text-3xl mb-4">Was kostet ein Maler in Luzern wirklich?</h2><p class="font-body-md text-on-surface-variant">Festpreis-Offerte versus Stundensatz: Wir zeigen Ihnen, worauf Sie bei einem Malerangebot achten müssen — und welche versteckten Kosten in günstigen Offerten lauern.</p></div></article>
+<article class="grid md:grid-cols-2 gap-8 items-center mb-16"><div class="aspect-[4/3] overflow-hidden bg-slate-50"><img class="w-full h-full object-cover hover:scale-105 transition-transform duration-700" alt="Fassade streichen: Welche Jahreszeit ist die beste?" src="https://images.unsplash.com/photo-1572120360610-d971b9d7767c?w=1600&q=80" /></div><div><div class="flex items-center gap-4 mb-3"><span class="font-label-md text-slate-400 uppercase">2. Mai 2026</span><span class="w-1 h-1 bg-slate-400 rounded-full"></span><span class="font-label-md text-primary tracking-widest uppercase">Ratgeber</span></div><h2 class="font-headline-md text-primary text-2xl md:text-3xl mb-4">Fassade streichen: Welche Jahreszeit ist die beste?</h2><p class="font-body-md text-on-surface-variant">Temperatur, Luftfeuchtigkeit, Sonneneinstrahlung — wir erklären, warum Mai bis September die ideale Bauzeit für eine Fassadenrenovation in der Schweiz ist.</p></div></article>
+<article class="grid md:grid-cols-2 gap-8 items-center mb-16"><div class="aspect-[4/3] overflow-hidden bg-slate-50"><img class="w-full h-full object-cover hover:scale-105 transition-transform duration-700" alt="Schimmel an der Wand: Sofort handeln oder ignorieren?" src="https://images.unsplash.com/photo-1505691938895-1758d7feb511?w=1600&q=80" /></div><div><div class="flex items-center gap-4 mb-3"><span class="font-label-md text-slate-400 uppercase">20. April 2026</span><span class="w-1 h-1 bg-slate-400 rounded-full"></span><span class="font-label-md text-primary tracking-widest uppercase">Ratgeber</span></div><h2 class="font-headline-md text-primary text-2xl md:text-3xl mb-4">Schimmel an der Wand: Sofort handeln oder ignorieren?</h2><p class="font-body-md text-on-surface-variant">Drei Anzeichen, dass Schimmel mehr als kosmetisch ist — und warum Sie nicht mit dem Anstrich überstreichen sollten, ohne die Ursache zu kennen.</p></div></article>
+<article class="grid md:grid-cols-2 gap-8 items-center mb-16"><div class="aspect-[4/3] overflow-hidden bg-slate-50"><img class="w-full h-full object-cover hover:scale-105 transition-transform duration-700" alt="Tapezieren statt streichen: Wann lohnt sich Tapete?" src="https://images.unsplash.com/photo-1505691938895-1758d7feb511?w=1600&q=80" /></div><div><div class="flex items-center gap-4 mb-3"><span class="font-label-md text-slate-400 uppercase">12. April 2026</span><span class="w-1 h-1 bg-slate-400 rounded-full"></span><span class="font-label-md text-primary tracking-widest uppercase">Designtrends</span></div><h2 class="font-headline-md text-primary text-2xl md:text-3xl mb-4">Tapezieren statt streichen: Wann lohnt sich Tapete?</h2><p class="font-body-md text-on-surface-variant">Vlies, Glasfaser, Designtapete — wir zeigen, wann Tapete dem Anstrich überlegen ist und welche Tapeten in modernen Schweizer Wohnungen gerade angesagt sind.</p></div></article>
+  </div>
+</section>
+
+<footer class="bg-[#F4F7FA] w-full py-12 border-t border-slate-200 mt-0">
+  <div class="grid grid-cols-1 md:grid-cols-4 gap-8 max-w-7xl mx-auto px-6 md:px-8">
+    <div>
+      <img src="assets/logo.png" alt="Bühlmann Söhne AG" class="h-20 w-auto mb-6" />
+      <p class="text-slate-500 font-body-md">Schweizer Malerhandwerk seit 1924. Architektonische Malerlösungen für Luzern und die Innerschweiz.</p>
+    </div>
+    <div>
+      <h4 class="font-label-md text-primary mb-6 uppercase">Leistungen</h4>
+      <ul class="space-y-3">
+        <li><a class="text-slate-500 hover:text-primary font-body-md" href="innenmalerei.html">Innenmalerei</a></li>
+        <li><a class="text-slate-500 hover:text-primary font-body-md" href="fassadenrenovation.html">Fassadenrenovation</a></li>
+        <li><a class="text-slate-500 hover:text-primary font-body-md" href="farbberatung.html">Farbberatung</a></li>
+        <li><a class="text-slate-500 hover:text-primary font-body-md" href="altbau-renovation.html">Altbau-Renovation</a></li>
+        <li><a class="text-slate-500 hover:text-primary font-body-md" href="maler-neubau.html">Maler für Neubau</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4 class="font-label-md text-primary mb-6 uppercase">Für wen</h4>
+      <ul class="space-y-3">
+        <li><a class="text-slate-500 hover:text-primary font-body-md" href="maler-einfamilienhaus.html">Einfamilienhaus</a></li>
+        <li><a class="text-slate-500 hover:text-primary font-body-md" href="maler-mehrfamilienhaus.html">Mehrfamilienhaus</a></li>
+        <li><a class="text-slate-500 hover:text-primary font-body-md" href="wohnung-streichen.html">Wohnung streichen</a></li>
+        <li><a class="text-slate-500 hover:text-primary font-body-md" href="maler-gewerbe-buero.html">Geschäftsräume</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4 class="font-label-md text-primary mb-6 uppercase">Kontakt</h4>
+      <ul class="space-y-3 text-slate-500 font-body-md">
+        <li>Bühlmann Söhne AG</li>
+        <li>Handwerkstrasse 12</li>
+        <li>6000 Luzern</li>
+        <li><a href="tel:+41410000000" class="hover:text-primary">+41 41 000 00 00</a></li>
+        <li><a href="mailto:info@buehlmann-soehne.ch" class="hover:text-primary">info@buehlmann-soehne.ch</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="max-w-7xl mx-auto px-6 md:px-8 mt-16 pt-8 border-t border-slate-200 flex flex-col md:flex-row justify-between items-center gap-4">
+    <p class="text-slate-500 text-sm">© 2026 Bühlmann Söhne AG · Schweizer Malerhandwerk Luzern</p>
+    <div class="flex items-center gap-2">
+      <span class="material-symbols-outlined text-primary">verified</span>
+      <span class="font-label-md text-primary uppercase">Schweizer Handwerksqualität seit 1924</span>
+    </div>
+  </div>
+</footer>
+</body></html>
