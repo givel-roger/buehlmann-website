@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="de"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-container": "#232729",
+                    "outline-variant": "#c5c5d3",
+                    "on-tertiary-fixed": "#181c1e",
+                    "surface-tint": "#4658ac",
+                    "on-secondary-container": "#706000",
+                    "surface-container-low": "#f3f3f6",
+                    "surface-container-highest": "#e2e2e5",
+                    "primary": "#000a3f",
+                    "on-surface": "#1a1c1e",
+                    "on-secondary-fixed-variant": "#524600",
+                    "surface-container-high": "#e8e8ea",
+                    "on-tertiary-container": "#8a8e91",
+                    "inverse-on-surface": "#f0f0f3",
+                    "outline": "#757683",
+                    "on-primary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "inverse-primary": "#b9c3ff",
+                    "on-tertiary-fixed-variant": "#43474a",
+                    "surface-bright": "#f9f9fc",
+                    "error": "#ba1a1a",
+                    "background": "#f9f9fc",
+                    "surface-variant": "#e2e2e5",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary-fixed": "#211b00",
+                    "inverse-surface": "#2f3133",
+                    "on-tertiary": "#ffffff",
+                    "on-secondary": "#ffffff",
+                    "secondary-container": "#fddc00",
+                    "primary-container": "#001a72",
+                    "surface": "#f9f9fc",
+                    "on-surface-variant": "#454651",
+                    "secondary-fixed-dim": "#e3c600",
+                    "on-primary-fixed-variant": "#2d3f93",
+                    "secondary": "#6d5e00",
+                    "on-error": "#ffffff",
+                    "surface-dim": "#dadadc",
+                    "tertiary-fixed-dim": "#c3c7ca",
+                    "tertiary": "#0e1215",
+                    "surface-container": "#eeeef0",
+                    "on-primary-fixed": "#001258",
+                    "tertiary-fixed": "#e0e3e6",
+                    "primary-fixed-dim": "#b9c3ff",
+                    "on-background": "#1a1c1e",
+                    "secondary-fixed": "#ffe24a",
+                    "primary-fixed": "#dee1ff",
+                    "on-primary-container": "#7688e0",
+                    "error-container": "#ffdad6"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "section-padding": "80px",
+                    "base": "8px",
+                    "margin-mobile": "16px",
+                    "gutter": "24px",
+                    "container-max": "1280px"
+            },
+            "fontFamily": {
+                    "headline-xl": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "label-md": ["Inter"],
+                    "body-md": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "body-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-xl": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "label-md": ["14px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+        }
+        .masonry-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-auto-rows: 200px;
+            gap: 24px;
+        }
+        .masonry-item-tall { grid-row: span 2; }
+        .masonry-item-wide { grid-column: span 2; }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md antialiased">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 shadow-sm">
+<div class="flex justify-between items-center max-w-7xl mx-auto px-8 h-20">
+<div class="text-xl font-bold tracking-tighter text-[#001A72] dark:text-white uppercase font-headline-md">
+                Bühlmann Söhne AG
+            </div>
+<div class="hidden md:flex items-center space-x-8">
+<a class="text-[#001A72] dark:text-blue-400 font-bold border-b-2 border-[#001A72] dark:border-blue-400 pb-1 font-label-md transition-all duration-300" href="#">Home</a>
+<a class="text-slate-600 dark:text-slate-400 font-medium hover:text-[#001A72] dark:hover:text-blue-300 transition-all duration-300 font-label-md" href="#">Services</a>
+<a class="text-slate-600 dark:text-slate-400 font-medium hover:text-[#001A72] dark:hover:text-blue-300 transition-all duration-300 font-label-md" href="#">Portfolio</a>
+<a class="text-slate-600 dark:text-slate-400 font-medium hover:text-[#001A72] dark:hover:text-blue-300 transition-all duration-300 font-label-md" href="#">Blog</a>
+<a class="text-slate-600 dark:text-slate-400 font-medium hover:text-[#001A72] dark:hover:text-blue-300 transition-all duration-300 font-label-md" href="#">Contact</a>
+</div>
+<div class="flex items-center space-x-4">
+<a class="hidden lg:flex items-center text-slate-600 font-medium hover:text-primary transition-colors font-label-md" href="tel:+41000000000">
+<span class="material-symbols-outlined mr-2" data-icon="call">call</span>
+                    Call Us
+                </a>
+<button class="bg-primary-container text-white px-6 py-3 rounded-lg font-label-md uppercase tracking-widest hover:bg-primary transition-all active:scale-95">
+                    Get a Quote
+                </button>
+</div>
+</div>
+</nav>
+<!-- Hero Section -->
+<header class="relative h-screen w-full flex items-center justify-center overflow-hidden bg-primary">
+<div class="absolute inset-0 z-0">
+<img alt="" class="w-full h-full object-cover opacity-60 brightness-75" data-alt="A cinematic, high-angle architectural shot of a modern minimalist villa in the Swiss Alps during the blue hour. The structure features clean lines, expansive glass facades reflecting the deep blue twilight sky, and perfectly finished white plastered walls. The overall mood is sophisticated, silent, and premium, emphasizing the precision of Swiss craftsmanship and architectural excellence in a pristine natural setting." src="https://lh3.googleusercontent.com/aida/ADBb0uhcMaS2_SBJv08380AyU1lipkcs-Wn1--2gWiIskQu4uhO9pmQvc2gFA28jx4uayVdtDoQ6vm7ORQpIzhU7IzCopTLJKkA-oXbXseFs7ad0EAzcpt8kTEb_NE7507ugBPntQiMTT_bOdIF4xtGILWrJ5AY4i3bYaUYV9g2PoXheBpPv_33-eUNP-7PCVJO455KSRHTt3fyKNkBVH1TTTCxE9LLmJGylQmUl4Gg2N0lSxYSLfNws2-8i7b2E465Vay63O5hWeJlIq_c"/>
+<div class="absolute inset-0 bg-gradient-to-b from-primary/40 to-primary/80"></div>
+</div>
+<div class="relative z-10 text-center px-4 max-w-4xl">
+<span class="font-label-md text-secondary-fixed tracking-[0.3em] uppercase mb-6 block">Swiss Artisan Excellence</span>
+<h1 class="font-headline-xl text-white mb-8 text-5xl md:text-7xl leading-tight">PRECISION IN EVERY LAYER.</h1>
+<p class="font-body-lg text-white/80 mb-10 max-w-2xl mx-auto">Masterful painting and surface finishing for high-end architectural landmarks in Lucerne and beyond.</p>
+<div class="flex flex-col sm:flex-row gap-4 justify-center">
+<button class="bg-secondary-container text-primary font-label-md px-10 py-5 rounded-lg uppercase tracking-widest hover:opacity-90 transition-all active:scale-95 shadow-xl">Explore Masterpieces</button>
+<button class="border border-white/30 text-white backdrop-blur-sm font-label-md px-10 py-5 rounded-lg uppercase tracking-widest hover:bg-white/10 transition-all">Our Services</button>
+</div>
+</div>
+<div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce">
+<span class="material-symbols-outlined text-white text-4xl" data-icon="keyboard_double_arrow_down">keyboard_double_arrow_down</span>
+</div>
+</header>
+<!-- Masterpieces Masonry Gallery -->
+<section class="py-24 bg-white">
+<div class="max-w-7xl mx-auto px-8">
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
+<div class="max-w-2xl">
+<span class="font-label-md text-primary-container tracking-widest uppercase mb-4 block">Portfolio</span>
+<h2 class="font-headline-lg text-primary text-4xl md:text-5xl">MASTERPIECES</h2>
+<p class="font-body-lg text-on-surface-variant mt-4">A curated selection of our most demanding architectural projects, where Swiss precision meets visionary design.</p>
+</div>
+<a class="font-label-md text-primary flex items-center group" href="#">
+                    View All Projects 
+                    <span class="material-symbols-outlined ml-2 transition-transform group-hover:translate-x-2" data-icon="arrow_forward">arrow_forward</span>
+</a>
+</div>
+<div class="masonry-grid">
+<div class="masonry-item-tall group relative overflow-hidden bg-slate-100">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Close-up detail of a flawlessly finished interior wall with a subtle matte texture, illuminated by soft natural light from a nearby window. The aesthetic is extremely clean and architectural, highlighting the professional painting quality. The color palette is a sophisticated off-white that creates a serene, minimalist atmosphere within a high-end residential space." src="https://lh3.googleusercontent.com/aida/ADBb0uhcMaS2_SBJv08380AyU1lipkcs-Wn1--2gWiIskQu4uhO9pmQvc2gFA28jx4uayVdtDoQ6vm7ORQpIzhU7IzCopTLJKkA-oXbXseFs7ad0EAzcpt8kTEb_NE7507ugBPntQiMTT_bOdIF4xtGILWrJ5AY4i3bYaUYV9g2PoXheBpPv_33-eUNP-7PCVJO455KSRHTt3fyKNkBVH1TTTCxE9LLmJGylQmUl4Gg2N0lSxYSLfNws2-8i7b2E465Vay63O5hWeJlIq_c"/>
+<div class="absolute inset-0 bg-primary/60 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-8">
+<span class="text-white/60 font-label-md mb-2">Residential</span>
+<h3 class="text-white font-headline-md">Villa Lucerne</h3>
+</div>
+</div>
+<div class="masonry-item-wide group relative overflow-hidden bg-slate-100">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="An expansive modern corporate lobby with high ceilings and geometric architectural features. The walls are finished in a dark, professional navy blue with metallic accents, reflecting the precision of a high-end commercial painting project. The lighting is sharp and directional, casting dramatic shadows that emphasize the architectural forms. The mood is corporate, reliable, and prestigious." src="https://lh3.googleusercontent.com/aida/ADBb0uhcMaS2_SBJv08380AyU1lipkcs-Wn1--2gWiIskQu4uhO9pmQvc2gFA28jx4uayVdtDoQ6vm7ORQpIzhU7IzCopTLJKkA-oXbXseFs7ad0EAzcpt8kTEb_NE7507ugBPntQiMTT_bOdIF4xtGILWrJ5AY4i3bYaUYV9g2PoXheBpPv_33-eUNP-7PCVJO455KSRHTt3fyKNkBVH1TTTCxE9LLmJGylQmUl4Gg2N0lSxYSLfNws2-8i7b2E465Vay63O5hWeJlIq_c"/>
+<div class="absolute inset-0 bg-primary/60 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-8">
+<span class="text-white/60 font-label-md mb-2">Commercial</span>
+<h3 class="text-white font-headline-md">Global HQ Lucerne</h3>
+</div>
+</div>
+<div class="group relative overflow-hidden bg-slate-100">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="A detail shot of an exterior renovation on a historic Swiss building, showing the careful preservation of original moldings juxtaposed with modern, high-performance protective coatings. The lighting is bright midday sun, showcasing the vibrant and durable color choice. The style combines traditional craftsmanship with modern architectural longevity." src="https://lh3.googleusercontent.com/aida/ADBb0uhcMaS2_SBJv08380AyU1lipkcs-Wn1--2gWiIskQu4uhO9pmQvc2gFA28jx4uayVdtDoQ6vm7ORQpIzhU7IzCopTLJKkA-oXbXseFs7ad0EAzcpt8kTEb_NE7507ugBPntQiMTT_bOdIF4xtGILWrJ5AY4i3bYaUYV9g2PoXheBpPv_33-eUNP-7PCVJO455KSRHTt3fyKNkBVH1TTTCxE9LLmJGylQmUl4Gg2N0lSxYSLfNws2-8i7b2E465Vay63O5hWeJlIq_c"/>
+<div class="absolute inset-0 bg-primary/60 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-8">
+<span class="text-white/60 font-label-md mb-2">Renovation</span>
+<h3 class="text-white font-headline-md">Historic Chapel</h3>
+</div>
+</div>
+<div class="group relative overflow-hidden bg-slate-100">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Interior view of a minimalist art gallery with perfectly smooth, neutral gray walls that serve as a silent backdrop for contemporary art. The surface finish is impeccable, demonstrating the high-level expertise required for architectural spaces where the wall itself must be a perfect canvas. The environment is bright, airy, and ultra-modern." src="https://lh3.googleusercontent.com/aida/ADBb0uhcMaS2_SBJv08380AyU1lipkcs-Wn1--2gWiIskQu4uhO9pmQvc2gFA28jx4uayVdtDoQ6vm7ORQpIzhU7IzCopTLJKkA-oXbXseFs7ad0EAzcpt8kTEb_NE7507ugBPntQiMTT_bOdIF4xtGILWrJ5AY4i3bYaUYV9g2PoXheBpPv_33-eUNP-7PCVJO455KSRHTt3fyKNkBVH1TTTCxE9LLmJGylQmUl4Gg2N0lSxYSLfNws2-8i7b2E465Vay63O5hWeJlIq_c"/>
+<div class="absolute inset-0 bg-primary/60 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-8">
+<span class="text-white/60 font-label-md mb-2">Cultural</span>
+<h3 class="text-white font-headline-md">Art Center S</h3>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Services Section (Interactive Tiles) -->
+<section class="py-24 bg-surface-container-low">
+<div class="max-w-7xl mx-auto px-8">
+<div class="text-center mb-16">
+<span class="font-label-md text-primary-container tracking-widest uppercase mb-4 block">Expertise</span>
+<h2 class="font-headline-lg text-primary text-4xl">OUR SPECIALIZED SERVICES</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Service 1 -->
+<div class="bg-white border border-slate-200 group hover:border-primary-container transition-all duration-500 overflow-hidden">
+<div class="h-64 overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="Professional painter applying a premium coat of paint to an interior wall with focused precision. The shot is a close-up, highlighting the clean edges and the rich texture of the wet paint. The lighting is bright and crisp, emphasizing the meticulous nature of high-end interior finishing. The color scheme is dominated by clean whites and deep professional blues." src="https://lh3.googleusercontent.com/aida/ADBb0uhcMaS2_SBJv08380AyU1lipkcs-Wn1--2gWiIskQu4uhO9pmQvc2gFA28jx4uayVdtDoQ6vm7ORQpIzhU7IzCopTLJKkA-oXbXseFs7ad0EAzcpt8kTEb_NE7507ugBPntQiMTT_bOdIF4xtGILWrJ5AY4i3bYaUYV9g2PoXheBpPv_33-eUNP-7PCVJO455KSRHTt3fyKNkBVH1TTTCxE9LLmJGylQmUl4Gg2N0lSxYSLfNws2-8i7b2E465Vay63O5hWeJlIq_c"/>
+</div>
+<div class="p-8">
+<span class="font-label-md text-slate-400 mb-2 block uppercase">Interior</span>
+<h3 class="font-headline-md text-primary mb-4">AESTHETIC INTERIORS</h3>
+<p class="text-on-surface-variant font-body-md mb-6 leading-relaxed">Sophisticated surface designs that transform living spaces into architectural statements through light and color.</p>
+<ul class="space-y-3 mb-8">
+<li class="flex items-center text-primary font-label-md">
+<span class="material-symbols-outlined mr-2 text-primary text-sm" data-icon="check" data-weight="fill">check</span>
+                                Decorative Plastering
+                            </li>
+<li class="flex items-center text-primary font-label-md">
+<span class="material-symbols-outlined mr-2 text-primary text-sm" data-icon="check" data-weight="fill">check</span>
+                                Premium Wall Coverings
+                            </li>
+</ul>
+<button class="font-label-md text-primary border-b border-primary/20 pb-1 group-hover:border-primary transition-all">Details</button>
+</div>
+</div>
+<!-- Service 2 -->
+<div class="bg-white border border-slate-200 group hover:border-primary-container transition-all duration-500 overflow-hidden">
+<div class="h-64 overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A worker on a professional scaffolding system performing exterior maintenance on a large modern building. The scene captures the scale of the project and the technical precision involved in facade protection. The sky is a clear alpine blue, and the building's facade is a striking white, representing the durability and brilliance of high-quality exterior painting services." src="https://lh3.googleusercontent.com/aida/ADBb0uhcMaS2_SBJv08380AyU1lipkcs-Wn1--2gWiIskQu4uhO9pmQvc2gFA28jx4uayVdtDoQ6vm7ORQpIzhU7IzCopTLJKkA-oXbXseFs7ad0EAzcpt8kTEb_NE7507ugBPntQiMTT_bOdIF4xtGILWrJ5AY4i3bYaUYV9g2PoXheBpPv_33-eUNP-7PCVJO455KSRHTt3fyKNkBVH1TTTCxE9LLmJGylQmUl4Gg2N0lSxYSLfNws2-8i7b2E465Vay63O5hWeJlIq_c"/>
+</div>
+<div class="p-8">
+<span class="font-label-md text-slate-400 mb-2 block uppercase">Exterior</span>
+<h3 class="font-headline-md text-primary mb-4">FACADE PROTECTION</h3>
+<p class="text-on-surface-variant font-body-md mb-6 leading-relaxed">Advanced protective coatings designed to withstand the Swiss alpine climate while enhancing building character.</p>
+<ul class="space-y-3 mb-8">
+<li class="flex items-center text-primary font-label-md">
+<span class="material-symbols-outlined mr-2 text-primary text-sm" data-icon="check" data-weight="fill">check</span>
+                                Weather Resistance
+                            </li>
+<li class="flex items-center text-primary font-label-md">
+<span class="material-symbols-outlined mr-2 text-primary text-sm" data-icon="check" data-weight="fill">check</span>
+                                Facade Insulation
+                            </li>
+</ul>
+<button class="font-label-md text-primary border-b border-primary/20 pb-1 group-hover:border-primary transition-all">Details</button>
+</div>
+</div>
+<!-- Service 3 -->
+<div class="bg-white border border-slate-200 group hover:border-primary-container transition-all duration-500 overflow-hidden">
+<div class="h-64 overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="Macro detail of specialized restoration work being performed on an ornate gold-leaf architectural detail. The lighting is warm and directional, emphasizing the intricate textures and the expert hand of the craftsman. The scene conveys a sense of timeless quality, heritage, and the delicate balance between preservation and modern architectural standards." src="https://lh3.googleusercontent.com/aida/ADBb0uhcMaS2_SBJv08380AyU1lipkcs-Wn1--2gWiIskQu4uhO9pmQvc2gFA28jx4uayVdtDoQ6vm7ORQpIzhU7IzCopTLJKkA-oXbXseFs7ad0EAzcpt8kTEb_NE7507ugBPntQiMTT_bOdIF4xtGILWrJ5AY4i3bYaUYV9g2PoXheBpPv_33-eUNP-7PCVJO455KSRHTt3fyKNkBVH1TTTCxE9LLmJGylQmUl4Gg2N0lSxYSLfNws2-8i7b2E465Vay63O5hWeJlIq_c"/>
+</div>
+<div class="p-8">
+<span class="font-label-md text-slate-400 mb-2 block uppercase">Specialized</span>
+<h3 class="font-headline-md text-primary mb-4">HERITAGE RESTORATION</h3>
+<p class="text-on-surface-variant font-body-md mb-6 leading-relaxed">Traditional artisanal techniques combined with modern material science for monumental preservation.</p>
+<ul class="space-y-3 mb-8">
+<li class="flex items-center text-primary font-label-md">
+<span class="material-symbols-outlined mr-2 text-primary text-sm" data-icon="check" data-weight="fill">check</span>
+                                Color Analysis
+                            </li>
+<li class="flex items-center text-primary font-label-md">
+<span class="material-symbols-outlined mr-2 text-primary text-sm" data-icon="check" data-weight="fill">check</span>
+                                Historic Techniques
+                            </li>
+</ul>
+<button class="font-label-md text-primary border-b border-primary/20 pb-1 group-hover:border-primary transition-all">Details</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Blog & Inspiration -->
+<section class="py-32 bg-white">
+<div class="max-w-7xl mx-auto px-8">
+<div class="flex flex-col md:flex-row justify-between items-center mb-20">
+<div class="text-center md:text-left mb-8 md:mb-0">
+<h2 class="font-headline-lg text-primary text-4xl mb-4">INSIGHTS &amp; INSPIRATION</h2>
+<div class="h-1 w-20 bg-secondary-container"></div>
+</div>
+<button class="border-2 border-primary-container text-primary font-label-md px-8 py-3 hover:bg-primary-container hover:text-white transition-all">Go to Journal</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-16">
+<article class="flex flex-col gap-6">
+<div class="aspect-[16/9] overflow-hidden bg-slate-50">
+<img class="w-full h-full object-cover hover:scale-105 transition-transform duration-1000" data-alt="A clean, minimalist layout of architectural mood boards featuring swatches of deep blue, slate gray, and crisp white paint. The boards are arranged on a light wooden table next to a large window with natural light. The overall aesthetic is professional, organized, and inspiring, representing the design phase of a high-end painting project." src="https://lh3.googleusercontent.com/aida/ADBb0uhcMaS2_SBJv08380AyU1lipkcs-Wn1--2gWiIskQu4uhO9pmQvc2gFA28jx4uayVdtDoQ6vm7ORQpIzhU7IzCopTLJKkA-oXbXseFs7ad0EAzcpt8kTEb_NE7507ugBPntQiMTT_bOdIF4xtGILWrJ5AY4i3bYaUYV9g2PoXheBpPv_33-eUNP-7PCVJO455KSRHTt3fyKNkBVH1TTTCxE9LLmJGylQmUl4Gg2N0lSxYSLfNws2-8i7b2E465Vay63O5hWeJlIq_c"/>
+</div>
+<div>
+<div class="flex items-center gap-4 mb-4">
+<span class="font-label-md text-slate-400">MAY 24, 2024</span>
+<span class="w-1 h-1 bg-slate-400 rounded-full"></span>
+<span class="font-label-md text-primary tracking-widest">DESIGN TRENDS</span>
+</div>
+<h3 class="font-headline-md text-primary mb-4 hover:text-primary-container transition-colors cursor-pointer">The Psychology of Deep Blue in Modern Architecture</h3>
+<p class="font-body-md text-on-surface-variant line-clamp-3">Discover how the strategic application of dark tones can redefine space, depth, and prestige in contemporary residential design...</p>
+</div>
+</article>
+<article class="flex flex-col gap-6">
+<div class="aspect-[16/9] overflow-hidden bg-slate-50">
+<img class="w-full h-full object-cover hover:scale-105 transition-transform duration-1000" data-alt="A high-tech laboratory setting where paint durability tests are being conducted. The lighting is clinical and bright, highlighting specialized machinery and colorful paint samples. The image represents the intersection of traditional craftsmanship and modern material science, emphasizing the high-performance standards of the services offered." src="https://lh3.googleusercontent.com/aida/ADBb0uhcMaS2_SBJv08380AyU1lipkcs-Wn1--2gWiIskQu4uhO9pmQvc2gFA28jx4uayVdtDoQ6vm7ORQpIzhU7IzCopTLJKkA-oXbXseFs7ad0EAzcpt8kTEb_NE7507ugBPntQiMTT_bOdIF4xtGILWrJ5AY4i3bYaUYV9g2PoXheBpPv_33-eUNP-7PCVJO455KSRHTt3fyKNkBVH1TTTCxE9LLmJGylQmUl4Gg2N0lSxYSLfNws2-8i7b2E465Vay63O5hWeJlIq_c"/>
+</div>
+<div>
+<div class="flex items-center gap-4 mb-4">
+<span class="font-label-md text-slate-400">MAY 18, 2024</span>
+<span class="w-1 h-1 bg-slate-400 rounded-full"></span>
+<span class="font-label-md text-primary tracking-widest">TECHNOLOGY</span>
+</div>
+<h3 class="font-headline-md text-primary mb-4 hover:text-primary-container transition-colors cursor-pointer">Sustainable Surface Protection for the 21st Century</h3>
+<p class="font-body-md text-on-surface-variant line-clamp-3">How we integrate eco-friendly materials without compromising the legendary durability expected of Swiss craftsmanship...</p>
+</div>
+</article>
+</div>
+</div>
+</section>
+<!-- Compact Contact Section -->
+<section class="py-24 bg-primary text-white overflow-hidden relative">
+<div class="max-w-7xl mx-auto px-8 relative z-10">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+<div>
+<h2 class="font-headline-lg text-4xl mb-6">READY TO ELEVATE YOUR ARCHITECTURE?</h2>
+<p class="font-body-lg text-white/70 mb-10">Consult with our master artisans about your upcoming project. We provide detailed consultations for premium architectural surfaces.</p>
+<div class="space-y-6">
+<div class="flex items-start gap-4">
+<div class="bg-white/10 p-3 rounded">
+<span class="material-symbols-outlined text-secondary-container" data-icon="location_on">location_on</span>
+</div>
+<div>
+<p class="font-label-md text-white/50 mb-1">VISIT US</p>
+<p class="font-body-md">Handwerkstrasse 12, 6000 Luzern, Switzerland</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="bg-white/10 p-3 rounded">
+<span class="material-symbols-outlined text-secondary-container" data-icon="mail">mail</span>
+</div>
+<div>
+<p class="font-label-md text-white/50 mb-1">EMAIL US</p>
+<p class="font-body-md">info@buehlmann-soehne.ch</p>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-white p-10 rounded-lg shadow-2xl">
+<form class="space-y-6">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div>
+<label class="font-label-md text-primary block mb-2">FULL NAME</label>
+<input class="w-full border-slate-200 focus:border-primary-container focus:ring-0 px-4 py-3 text-primary" type="text"/>
+</div>
+<div>
+<label class="font-label-md text-primary block mb-2">PHONE</label>
+<input class="w-full border-slate-200 focus:border-primary-container focus:ring-0 px-4 py-3 text-primary" type="tel"/>
+</div>
+</div>
+<div>
+<label class="font-label-md text-primary block mb-2">EMAIL ADDRESS</label>
+<input class="w-full border-slate-200 focus:border-primary-container focus:ring-0 px-4 py-3 text-primary" type="email"/>
+</div>
+<div>
+<label class="font-label-md text-primary block mb-2">PROJECT DETAILS</label>
+<textarea class="w-full border-slate-200 focus:border-primary-container focus:ring-0 px-4 py-3 text-primary" rows="4"></textarea>
+</div>
+<button class="w-full bg-secondary-container text-primary font-label-md py-4 rounded-lg uppercase tracking-widest hover:opacity-90 transition-all shadow-lg" type="submit">Request Consultation</button>
+</form>
+</div>
+</div>
+</div>
+<div class="absolute top-0 right-0 w-1/3 h-full opacity-10 pointer-events-none">
+<svg class="h-full w-full fill-white" viewbox="0 0 100 100">
+<rect height="100" width="10" x="0" y="0"></rect>
+<rect height="100" width="10" x="20" y="0"></rect>
+<rect height="100" width="10" x="40" y="0"></rect>
+</svg>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-[#F4F7FA] dark:bg-slate-950 w-full py-12 border-t border-slate-200 dark:border-slate-800">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-8 max-w-7xl mx-auto px-8">
+<div class="col-span-1 md:col-span-1">
+<div class="text-lg font-black text-[#001A72] dark:text-white uppercase mb-6 font-headline-md">Bühlmann Söhne AG</div>
+<p class="text-slate-500 dark:text-slate-500 font-body-md">Excellence in Swiss craftsmanship since 1924. Delivering architectural painting solutions for the modern era.</p>
+</div>
+<div>
+<h4 class="font-label-md text-[#001A72] mb-6">SERVICES</h4>
+<ul class="space-y-4">
+<li><a class="text-slate-500 hover:text-[#001A72] transition-colors font-body-md" href="#">Interior Design</a></li>
+<li><a class="text-slate-500 hover:text-[#001A72] transition-colors font-body-md" href="#">Facade Renovation</a></li>
+<li><a class="text-slate-500 hover:text-[#001A72] transition-colors font-body-md" href="#">Color Consulting</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-label-md text-[#001A72] mb-6">COMPANY</h4>
+<ul class="space-y-4">
+<li><a class="text-slate-500 hover:text-[#001A72] transition-colors font-body-md" href="#">About Us</a></li>
+<li><a class="text-slate-500 hover:text-[#001A72] transition-colors font-body-md" href="#">Our Process</a></li>
+<li><a class="text-slate-500 hover:text-[#001A72] transition-colors font-body-md" href="#">Careers</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-label-md text-[#001A72] mb-6">LEGAL</h4>
+<ul class="space-y-4">
+<li><a class="text-slate-500 hover:text-[#001A72] transition-colors font-body-md" href="#">Imprint</a></li>
+<li><a class="text-slate-500 hover:text-[#001A72] transition-colors font-body-md" href="#">Privacy Policy</a></li>
+<li><a class="text-slate-500 hover:text-[#001A72] transition-colors font-body-md" href="#">Terms of Service</a></li>
+</ul>
+</div>
+</div>
+<div class="max-w-7xl mx-auto px-8 mt-16 pt-8 border-t border-slate-200 flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="text-slate-500 text-sm">© 2024 Bühlmann Söhne AG. Swiss Quality Painting Services Lucerne.</p>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[#001A72]" data-icon="verified">verified</span>
+<span class="font-label-md text-[#001A72]">Swiss Craftsmanship Badge</span>
+</div>
+</div>
+</footer>
+</body></html>

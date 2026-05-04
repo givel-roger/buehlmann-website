@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://buehlmann-soehne.ch/sitemap.xml
