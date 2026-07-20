@@ -1,5 +1,11 @@
 # Changelog
 
+## v2.3.2 — 2026-07-20
+
+- Unpassendes Stockbild (amerikanisches Gebäude mit Bauarbeiter) ersetzt:
+  Malerei-Seite "Aussen" und Referenzen-Hero zeigen jetzt das echte Firmenfoto
+  mit eigenem Gerüst (assets/fassade.jpg)
+
 ## v2.3.1 — 2026-07-20
 
 - Hero-Video: statt 16-Sekunden-Ausschnitt läuft jetzt das ganze Image-Video (61 s)

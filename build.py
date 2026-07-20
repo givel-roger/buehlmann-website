@@ -7,7 +7,7 @@ Texte sind modernisiert, Fakten unverändert (Gründung 1935, Rothenbad 18 usw.)
 from pathlib import Path
 from textwrap import dedent
 
-VERSION = "2.3.1"
+VERSION = "2.3.2"
 SITE_URL = "https://www.bs-luzern.ch"
 ROOT = Path(__file__).parent
 
@@ -751,7 +751,7 @@ def index_page() -> str:
 def malerei_page() -> str:
     blocks = [
         ("Innen", "assets/team-streichen.jpg", "Malen, Spritzen, Tapezieren: Mit Spachtel, Pinsel, Spritzpistole und Tapetenbürste verschönern wir jeden Innenraum. Ob denkmalgeschützte Ratsherrenstube, modernes Bürogebäude oder Industriebau.", "innenmalerei.html"),
-        ("Aussen", IMG_ALTBAU, "Ob Holz, Beton, Naturstein, Verputz, Metall oder Kunststoff: Wir bearbeiten jede Fassade fachmännisch. Eigene Roll- und Fassadengerüste machen uns schnell und flexibel.", "fassaden.html"),
+        ("Aussen", "assets/fassade.jpg", "Ob Holz, Beton, Naturstein, Verputz, Metall oder Kunststoff: Wir bearbeiten jede Fassade fachmännisch. Eigene Roll- und Fassadengerüste machen uns schnell und flexibel.", "fassaden.html"),
         ("Unser Spritzwerk", IMG_FARBEIMER, "Mit unserer modernen Spritzanlage für Industrie- und Bauteile lackieren wir auch grossflächige Gegenstände wie Jalousieläden im Thermo-Lackier-Verfahren.", "spritzwerk.html"),
         ("Kundengipserei", IMG_ROLLER, "Unsere Kundengipserei ist für Einsätze jeglicher Art ausgerüstet. Verputzarbeiten und Betonsanierungen erledigen wir prompt und unkompliziert.", "gipserei.html"),
     ]
@@ -996,7 +996,7 @@ def referenzen_page() -> str:
         for img, t, d in refs
     )
     body = dedent(f"""
-    {hero_light("Referenzen", "Spuren unserer Arbeit", "Auf Gebäudefassaden ebenso wie in Wohn- und Geschäftsräumen: Eine Auswahl von Projekten aus Luzern und der Innerschweiz.", IMG_ALTBAU, "Offerte anfragen")}
+    {hero_light("Referenzen", "Spuren unserer Arbeit", "Auf Gebäudefassaden ebenso wie in Wohn- und Geschäftsräumen: Eine Auswahl von Projekten aus Luzern und der Innerschweiz.", "assets/fassade.jpg", "Offerte anfragen")}
 
     <section class="bg-mist border-y border-line">
       <div class="max-w-6xl mx-auto px-6 py-20">
@@ -1012,7 +1012,7 @@ def referenzen_page() -> str:
         "referenzen",
         "Referenzen | Bühlmann Söhne AG, Maler Luzern",
         "Referenzprojekte der Bühlmann Söhne AG: Fassadenrenovationen, Wohnungsrenovationen, Neubauten und Geschäftsräume in Luzern und der Innerschweiz.",
-        IMG_ALTBAU,
+        "assets/fassade.jpg",
         body,
     )
 
