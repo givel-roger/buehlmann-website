@@ -121,7 +121,9 @@
         </div>
         <div class="relative">
           <div class="absolute -top-5 -right-5 w-full h-full rounded-lg bg-accent/30" aria-hidden="true"></div>
-          <img src="assets/hero-farben.jpg" alt="Farbeimer und Malerleiter in hellem Raum" class="relative rounded-lg shadow-2xl w-full aspect-[4/3] object-cover" />
+          <video class="relative rounded-lg shadow-2xl w-full aspect-[4/3] object-cover" autoplay muted loop playsinline preload="metadata" poster="assets/hero-farben.jpg" aria-label="Einblick in die Arbeit der Bühlmann Söhne AG">
+            <source src="assets/hero-loop.mp4" type="video/mp4" />
+          </video>
         </div>
       </div>
     </header>
@@ -157,6 +159,20 @@
           <p class="text-ink-soft text-[16px] leading-relaxed mb-8">Geschäftsführer Patrick Bühlmann führt das Unternehmen mit 10 Malern und 3 Mitarbeitenden in der Administration. Moderne Maschinen und ein umfangreicher Wagenpark sorgen für effizientes Arbeiten. Und weil uns der Nachwuchs wichtig ist, bilden wir regelmässig Malerlehrlinge aus.</p>
           <a href="unternehmen.html" class="text-[13px] font-semibold tracking-[0.14em] uppercase text-ink border-b-2 border-accent pb-1">Geschichte und Leitbild</a>
         </div>
+      </div>
+    </section>
+
+    <section class="bg-mist border-y border-line">
+      <div class="max-w-5xl mx-auto px-6 py-20">
+        <div class="text-center mb-10">
+          <span class="eyebrow text-ink-soft block mb-3">Image-Video</span>
+          <h2 class="font-display text-3xl md:text-4xl text-ink mb-4">Ein Blick in unsere Arbeit</h2>
+          <p class="text-ink-soft text-[16px] max-w-2xl mx-auto">Eine Minute Bühlmann Söhne AG: unser Team, unser Handwerk und die Sorgfalt hinter jedem Auftrag.</p>
+        </div>
+        <video class="rounded-lg shadow-2xl w-full aspect-video bg-ink" controls preload="none" poster="assets/hero-farben.jpg">
+          <source src="assets/imagevideo.mp4" type="video/mp4" />
+          Ihr Browser kann dieses Video nicht abspielen.
+        </video>
       </div>
     </section>
 
@@ -228,7 +244,7 @@
 })();
 </script>
 
-    <section class="bg-mist border-y border-line">
+    <section class="bg-paper border-y border-line">
       <div class="max-w-6xl mx-auto px-6 py-20">
         <div class="flex flex-wrap items-end justify-between gap-6 mb-12">
           <div>
@@ -309,7 +325,7 @@
   </div>
   <div class="border-t border-line">
     <div class="max-w-6xl mx-auto px-6 py-5 flex flex-col md:flex-row justify-between items-center gap-3 text-[13px] text-ink-soft">
-      <span>v2.1.0</span>
+      <span>v2.2.0</span>
       <span>© 2026 Bühlmann Söhne AG · Rothenbad 18 · 6015 Luzern</span>
       <span class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[16px] text-ink">verified</span>Schweizer Handwerk seit 1935</span>
     </div>

@@ -7,7 +7,7 @@ Texte sind modernisiert, Fakten unverändert (Gründung 1935, Rothenbad 18 usw.)
 from pathlib import Path
 from textwrap import dedent
 
-VERSION = "2.1.0"
+VERSION = "2.2.0"
 SITE_URL = "https://www.bs-luzern.ch"
 ROOT = Path(__file__).parent
 
@@ -658,7 +658,9 @@ def index_page() -> str:
         </div>
         <div class="relative">
           <div class="absolute -top-5 -right-5 w-full h-full rounded-lg bg-accent/30" aria-hidden="true"></div>
-          <img src="assets/hero-farben.jpg" alt="Farbeimer und Malerleiter in hellem Raum" class="relative rounded-lg shadow-2xl w-full aspect-[4/3] object-cover" />
+          <video class="relative rounded-lg shadow-2xl w-full aspect-[4/3] object-cover" autoplay muted loop playsinline preload="metadata" poster="assets/hero-farben.jpg" aria-label="Einblick in die Arbeit der Bühlmann Söhne AG">
+            <source src="assets/hero-loop.mp4" type="video/mp4" />
+          </video>
         </div>
       </div>
     </header>
@@ -692,9 +694,23 @@ def index_page() -> str:
       </div>
     </section>
 
+    <section class="bg-mist border-y border-line">
+      <div class="max-w-5xl mx-auto px-6 py-20">
+        <div class="text-center mb-10">
+          <span class="eyebrow text-ink-soft block mb-3">Image-Video</span>
+          <h2 class="font-display text-3xl md:text-4xl text-ink mb-4">Ein Blick in unsere Arbeit</h2>
+          <p class="text-ink-soft text-[16px] max-w-2xl mx-auto">Eine Minute Bühlmann Söhne AG: unser Team, unser Handwerk und die Sorgfalt hinter jedem Auftrag.</p>
+        </div>
+        <video class="rounded-lg shadow-2xl w-full aspect-video bg-ink" controls preload="none" poster="assets/hero-farben.jpg">
+          <source src="assets/imagevideo.mp4" type="video/mp4" />
+          Ihr Browser kann dieses Video nicht abspielen.
+        </video>
+      </div>
+    </section>
+
     {FARBSTUDIE}
 
-    <section class="bg-mist border-y border-line">
+    <section class="bg-paper border-y border-line">
       <div class="max-w-6xl mx-auto px-6 py-20">
         <div class="flex flex-wrap items-end justify-between gap-6 mb-12">
           <div>

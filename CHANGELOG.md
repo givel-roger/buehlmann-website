@@ -1,5 +1,14 @@
 # Changelog
 
+## v2.2.0 — 2026-07-20
+
+Image-Video der Firma eingebaut (Original 148 MB, fürs Web komprimiert mit avconvert):
+
+- Hero der Startseite: 16-Sekunden-Loop als moderner Video-Slider
+  (assets/hero-loop.mp4, 8.3 MB, stumm, automatisch, mit Poster-Fallback)
+- Neuer Abschnitt "Ein Blick in unsere Arbeit": ganzes Video (61 s) mit Ton
+  und Play-Steuerung (assets/imagevideo.mp4, 32 MB, lädt erst beim Abspielen)
+
 ## v2.1.0 — 2026-07-20
 
 Echte Arbeitsfotos der Firma eingebaut (WeTransfer vom 20.07.2026, 1920x1080, scharf):
