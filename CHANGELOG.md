@@ -1,5 +1,10 @@
 # Changelog
 
+## v2.2.1 — 2026-07-20
+
+- Malerei-Seite, Block "Aussen": unpassendes Stockbild (Arbeiter in heruntergekommener
+  Gasse) ersetzt durch Gerüst an historischer Fassade; Bild ganz aus dem Pool entfernt
+
 ## v2.2.0 — 2026-07-20
 
 Image-Video der Firma eingebaut (Original 148 MB, fürs Web komprimiert mit avconvert):
