@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://buehlmann-soehne.ch/sitemap.xml
+Sitemap: https://www.bs-luzern.ch/sitemap.xml

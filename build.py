@@ -1,1019 +1,1210 @@
 #!/usr/bin/env python3
-"""Generate SEO landing pages for Bühlmann Söhne AG from a single config."""
+"""Generiert die Webseite der Bühlmann Söhne AG (bs-luzern.ch) aus einem Config.
+
+Alle Firmendaten stammen von der bisherigen Webseite www.bs-luzern.ch.
+Texte sind modernisiert, Fakten unverändert (Gründung 1935, Rothenbad 18 usw.).
+"""
 from pathlib import Path
 from textwrap import dedent
 
-SITE_URL = "https://buehlmann-soehne.ch"
+VERSION = "2.0.0"
+SITE_URL = "https://www.bs-luzern.ch"
 ROOT = Path(__file__).parent
 
-PAGES = [
-    {
-        "slug": "maler-luzern",
-        "title": "Maler Luzern – Bühlmann Söhne AG | Schweizer Malerhandwerk seit 1924",
-        "h1": "Maler Luzern — Schweizer Malerhandwerk auf höchstem Niveau",
-        "lead": "Ihr persönlicher Maler in Luzern und Umgebung. Über 100 Jahre Familientradition, präzise Schweizer Handwerkskunst und ein eingespieltes Team für Innen-, Fassaden- und Renovationsarbeiten.",
-        "meta": "Maler Luzern: Bühlmann Söhne AG ist Ihr Schweizer Malerbetrieb seit 1924. Innenmalerei, Fassadenrenovation, Farbberatung — präzise, zuverlässig, persönlich.",
-        "image": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1600&q=80",
-        "sections": [
-            ("Was uns als Maler in Luzern auszeichnet", "Wir kombinieren traditionelles Handwerk mit moderner Materialtechnologie. Jedes Projekt — vom Einfamilienhaus über die Stadtwohnung bis zur historischen Fassade — wird persönlich vom Geschäftsinhaber begleitet. Festpreis-Offerten, saubere Ausführung und ein klarer Zeitplan sind für uns selbstverständlich."),
-            ("Unsere Hauptleistungen für Luzern und die Innerschweiz", "Innenmalerei und Wandgestaltung, Fassadenrenovation, Spritzlackierungen, Tapezierarbeiten, Bodenversiegelungen und Restaurierung historischer Bauten. Auf Wunsch übernehmen wir die komplette Bauleitung von Renovationen."),
-            ("Festpreis statt Überraschungen", "Sie erhalten innerhalb von 5 Werktagen eine detaillierte schriftliche Offerte mit Festpreisgarantie. Keine Stundenrapporte, keine versteckten Zuschläge — Sie wissen vor Arbeitsbeginn exakt, was Ihr Projekt kostet."),
-            ("Einsatzgebiet im Kanton Luzern", "Wir arbeiten in der Stadt Luzern, Emmen, Kriens, Horw, Sursee, Hochdorf, Willisau und der gesamten Innerschweiz (Zug, Schwyz, Nidwalden, Obwalden, Uri)."),
-        ],
-        "faq": [
-            ("Wie lange dauert ein Malerauftrag in Luzern?", "Eine 4-Zimmer-Wohnung benötigt rund 3–5 Arbeitstage, eine Fassade je nach Grösse 2–4 Wochen. Den genauen Terminplan erhalten Sie mit der Offerte."),
-            ("Arbeiten Sie auch am Wochenende?", "Auf Wunsch ja — besonders bei bewohnten Wohnungen oder Geschäftsräumen, wo Wochenend- und Abendarbeit den Betrieb schont."),
-            ("Welche Garantie geben Sie auf Malerarbeiten?", "Auf Innenarbeiten 5 Jahre, auf Fassaden bis zu 10 Jahre — im Rahmen der SIA-Norm 118 und unserer firmeneigenen Qualitätsgarantie."),
-        ],
-        "cta": "Offerte als Maler in Luzern anfragen",
-    },
-    {
-        "slug": "maler-einfamilienhaus",
-        "title": "Maler für Einfamilienhaus Luzern – Innen & Aussen | Bühlmann Söhne AG",
-        "h1": "Maler für Ihr Einfamilienhaus in Luzern",
-        "lead": "Ob Neubau, Renovation oder Werterhaltung: Wir streichen Ihr Einfamilienhaus innen wie aussen — mit der Sorgfalt eines Familienbetriebs in der vierten Generation.",
-        "meta": "Maler für Einfamilienhaus in Luzern. Bühlmann Söhne AG: Innenmalerei, Fassadenstreichen, Renovationen mit Festpreis-Offerte. Schweizer Qualität seit 1924.",
-        "image": "https://images.unsplash.com/photo-1625602812206-5ec545ca1231?w=1600&q=80",
-        "sections": [
-            ("Komplettlösung für Ihr Einfamilienhaus", "Vom Estrich bis zum Keller, von der Aussenfassade bis zum Gartenzaun: Wir übernehmen alle Maler- und Lackierarbeiten an Ihrem Einfamilienhaus. Ein einziger Ansprechpartner, ein durchdachter Bauablauf, eine Rechnung."),
-            ("Innenräume — Wohnen mit Charakter", "Wir streichen Wände und Decken, gestalten Akzentwände, erneuern Türen und Fensterrahmen, bringen Tapeten an und versiegeln Holzböden. Auf Wunsch beraten wir Sie zur Farbgestaltung im Stil Ihres Hauses."),
-            ("Fassade und Aussenbereiche", "Wetterfeste Fassadenanstriche, Holzfassaden-Pflege, Dachuntersichten, Balkone, Geländer, Holzläden und Garagentore. Wir setzen auf Schweizer Premiumprodukte (KEIM, Caparol, Sikkens)."),
-            ("Familienfreundlicher Ablauf", "Wir wissen, dass Sie in Ihrem Haus leben. Schutz von Möbeln und Böden, tägliche Reinigung, kindersichere Lagerung der Materialien und ein klarer Zeitplan, der Ferien und Schultage berücksichtigt."),
-        ],
-        "faq": [
-            ("Was kostet ein Maler für ein Einfamilienhaus in Luzern?", "Innenanstrich eines 6.5-Zimmer-EFH ab CHF 8'500, Fassadenrenovation ab CHF 18'000. Genauer Preis nach kostenloser Vor-Ort-Besichtigung."),
-            ("Können wir während der Arbeiten im Haus wohnen?", "Ja. Wir arbeiten Etappenweise, schützen Möbel mit Folien und halten den Lärm in vereinbarten Zeitfenstern."),
-            ("Wie lange dauert die Renovation eines Einfamilienhauses?", "Reine Innenarbeiten 2–3 Wochen, mit Fassade insgesamt 4–8 Wochen je nach Grösse und Witterung."),
-        ],
-        "cta": "Offerte für Ihr Einfamilienhaus anfragen",
-    },
-    {
-        "slug": "maler-mehrfamilienhaus",
-        "title": "Maler für Mehrfamilienhaus & Liegenschaft Luzern | Bühlmann Söhne AG",
-        "h1": "Maler für Mehrfamilienhäuser & Liegenschaften",
-        "lead": "Verwalter, Eigentümer und Stockwerkeigentümer-Gemeinschaften setzen seit Jahrzehnten auf uns: Termintreue Renovation bewohnter Liegenschaften — mit minimaler Beeinträchtigung der Mieter.",
-        "meta": "Maler Mehrfamilienhaus Luzern: Bühlmann Söhne AG renoviert Treppenhäuser, Fassaden und Wohnungen. Termintreu, mieterfreundlich, mit Generalunternehmer-Erfahrung.",
-        "image": "https://images.unsplash.com/photo-1503174971373-b1f69850bded?w=1600&q=80",
-        "sections": [
-            ("Spezialist für bewohnte Liegenschaften", "Wir koordinieren mit Verwaltung und Mietern, planen Etappen so, dass Eingänge und Lifte nutzbar bleiben, und kommunizieren Aushänge auf Deutsch und Englisch. Tausende abgeschlossene Wohneinheiten in der Region Luzern."),
-            ("Treppenhaus-Renovationen", "Wand- und Deckenanstrich, Geländerlackierung, Briefkästen, Beleuchtung — inklusive Schutz von Treppen und Bodenbelägen. Trocken über Nacht, Mieter laufen am nächsten Morgen wieder durch."),
-            ("Fassaden- und Balkonsanierung", "Gerüstkoordination, Putzreparatur, Anstrich, Balkonböden, Geländer. Wir arbeiten mit allen grossen Verwaltungen der Region (Privera, Wincasa, Verit, Allreal)."),
-            ("Mieterwechsel-Renovation in 48h", "Wenn schnell gehen muss: Wir streichen leere Mieterwohnungen innert 2–3 Werktagen — inklusive Bodenreinigung und Endabnahme."),
-        ],
-        "faq": [
-            ("Übernehmen Sie auch Generalunternehmer-Funktion?", "Ja, in Kombination mit Boden, Sanitär, Elektro und Gipserarbeiten. Sie haben einen Ansprechpartner für die ganze Renovation."),
-            ("Wie schnell können Sie eine Mieterwohnung renovieren?", "Nach Schlüsselübergabe in der Regel innert 48–72 Stunden bezugsfertig."),
-            ("Arbeiten Sie auch für Stockwerkeigentümer-Gemeinschaften (StWE)?", "Ja, inklusive Vorbereitung der Versammlungsunterlagen und Variantenofferten zur Abstimmung."),
-        ],
-        "cta": "Offerte für Liegenschafts-Renovation",
-    },
-    {
-        "slug": "fassadenrenovation",
-        "title": "Fassadenrenovation Luzern – Fassade streichen & sanieren | Bühlmann Söhne AG",
-        "h1": "Fassadenrenovation in Luzern",
-        "lead": "Eine schöne, dichte Fassade schützt Ihr Haus jahrzehntelang. Wir analysieren den Bestand, sanieren Risse, streichen wetterfest und garantieren bis zu 10 Jahre auf das Resultat.",
-        "meta": "Fassadenrenovation Luzern: Fassade streichen, sanieren und dämmen mit Bühlmann Söhne AG. Schweizer Qualität, 10 Jahre Garantie, Festpreis-Offerte.",
-        "image": "https://images.unsplash.com/photo-1572120360610-d971b9d7767c?w=1600&q=80",
-        "sections": [
-            ("Fassadenanalyse vor jedem Anstrich", "Untergrund-Prüfung mit Feuchtemessgerät und Haftungstest, Risskartierung, Bestimmung der bestehenden Beschichtung. Erst dann definieren wir System und Anstrichaufbau."),
-            ("Ihr Vorteil: Schweizer Qualitätsprodukte", "Wir setzen auf KEIM (mineralische Silikatfarben), Caparol AmphiSilan und Sikkens — geprüfte Systeme mit Dampfdurchlässigkeit, UV-Schutz und Algenwiderstand."),
-            ("Reparatur und Putzarbeiten inklusive", "Risse werden ausgespitzt und gefüllt, Hohlstellen ersetzt, Sockel saniert. Auf Wunsch koordinieren wir Gipser, Spengler und Storenbauer mit."),
-            ("Energetische Sanierung möglich", "Bei Bedarf integrieren wir Aussenwärmedämmung (Kompaktfassade) inkl. Förderbeitrag-Beratung über das Gebäudeprogramm Luzern."),
-        ],
-        "faq": [
-            ("Wie oft muss eine Fassade neu gestrichen werden?", "Mineralische Anstriche halten 15–20 Jahre, Dispersion 8–12 Jahre. Wir prüfen den Zustand kostenlos vor Ort."),
-            ("Wann ist die beste Jahreszeit für eine Fassadenrenovation?", "April bis Oktober. Mindesttemperatur 8 °C, kein Regen während des Anstrichs."),
-            ("Was kostet eine Fassadenrenovation in Luzern?", "EFH ab CHF 18'000, MFH 6 Wohnungen ab CHF 45'000 — inkl. Gerüst und Material."),
-        ],
-        "cta": "Offerte für Fassadenrenovation",
-    },
+PHONE_DISPLAY = "041 269 88 50"
+PHONE_LINK = "+41412698850"
+FAX_DISPLAY = "041 269 88 60"
+EMAIL = "info@bs-luzern.ch"
+ADDRESS = "Rothenbad 18"
+CITY = "6015 Luzern"
+MAPS_URL = "https://maps.google.com/?q=B%C3%BChlmann+S%C3%B6hne+AG,+Rothenbad+18,+6015+Luzern"
+
+# Scharfe Bilder (Unsplash, visuell geprüft). Die Original-Fotos der alten Seite
+# sind nur 520-600 px breit und werden darum nur klein (Karten) verwendet.
+U = "https://images.unsplash.com/"
+IMG_INNEN = U + "photo-1693985120993-e9b203ce7631?w=1600&q=80"          # Roller streicht Wand
+IMG_FASSADENMALER = U + "photo-1779292348440-25d0ce2462ab?w=1600&q=80"  # Maler streicht Fassade
+IMG_GERUEST = U + "photo-1646608220368-c604d8e8130f?w=1600&q=80"        # Mann auf Geruest
+IMG_ALTBAU = U + "photo-1626471671222-9d89fe4c2668?w=1600&q=80"         # Geruest an historischer Fassade
+IMG_FARBEIMER = U + "photo-1652572036885-b5e9205dd847?w=1600&q=80"      # Farbeimer und Pinsel
+IMG_ROLLER = U + "photo-1516962080544-eac695c93791?w=1600&q=80"         # Farbroller Nahaufnahme
+IMG_ROLLER2 = U + "photo-1652829069862-87874e119527?w=1600&q=80"        # Roller Nahaufnahme 2
+IMG_WEISSER_RAUM = U + "photo-1630699375895-fe5996d163ee?w=1600&q=80"   # frisch gestrichener Raum
+IMG_HELLER_RAUM = U + "photo-1649083048381-520a5b3d91ff?w=1600&q=80"    # heller renovierter Raum
+IMG_LUZERN = U + "photo-1477271706509-fecda7438b68?w=1600&q=80"         # Kapellbruecke Luzern
+IMG_LUZERN_PANO = U + "photo-1664369081469-8a72d67d75ae?w=1600&q=80"    # Stadtpanorama Luzern
+IMG_LUZERN_UFER = U + "photo-1690056072536-c48de99fef89?w=1600&q=80"    # Flussufer Luzern
+IMG_MFH = U + "photo-1783282643449-5f026f572931?w=1600&q=80"            # MFH vor Bergkulisse
+IMG_NEUBAU = U + "photo-1777669164326-7a4f6e09e7cc?w=1600&q=80"         # Neubau vor Bergen
+IMG_SEEHAUS = U + "photo-1641938552237-ba43ad0b2a1d?w=1600&q=80"        # Dorf am See mit Pilatus
+IMG_BERGDORF = U + "photo-1773529472042-ed4bc495eb05?w=1600&q=80"       # Bergdorf Innerschweiz
+
+# ---------------------------------------------------------------------------
+# Leistungs-Detailseiten (SEO-Landingpages)
+# ---------------------------------------------------------------------------
+SERVICES = [
     {
         "slug": "innenmalerei",
-        "title": "Innenmalerei Luzern – Wände streichen & Wandgestaltung | Bühlmann Söhne AG",
-        "h1": "Innenmalerei & Wandgestaltung in Luzern",
-        "lead": "Vom klassischen Weiss bis zur stilvollen Akzentwand: Wir verwandeln Ihre Räume mit präziser Streich-, Spachtel- und Lasurtechnik in Wohlfühl-Atmosphären.",
-        "meta": "Innenmalerei Luzern: Wände streichen, Wandgestaltung, Tapezieren mit Bühlmann Söhne AG. Saubere Ausführung, Festpreis, Termin innert 7 Tagen.",
-        "image": "https://images.unsplash.com/photo-1505691938895-1758d7feb511?w=1600&q=80",
+        "nav": "Innenmalerei",
+        "title": "Innenmalerei Luzern | Bühlmann Söhne AG, Maler seit 1935",
+        "meta": "Malen, Spritzen und Tapezieren für jeden Innenraum in Luzern und der Innerschweiz. Von der denkmalgeschützten Stube bis zum modernen Büro. Tel. 041 269 88 50.",
+        "h1": "Innenmalerei mit Liebe zum Detail",
+        "lead": "Malen, Spritzen, Tapezieren: Mit Spachtel, Pinsel, Roller und Spritzpistole verschönern wir jeden Innenraum in Luzern und der Innerschweiz.",
+        "image": IMG_INNEN,
         "sections": [
-            ("Mehr als nur Streichen", "Spachteln Q3/Q4, Lasurtechniken, Effektputze, Tapezieren, Strukturwände, Magnet- und Tafelfarbe. Wir realisieren auch anspruchsvolle Designkonzepte aus Architekten- und Innenarchitekten-Plänen."),
-            ("Saubere Baustelle als Grundsatz", "Möbel werden eingerollt, Böden mit Vlies abgedeckt, Türen geschützt. Tägliche Reinigung, schlussendliche Feinreinigung inklusive."),
-            ("Ihre Wohnung in 3 Tagen frisch", "Standard-Ablauf für eine 3.5-Zimmer-Wohnung: Tag 1 Vorbereitung & Spachtel, Tag 2 Grund- und Endanstrich, Tag 3 Detailarbeiten und Reinigung."),
-            ("Farbberatung durch zertifizierte Farbdesigner", "Auf Wunsch besucht Sie unsere Farbdesignerin und stellt drei Konzepte zusammen — passend zu Möbel, Lichteinfall und Lebensgefühl."),
+            ("Jeder Raum hat seinen eigenen Charakter", "Ob denkmalgeschützte Ratsherrenstube, modernes Bürogebäude oder nüchterner Industriebau: Unsere Malerinnen und Maler gehen auf jeden Raum individuell ein und arbeiten sauber, präzise und termingerecht."),
+            ("Das ganze Spektrum des Malerhandwerks", "Unsere Fachleute malen, marmorieren, maserieren, vergolden, stuckatieren, tapezieren und spritzlackieren. Durch laufende Weiterbildung sind sie stets auf dem neusten Stand der Technik."),
+            ("Farbe nach Mass", "Mit unserem Mischcomputer treffen wir jeden Farbton exakt. Gerne beraten wir Sie bei der Farbwahl und zeigen Ihnen Varianten, bevor der erste Pinselstrich fällt."),
         ],
         "faq": [
-            ("Welche Farben verwenden Sie für Innenräume?", "Vorwiegend Caparol Indeko-plus und KEIM Innotop — geruchsneutral, allergikerfreundlich, hochdeckend."),
-            ("Wie schnell ist die Wohnung wieder nutzbar?", "Schlafräume nach 24 h vollständig nutzbar. Geruch verflogen nach 48 h dank lösungsmittelarmer Schweizer Produkte."),
-            ("Streichen Sie auch nur einzelne Räume?", "Ja. Mindestauftrag CHF 1'200, ideal für Kinderzimmer, Wohnzimmer-Akzentwand oder Büro."),
+            ("Arbeiten Sie auch in bewohnten Räumen?", "Ja. Wir decken sorgfältig ab, arbeiten sauber und hinterlassen die Räume besenrein."),
+            ("Übernehmen Sie auch kleine Aufträge?", "Ja. Unser Kundendienst ist auf kleine, prompte Einsätze eingerichtet."),
+            ("Beraten Sie bei der Farbwahl?", "Ja, die Farbberatung gehört bei uns selbstverständlich dazu."),
         ],
-        "cta": "Innenmalerei-Offerte anfragen",
+        "cta": "Offerte für Innenmalerei anfragen",
     },
     {
-        "slug": "wohnung-streichen",
-        "title": "Wohnung streichen lassen Luzern – ab CHF 1'200 | Bühlmann Söhne AG",
-        "h1": "Wohnung streichen lassen in Luzern",
-        "lead": "Mietwohnung, Eigentumswohnung oder vor dem Auszug: Wir streichen Ihre Wohnung sauber, schnell und zum Festpreis — auf Wunsch innert 72 Stunden.",
-        "meta": "Wohnung streichen lassen Luzern: Mieterwohnung in 48-72 h, Festpreis-Offerte, Mängelübernahme bei Auszugsabnahme. Bühlmann Söhne AG.",
-        "image": "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=1600&q=80",
+        "slug": "fassaden",
+        "nav": "Fassaden",
+        "title": "Fassadenrenovation Luzern | Bühlmann Söhne AG",
+        "meta": "Fassaden streichen, renovieren und isolieren in Luzern. Eigene Roll- und Fassadengerüste, Farbstudien am Computer, Betonsanierung. Tel. 041 269 88 50.",
+        "h1": "Fassaden, die Zeichen setzen",
+        "lead": "Ob Holz, Beton, Naturstein, Verputz, Metall oder Kunststoff: Wir bearbeiten jede Fassade fachmännisch, mit eigenen Roll- und Fassadengerüsten.",
+        "image": IMG_GERUEST,
         "sections": [
-            ("Auszugsmalerei mit Mängelgarantie", "Wir bereiten Ihre Wohnung professionell auf die Übergabe vor — inklusive Bohrlöcher schliessen, Wandflecken entfernen und Endreinigung. Mängelliste der Verwaltung wird mitberücksichtigt."),
-            ("Festpreis pro Quadratmeter", "Transparente Preise: Standard-Anstrich ab CHF 12.50/m² Wandfläche, weisse Decke ab CHF 8.50/m². Inkl. Material, Schutz und Reinigung."),
-            ("Express-Service binnen 72 Stunden", "Schlüsselübergabe Montag, Wohnung bezugsfertig Donnerstag. Wir koordinieren mit Ihrer Verwaltung."),
-            ("Auch für Wohnungseigentümer", "Bei Stockwerkeigentum streichen wir auf Wunsch nur Ihre Einheit — ohne Aufwand für die Eigentümer-Versammlung."),
+            ("Ein neues Kleid für Ihr Gebäude", "Eine neue Fassade ist für unsere Fachleute eine kreative Herausforderung, die viel Gefühl für das Objekt und seine Umgebung voraussetzt. Wir nehmen uns diese Zeit."),
+            ("Farbstudien am Computer", "Bevor wir loslegen, zeigen wir Ihnen Ihr Gebäude in verschiedenen Farbvarianten am Bildschirm. So sehen Sie alle Nuancen Ihres zukünftigen Objekts und haben die Qual der Wahl."),
+            ("Alles aus einer Hand", "Eigene Gerüste, Maler- und Spritzarbeiten, Kunststoffputze, Betonsanierungen sowie Fassadenisolationen und -renovationen: Bei uns bekommen Sie die ganze Fassadenarbeit effizient aus einer Hand."),
+            ("Langlebig und umweltbewusst", "Wir sorgen mit unserem guten Namen dafür, dass Ihre neue Fassade langlebig und farbbeständig ist und umweltgerechte Materialien zum Einsatz kommen."),
         ],
         "faq": [
-            ("Wie viel kostet es, eine 3-Zimmer-Wohnung streichen zu lassen?", "Inklusive Decken, Wände und Heizkörper ab CHF 2'400. Genauer Preis nach Vor-Ort-Termin (kostenlos)."),
-            ("Übernehmen Sie auch die Reinigung nach dem Streichen?", "Ja, eine besenreine Endreinigung ist im Preis enthalten. Tiefenreinigung optional CHF 350."),
-            ("Wie schnell können Sie nach Anfrage starten?", "In der Regel innert 5–7 Werktagen. Express-Termine je nach Auslastung möglich."),
+            ("Haben Sie eigene Gerüste?", "Ja, wir verfügen über eigene Roll- und Fassadengerüste und können dadurch effizient und flexibel arbeiten."),
+            ("Machen Sie auch Fassadenisolationen?", "Ja, Fassadenisolationen und -renovationen gehören zu unserem Kerngeschäft."),
+            ("Kann ich die neue Fassadenfarbe vorher sehen?", "Ja, wir erstellen Farbstudien am Computer und zeigen Ihnen Ihr Gebäude in verschiedenen Varianten."),
         ],
-        "cta": "Wohnung-Offerte anfragen",
+        "cta": "Offerte für Fassadenarbeiten anfragen",
     },
     {
-        "slug": "altbau-renovation",
-        "title": "Altbau Renovation Luzern – Sanierung historischer Bauten | Bühlmann Söhne AG",
-        "h1": "Altbau-Renovation und Denkmalpflege",
-        "lead": "Stuck, Holzdecken, historische Putze: Altbauten brauchen einen Spezialisten, der mit traditionellen Techniken arbeitet — ohne den Charakter des Hauses zu zerstören.",
-        "meta": "Altbau Renovation Luzern: Denkmalpflege, Stucksanierung, historische Putze und Lasurtechniken. Bühlmann Söhne AG, seit 1924 in Familienhand.",
-        "image": "https://images.unsplash.com/photo-1464146072230-91cabc968266?w=1600&q=80",
+        "slug": "renovation",
+        "nav": "Renovation",
+        "title": "Renovation Luzern | Malerarbeiten mit Werterhalt | Bühlmann Söhne AG",
+        "meta": "Renovationen mit Sorgfalt und Liebe zum Detail in Luzern. Malen, Tapezieren, Vergolden, Stuckatieren. Mit Werterhaltungs-Kundendienst. Tel. 041 269 88 50.",
+        "h1": "Renovation mit Sorgfalt und Detailtreue",
+        "lead": "Renovationsarbeiten verlangen gut ausgebildete Fachleute, Sorgfalt und Liebe zum Detail. Genau dafür stehen wir seit Jahrzehnten.",
+        "image": IMG_HELLER_RAUM,
         "sections": [
-            ("Kompetenz seit 1924", "Vier Generationen Familienbetrieb. Wir kennen die Techniken, die unsere Grossväter angewendet haben — und kombinieren sie mit moderner Materialwissenschaft."),
-            ("Historische Putze & Stuckaturen", "Kalkputz, Sumpfkalkfarben, Stuckergänzung mit Originalrezeptur. Wir arbeiten regelmässig im Auftrag der kantonalen Denkmalpflege Luzern."),
-            ("Holzdecken, Fensterläden, Türen", "Historische Holzelemente werden abgelaugt, vorbereitet und mit traditionellen Lasuren oder Ölfarben neu beschichtet — atmungsaktiv und langlebig."),
-            ("Schimmelsanierung im Altbau", "Wo feuchte Wände und Schimmel auftreten, beheben wir die Ursache (Bauphysik) gemeinsam mit unseren Partner-Bauspezialisten."),
+            ("Vertrauen, über Jahrzehnte aufgebaut", "In diesem Bereich zählen wir auf eine treue, über Jahrzehnte sorgfältig aufgebaute Privatkundschaft. Diese Kundinnen und Kunden wissen: Bei uns ist ihr Zuhause in besten Händen."),
+            ("Handwerk auf höchstem Niveau", "Unsere Mitarbeiter malen, marmorieren, maserieren, vergolden, stuckatieren, tapezieren und spritzlackieren. Weiterbildung hält sie auf dem neusten Stand, oft sogar einen Schritt voraus."),
+            ("Service auch nach dem letzten Pinselstrich", "Sie profitieren nach Abschluss des Auftrags von unserem Werterhaltungs-Kundendienst, der Objektbetreuung und unserem Know-how. Garantie inbegriffen."),
         ],
         "faq": [
-            ("Arbeiten Sie mit der Denkmalpflege zusammen?", "Ja. Wir sprechen Konzepte vorab mit der kantonalen Denkmalpflege ab und führen die geforderten Materialprüfungen durch."),
-            ("Was kostet eine Altbau-Sanierung?", "Sehr individuell. Eine Bestandesanalyse vor Ort (CHF 450, bei Auftragsvergabe gutgeschrieben) gibt Klarheit."),
-            ("Können Sie auch nur Stuckdecken restaurieren?", "Ja. Teilrestaurationen einzelner Decken oder Räume sind möglich."),
+            ("Renovieren Sie auch bewohnte Wohnungen?", "Ja. Wir planen die Arbeiten mit Ihnen so, dass Sie möglichst wenig davon spüren."),
+            ("Was ist der Werterhaltungs-Kundendienst?", "Wir betreuen Ihr Objekt auch nach der Renovation weiter und sorgen dafür, dass es seinen Wert behält."),
+            ("Übernehmen Sie auch historische Techniken?", "Ja, von Marmorieren über Vergolden bis Stuckatieren beherrschen unsere Fachleute auch traditionelle Techniken."),
         ],
-        "cta": "Offerte für Altbau-Renovation",
+        "cta": "Offerte für Ihre Renovation anfragen",
     },
     {
-        "slug": "maler-neubau",
-        "title": "Maler für Neubau Luzern – Erstanstrich & Bauleitung | Bühlmann Söhne AG",
-        "h1": "Maler für Ihren Neubau in Luzern",
-        "lead": "Bauherren und Architekten setzen auf uns für Erstanstriche, anspruchsvolle Designflächen und termingerechte Übergabe — auch unter Druck der Bauherrentermine.",
-        "meta": "Maler Neubau Luzern: Erstanstrich, Bauleitung, Designflächen mit Bühlmann Söhne AG. Termintreu, koordiniert mit Architekt und Bauleitung.",
-        "image": "https://images.unsplash.com/photo-1604689598793-b8bf1dc445a1?w=1600&q=80",
+        "slug": "neubau",
+        "nav": "Neubau",
+        "title": "Maler für Neubau Luzern | Bühlmann Söhne AG",
+        "meta": "Malerarbeiten im Neubau: moderne Maschinen, eingespielte Fachkräfte und optimale Arbeitsorganisation. Referenzen in Luzern und der Innerschweiz. Tel. 041 269 88 50.",
+        "h1": "Neubau: Präzision ab der ersten Schicht",
+        "lead": "Ein Neubau ist für uns Herausforderung und Motivation zugleich: Sie als Kunde in allen Belangen zufriedenzustellen und unsere Referenzliste um ein weiteres Objekt zu bereichern.",
+        "image": IMG_NEUBAU,
         "sections": [
-            ("Bauteam-Player", "Wir arbeiten Hand in Hand mit Architekt, Bauleitung und allen Gewerken. Verbindliche Termintafeln, wöchentliche Bausitzungen, klare Schnittstellen."),
-            ("Erstanstrich auf höchstem Niveau", "Frischer Verputz wird fachgerecht grundiert und bis zur Spachtel-Qualität Q4 vorbereitet. Resultat: perfekt streiflichtsichere Flächen."),
-            ("Designflächen und Beton-Optik", "Grossflächige Spachteltechniken, Sichtbeton-Lasuren, Mikrozement, Magnetwände — alles, was moderne Architekten verlangen."),
-            ("Übergabe mit Mängelfreiheit", "Wir gehen mit Bauherr und Architekt durch das Objekt und beheben Mängel sofort. Ziel: 0-Mängel-Übergabe."),
+            ("Erfahrung, die sich auszahlt", "Im Neubau ist der Wettbewerb intensiv. Sie profitieren von unserer grossen Erfahrung: moderne Maschinen, optimale Arbeitsorganisation und tüchtige Fachkräfte machen uns konkurrenzfähig, heute und in Zukunft."),
+            ("Ein starker Partner für Architekten und Bauherren", "Wir arbeiten eng mit Architekten, Generalunternehmern und privaten Bauherren zusammen und halten Termine und Budgets zuverlässig ein."),
+            ("Qualität vor Quantität", "Auch im Neubau gilt unser Leitgedanke: saubere, fachmännisch und termingerecht ausgeführte Arbeit, die den Wünschen der Auftraggeber gerecht wird."),
         ],
         "faq": [
-            ("Können Sie ganze Wohnüberbauungen abdecken?", "Ja, mit unserem 25-köpfigen Team realisieren wir Überbauungen bis 40 Wohnungen."),
-            ("Welche Architekten arbeiten mit Ihnen?", "Wir haben Referenzen u.a. mit Lischer Partner Architekten, Iwan Bühler Architekten und Niklaus Graber Architekten — auf Wunsch zeigen wir Beispielobjekte."),
-            ("Bieten Sie Bauleitung für die Maler-Phase?", "Ja, eigene Bauführer mit eidg. Diplom übernehmen die Phase Maler komplett."),
+            ("Arbeiten Sie mit Generalunternehmern zusammen?", "Ja, wir sind ein eingespielter Partner für Architekten, GU und Bauherrschaften."),
+            ("Wie stellen Sie Termintreue sicher?", "Durch optimale Arbeitsorganisation, moderne Maschinen und ein eingespieltes Team."),
+            ("Übernehmen Sie auch grosse Überbauungen?", "Ja, unsere Referenzen umfassen auch grosse Wohnüberbauungen in der Region."),
         ],
-        "cta": "Neubau-Anfrage stellen",
+        "cta": "Offerte für Ihren Neubau anfragen",
     },
     {
-        "slug": "farbberatung",
-        "title": "Farbberatung Luzern – Farbgestaltung für Wohnen & Gewerbe | Bühlmann Söhne AG",
-        "h1": "Farbberatung & Farbgestaltung in Luzern",
-        "lead": "Welche Wandfarbe macht den Raum grösser? Welcher Ton beruhigt das Schlafzimmer? Unsere zertifizierten Farbdesigner finden für jedes Objekt die perfekte Palette.",
-        "meta": "Farbberatung Luzern: Persönliche Farbgestaltung mit zertifizierten Farbdesignern. Bühlmann Söhne AG — bei Auftragsvergabe wird die Beratung gutgeschrieben.",
-        "image": "https://images.unsplash.com/photo-1562663474-6cbb3eaa4d14?w=1600&q=80",
+        "slug": "umbau",
+        "nav": "Umbau",
+        "title": "Maler für Umbau Luzern | Bühlmann Söhne AG",
+        "meta": "Umbau ohne unangenehme Überraschungen: vom Kostenvoranschlag bis zum letzten Pinselstrich in besten Händen. Tel. 041 269 88 50.",
+        "h1": "Umbau ohne Nebengeräusche",
+        "lead": "Mehr Platz, bessere Nutzung oder einfach Lust auf einen Tapetenwechsel: Beim Umbau sind Sie vom Kostenvoranschlag bis zum letzten Pinselstrich in besten Händen.",
+        "image": IMG_WEISSER_RAUM,
         "sections": [
-            ("Farbpsychologie & Architektur", "Farbe wirkt — auf Stimmung, Raumgrösse, Konzentration. Wir analysieren Lichtsituation, Funktion und Ihre persönlichen Vorlieben und entwickeln drei Konzeptvarianten."),
-            ("Farbmuster vor Ort", "Sie erhalten grossformatige A2-Farbmuster, die im Raum positioniert werden — bei Tageslicht, Abendlicht, Kunstlicht."),
-            ("Beratung wird angerechnet", "CHF 480 für 2 Stunden Vor-Ort-Beratung inkl. Konzeptmappe. Bei Auftrag werden CHF 380 gutgeschrieben."),
-            ("Auch für Gewerbe und Restaurants", "Branding-orientierte Farbkonzepte für Restaurants, Hotels, Praxen und Büros — auf Ihr Corporate Design abgestimmt."),
+            ("Eingespieltes Mannschaftsspiel", "Hohe Flexibilität, Termintreue und das eingespielte Zusammenspiel mit unseren Partnerfirmen sorgen für einen Umbau-Ablauf ohne unangenehme Überraschungen."),
+            ("Optimales Preis-Leistungs-Verhältnis", "Einer der Leitgedanken unserer Firma ist ein optimales Preis-Leistungs-Verhältnis. Das hat sich schon immer für beide Seiten gelohnt."),
+            ("Alles koordiniert", "Dank unserer Erfahrung optimieren wir Abläufe und koordinieren die Arbeiten so, dass Ihr Umbau speditiv und sauber über die Bühne geht."),
         ],
         "faq": [
-            ("Wie lange dauert eine Farbberatung?", "Vor Ort 1.5–2 Stunden für eine durchschnittliche Wohnung. Konzeptmappe folgt 5 Werktage später."),
-            ("Kann ich Farbberatung ohne Auftrag buchen?", "Ja. Sie sind nicht verpflichtet, bei uns zu streichen — die Konzepte gehören Ihnen."),
-            ("Welche Marken-Farbsysteme nutzen Sie?", "NCS, RAL, Le Corbusier (Les Couleurs), Caparol 3D-System."),
+            ("Koordinieren Sie auch andere Handwerker?", "Wir arbeiten eng mit bewährten Partnerfirmen zusammen und stimmen die Abläufe untereinander ab."),
+            ("Erhalte ich vorab einen Kostenvoranschlag?", "Ja, selbstverständlich. Sie wissen vor Baubeginn, womit Sie rechnen können."),
+            ("Wie schnell können Sie starten?", "Rufen Sie uns an, wir finden gemeinsam den passenden Termin. Kleine Einsätze erledigen wir prompt."),
         ],
-        "cta": "Farbberatung buchen",
+        "cta": "Offerte für Ihren Umbau anfragen",
     },
     {
-        "slug": "maler-gewerbe-buero",
-        "title": "Maler Geschäftsräume & Büro Luzern – Renovation im Betrieb | Bühlmann Söhne AG",
-        "h1": "Maler für Geschäftsräume & Büro in Luzern",
-        "lead": "Restaurant, Praxis, Büro oder Verkaufsfläche: Wir renovieren Ihre Geschäftsräume mit minimaler Betriebsunterbrechung — auch nachts und am Wochenende.",
-        "meta": "Maler Geschäftsräume Luzern: Büro renovieren, Praxis streichen, Ladenbau-Anstrich. Nacht- und Wochenendarbeit möglich. Bühlmann Söhne AG.",
-        "image": "https://images.unsplash.com/photo-1604689598793-b8bf1dc445a1?w=1600&q=80",
+        "slug": "spritzwerk",
+        "nav": "Spritzwerk",
+        "title": "Spritzwerk Luzern | Thermo-Lackierung | Bühlmann Söhne AG",
+        "meta": "Eigenes Spritzwerk für Industrie- und Bauteile in Luzern: Jalousieläden, Türen und grossflächige Teile im Thermo-Lackier-Verfahren. Tel. 041 269 88 50.",
+        "h1": "Unser eigenes Spritzwerk",
+        "lead": "Mit unserer modernen Spritzanlage für Industrie- und Bauteile lackieren wir auch grossflächige Gegenstände wie Jalousieläden im Thermo-Lackier-Verfahren.",
+        "image": IMG_FARBEIMER,
         "sections": [
-            ("Renovation ohne Betriebsausfall", "Wir kennen den Druck eines laufenden Betriebs. Etappen-Planung, Nacht- und Wochenendarbeit, geräuscharmes Arbeiten — Ihr Team merkt fast nichts."),
-            ("Branchen-Erfahrung", "Arztpraxen (hygienische Spezialfarben), Restaurants (fettlösliche Beschichtungen), Bürowelten, Boutique-Hotels in Luzern und Umgebung."),
-            ("Corporate-Design & Branding", "Wir streichen exakt nach Pantone, RAL oder Ihrem Corporate-Brand-Manual. Logos und Wandgrafiken auf Wunsch direkt aufgespritzt."),
-            ("Schnelltrocknende Premium-Systeme", "Geruchsneutrale, schnell überstreichbare Profi-Produkte sorgen dafür, dass der Raum innert 6–8 Stunden wieder genutzt werden kann."),
+            ("Perfekte Oberflächen", "Spritzlackierte Oberflächen sind gleichmässig, robust und wie neu. Türen, Läden, Möbelfronten und Bauteile erhalten bei uns eine makellose zweite Haut."),
+            ("Thermo-Lackier-Verfahren", "Unsere Anlage beherrscht das Thermo-Lackier-Verfahren und verarbeitet auch grossflächige Teile wie Jalousieläden effizient und in gleichbleibender Qualität."),
+            ("Für Private und Industrie", "Vom einzelnen Möbelstück bis zur Serie von Industrie-Bauteilen: Unser Spritzwerk steht Privatkunden und Firmen offen."),
         ],
         "faq": [
-            ("Können Sie nachts streichen?", "Ja. Aufpreis 35 % auf Standard-Stundenansatz, vermeidet aber Umsatzausfall des Geschäfts."),
-            ("Welche Farben sind für Praxen und Spitäler geeignet?", "Hygienefarben mit antimikrobieller Wirkung (Caparol Sylitol, Sto SterOx) — wir kennen die KVG- und Lebensmittel-Anforderungen."),
-            ("Streichen Sie auch Schaufenster und Lager?", "Ja, inkl. Schutz von Sortiment und Einrichtungen."),
+            ("Was kann man spritzlackieren lassen?", "Türen, Jalousieläden, Möbelfronten, Heizkörper und viele weitere Bau- und Industrieteile."),
+            ("Muss ich die Teile selber bringen?", "Nach Absprache holen wir Teile ab und liefern sie fertig lackiert wieder aus."),
+            ("Lackieren Sie auch Serien für Firmen?", "Ja, unsere Anlage ist auf Industrie- und Bauteile ausgelegt, auch in grösseren Stückzahlen."),
         ],
-        "cta": "Gewerbe-Offerte anfragen",
+        "cta": "Offerte für Spritzarbeiten anfragen",
     },
     {
-        "slug": "tapezieren-luzern",
-        "title": "Tapezieren Luzern – Tapeten kleben & entfernen | Bühlmann Söhne AG",
-        "h1": "Tapezieren in Luzern",
-        "lead": "Vliestapete, Designtapete, Fototapete oder Raufaser: Wir tapezieren staubarm und mit perfekter Stoss-Symmetrie — auch bei schwierigen Wänden.",
-        "meta": "Tapezieren Luzern: Vliestapete, Designtapete, Fototapete kleben oder entfernen. Bühlmann Söhne AG, sauber und blasenfrei.",
-        "image": "https://images.unsplash.com/photo-1505691938895-1758d7feb511?w=1600&q=80",
+        "slug": "gipserei",
+        "nav": "Gipserei",
+        "title": "Kundengipserei Luzern | Verputz und Betonsanierung | Bühlmann Söhne AG",
+        "meta": "Kundengipserei für kleine und mittlere Einsätze: Verputzarbeiten, Reparaturen und Betonsanierungen in Luzern. Prompt und unkompliziert. Tel. 041 269 88 50.",
+        "h1": "Wir setzen Zeichen mit Gips",
+        "lead": "Unsere Kundengipserei ist für Einsätze jeglicher Art ausgerüstet. Wir erledigen Ihre Aufträge prompt und unkompliziert.",
+        "image": IMG_ROLLER,
         "sections": [
-            ("Welche Tapeten kommen infrage?", "Vlies-, Papier-, Glasfaser-, Strukturtapeten und Designtapeten von Cole&Son, Sandberg, Marburg, Eijffinger oder lokalen Herstellern."),
-            ("Vorbereitung der Wand entscheidet", "Spachteln, Schleifen, Grundieren — wir prüfen Saugfähigkeit und Trocknungszustand der Wand, damit Tapete jahrelang hält."),
-            ("Tapete entfernen ohne Schäden", "Mit Dampfgerät und Spachtel — staub- und rückstandsarm. Anschliessend Wand für Neutapezierung oder Anstrich vorbereitet."),
+            ("Kleine Einsätze, grosse Wirkung", "Risse, Löcher, beschädigte Ecken: Unsere Kundengipserei behebt Schäden schnell und sauber, bevor der Maler für das perfekte Finish sorgt."),
+            ("Verputz- und Gipserarbeiten", "Wir führen Kundengipser- und Verputzarbeiten aller Art aus, innen wie aussen, und kombinieren sie auf Wunsch direkt mit den Malerarbeiten."),
+            ("Betonsanierungen", "Auch Betonsanierungen gehören zu unserem Angebot. So bleibt die Bausubstanz Ihres Objekts langfristig gesund."),
         ],
         "faq": [
-            ("Was kostet Tapezieren pro m²?", "Vliestapete ab CHF 28/m², gemustert ab CHF 38/m² inkl. Material und Vorbereitung."),
-            ("Wie lange dauert Tapezieren eines Zimmers?", "Standard-Schlafzimmer 1 Tag inkl. Vorbereitung. Trocknung 24 h."),
+            ("Lohnt sich das auch für kleine Reparaturen?", "Ja, unsere Kundengipserei ist genau auf solche prompten, unkomplizierten Einsätze eingerichtet."),
+            ("Machen Sie Gips- und Malerarbeiten aus einer Hand?", "Ja, das ist unsere Stärke: ein Ansprechpartner, ein Termin, ein sauberes Ergebnis."),
+            ("Sanieren Sie auch Beton?", "Ja, Betonsanierungen führen wir fachmännisch durch, oft kombiniert mit Fassadenarbeiten."),
         ],
-        "cta": "Tapezier-Offerte anfragen",
+        "cta": "Offerte für Gipserarbeiten anfragen",
     },
+]
+
+# ---------------------------------------------------------------------------
+# Regionen-Seiten (echte Standorte und Einzugsgebiet)
+# ---------------------------------------------------------------------------
+REGIONS = [
     {
-        "slug": "spritzlackierung",
-        "title": "Spritzlackierung Luzern – Möbel, Türen, Küchenfronten | Bühlmann Söhne AG",
-        "h1": "Spritzlackierung in Luzern",
-        "lead": "Hochglanz, Seidenmatt oder strukturiert: Wir lackieren Türen, Schränke, Küchenfronten und Möbel im hauseigenen Spritzraum oder direkt vor Ort.",
-        "meta": "Spritzlackierung Luzern: Türen, Schränke, Küchenfronten neu lackieren. Hochglanz, seidenmatt, RAL/NCS — Bühlmann Söhne AG.",
-        "image": "https://images.unsplash.com/photo-1604689598793-b8bf1dc445a1?w=1600&q=80",
-        "sections": [
-            ("Eigener Spritzraum mit Wasservorhang", "Staubfreie Verarbeitung im klimatisierten Spritzraum — ideal für Türen und Schränke. Trocknung in der Trockenkabine."),
-            ("Vor-Ort-Lackierung möglich", "Eingebaute Schränke und Küchen lackieren wir direkt in Ihrer Wohnung — staubarm dank Mobilkabinen."),
-            ("Alle gängigen Oberflächen", "Hochglanz, Seidenmatt, Stumpfmatt, Antikfinish und Effektlacke (Beton, Metallic, Soft-Touch)."),
+        "slug": "maler-luzern",
+        "name": "Luzern",
+        "title": "Maler Luzern | Bühlmann Söhne AG, seit 1935",
+        "meta": "Ihr Maler in Luzern seit 1935: Innenmalerei, Fassaden, Renovationen, Gipserei und Spritzwerk. Familienbetrieb in dritter Generation. Tel. 041 269 88 50.",
+        "h1": "Ihr Maler in Luzern seit 1935",
+        "lead": "Vom Firmensitz im Rothenbad in Luzern aus sind wir seit bald einem Jahrhundert für die Stadt und die Region im Einsatz.",
+        "image": IMG_LUZERN,
+        "body": [
+            ("Verwurzelt in Luzern", "1935 an der Dammstrasse gegründet, heute im eigenen Betriebsgebäude im Rothenbad: Die Bühlmann Söhne AG ist seit drei Generationen fester Bestandteil des Luzerner Gewerbes. Spuren unserer Arbeit finden Sie in der ganzen Stadt, von der Altstadt bis zu modernen Überbauungen."),
+            ("Schnell vor Ort", "Unser Standort nahe Seetalplatz bedeutet kurze Wege in alle Quartiere. Kleine Einsätze erledigt unser Kundendienst prompt und unkompliziert."),
+            ("Alles aus einer Hand", "Innenmalerei, Fassaden, Gipserei, Spritzwerk: In Luzern bekommen Sie von uns das komplette Maler- und Gipserhandwerk aus einer Hand."),
         ],
-        "faq": [
-            ("Was kostet eine Küchenfront-Neulackierung?", "Standard-Küche mit 18 Fronten ab CHF 3'200 inkl. Demontage, Spritzen und Montage."),
-            ("Wie lange dauert das?", "5–7 Werktage. Küche während der Bearbeitung der Fronten weiter nutzbar (nur Türen weg)."),
-        ],
-        "cta": "Spritzlackierungs-Offerte",
-    },
-    {
-        "slug": "balkon-streichen",
-        "title": "Balkon streichen Luzern – Balkonböden, Geländer, Brüstung | Bühlmann Söhne AG",
-        "h1": "Balkon streichen & sanieren in Luzern",
-        "lead": "Wasserdichte Balkonböden, rostfreie Geländer, frische Brüstungen: Wir bringen Ihren Balkon innert 1–2 Tagen wieder auf Vordermann.",
-        "meta": "Balkon streichen Luzern: Balkonböden abdichten, Geländer entrosten, Brüstung neu streichen. Express-Service Bühlmann Söhne AG.",
-        "image": "https://images.unsplash.com/photo-1503602642458-232111445657?w=1600&q=80",
-        "sections": [
-            ("Wasserdichter Balkonboden", "Mit 2K-Polyurethan-Beschichtung wasserdicht versiegelt — frostsicher, UV-stabil, rutschfest."),
-            ("Geländer entrosten und lackieren", "Stahlgeländer werden entrostet, grundiert und mit Hammerschlag- oder RAL-Lack neu beschichtet."),
-            ("Brüstung & Sichtbeton", "Verputz reparieren, Anstrich erneuern — Sichtbetonkosmetik für moderne Architektur."),
-        ],
-        "faq": [
-            ("Wie lange ist der Balkon nicht nutzbar?", "1–2 Tage komplett, anschliessend 24 h Trocknung — danach voll belastbar."),
-            ("Was kostet eine Balkon-Renovation?", "Kleiner Balkon (4 m²) ab CHF 1'200, grosser (12 m²) ab CHF 3'200."),
-        ],
-        "cta": "Balkon-Offerte anfragen",
-    },
-    {
-        "slug": "schimmel-entfernen",
-        "title": "Schimmel entfernen Luzern – Schimmelsanierung Wand & Decke | Bühlmann Söhne AG",
-        "h1": "Schimmel entfernen & Wand sanieren",
-        "lead": "Schimmel ist mehr als ein Schönheitsproblem. Wir entfernen Schimmel fachgerecht, beheben die Ursache und sanieren die Wand dauerhaft.",
-        "meta": "Schimmel entfernen Luzern: Schimmelsanierung an Wand und Decke, Ursachenanalyse, dauerhafte Sanierung. Bühlmann Söhne AG.",
-        "image": "https://images.unsplash.com/photo-1503602642458-232111445657?w=1600&q=80",
-        "sections": [
-            ("Ursachenanalyse zuerst", "Feuchtemessung, Baufeuchte oder Wärmebrücke? Ohne Ursachenklärung kommt der Schimmel zurück."),
-            ("Fachgerechte Entfernung", "Mit Anti-Schimmel-Wirkstoffen, Schutzanzug und HEPA-Sauger — keine Sporenverbreitung in andere Räume."),
-            ("Dauerhafte Wandsanierung", "Spezial-Silikatfarbe (alkalisch, schimmelfeindlich) sorgt dafür, dass die Wand auch bei kühlen Aussenwänden trocken bleibt."),
-        ],
-        "faq": [
-            ("Ist Schimmel gefährlich?", "Ja — vor allem für Allergiker, Kinder und Asthma-Patienten. Sofortige Sanierung empfohlen."),
-            ("Wie schnell können Sie kommen?", "Bei akutem Schimmel innert 48 Stunden. Notfall-Hotline +41 41 000 00 00."),
-            ("Was kostet die Schimmelsanierung?", "Einzelner Fleck ab CHF 480, Vollsanierung Schlafzimmer ab CHF 2'400."),
-        ],
-        "cta": "Schimmelsanierung anfragen",
-    },
-    {
-        "slug": "maler-kriens",
-        "title": "Maler Kriens – Innen, Fassade, Renovation | Bühlmann Söhne AG",
-        "h1": "Maler in Kriens",
-        "lead": "Aus dem nahen Luzern kommen wir gerne nach Kriens — Wohnungen, Einfamilienhäuser, Fassaden und Geschäftsräume in der Pilatus-Gemeinde.",
-        "meta": "Maler Kriens: Bühlmann Söhne AG bedient Kriens und Umgebung mit Innenmalerei, Fassade, Restaurierung. Festpreis, Schweizer Qualität.",
-        "image": "https://images.unsplash.com/photo-1625602812206-5ec545ca1231?w=1600&q=80",
-        "sections": [
-            ("Maler in Kriens und Umgebung", "Wir kennen die Quartiere: Hofmatt, Obernau, Kupfer, Kuonimatt — und arbeiten regelmässig in den Mehrfamilienhäusern an der Luzernerstrasse."),
-            ("Schnelle Anfahrt von Luzern", "Nur 8 Minuten von unserer Werkstatt in Luzern: keine Anfahrtspauschale ab CHF 2'500 Auftragsvolumen."),
-            ("Referenzen in Kriens", "Wohnüberbauung Mattenhof, Sanierung Pilatusstrasse, mehrere EFH am Sonnenberg — Referenzen auf Anfrage."),
-        ],
-        "faq": [
-            ("Berechnen Sie eine Anreisepauschale?", "Nein — Kriens ist im Tarifgebiet 1 ohne Aufschlag enthalten."),
-            ("Wie schnell sind Sie vor Ort?", "Erstbesichtigung innert 5 Werktagen, Notfall (Wasserschaden, Schimmel) innert 24 h."),
-        ],
-        "cta": "Offerte für Kriens anfragen",
     },
     {
         "slug": "maler-emmen",
-        "title": "Maler Emmen – Malerarbeiten in Emmenbrücke | Bühlmann Söhne AG",
-        "h1": "Maler in Emmen & Emmenbrücke",
-        "lead": "Vom Seetalplatz bis zum Gersag: Wir streichen, sanieren und renovieren in der gesamten Gemeinde Emmen — Wohnungen, Häuser, Gewerbeflächen.",
-        "meta": "Maler Emmen: Bühlmann Söhne AG für Innenmalerei, Fassade, Renovation in Emmen und Emmenbrücke. Festpreis und Schweizer Qualität.",
-        "image": "https://images.unsplash.com/photo-1503174971373-b1f69850bded?w=1600&q=80",
-        "sections": [
-            ("Erfahrung in Emmen", "Wir arbeiten regelmässig in den Quartieren Rüeggisingen, Gerliswil, Kapf — und für die Verwaltungen der grossen Liegenschaften am Seetalplatz."),
-            ("Industrie- und Gewerbe-Anstriche", "Hallen, Lager, Werkstätten in Emmenbrücke und im Industriegebiet Rothen — wir streichen wirtschaftlich und auch mit Spezialfarben (Beton, Stahl, Boden)."),
-            ("Liegenschafts-Renovation Emmen", "Treppenhaus-Renovationen, Fassadensanierungen — wir kennen die Bauphysik der Bauten der 70er-/80er-Jahre in Emmen."),
+        "name": "Emmen und Emmenbrücke",
+        "title": "Maler Emmen und Emmenbrücke | Bühlmann Söhne AG",
+        "meta": "Malerarbeiten in Emmen und Emmenbrücke: Der Betrieb der Bühlmann Söhne AG liegt direkt beim Seetalplatz. Tel. 041 269 88 50.",
+        "h1": "Ihr Maler in Emmen und Emmenbrücke",
+        "image": IMG_MFH,
+        "lead": "Unser Betrieb liegt in Reussbühl, nur wenige Minuten vom Seetalplatz entfernt. Näher kann ein Maler kaum sein.",
+        "body": [
+            ("Ihr Nachbar im Rothenbad", "Von unserem Firmensitz an der Grenze zu Emmenbrücke sind wir in wenigen Minuten bei Ihnen. Das macht uns schnell, flexibel und günstig in der Anfahrt."),
+            ("Für Private und Liegenschaftsverwaltungen", "Wir streichen Wohnungen, Treppenhäuser und Fassaden in Emmen und Emmenbrücke, für Eigentümer, Mieter und Verwaltungen."),
+            ("Prompter Kundendienst", "Kleine Reparaturen und Auffrischungen erledigen wir unkompliziert. Ein Anruf genügt."),
         ],
-        "faq": [
-            ("Bedienen Sie auch Emmenbrücke?", "Ja — Emmenbrücke ist Teil unseres Kerngebiets, ohne Anreisepauschale."),
-            ("Übernehmen Sie auch grosse Industrieaufträge?", "Ja, mit unserem 25-köpfigen Team realisieren wir auch Hallensanierungen mit grossen Quadratmetern."),
-        ],
-        "cta": "Offerte für Emmen anfragen",
     },
     {
-        "slug": "maler-zug",
-        "title": "Maler Zug – Innen, Fassade, Renovation | Bühlmann Söhne AG",
-        "h1": "Maler in Zug & Kanton Zug",
-        "lead": "Hochwertiges Schweizer Malerhandwerk auch im Kanton Zug — Stadt Zug, Baar, Cham, Steinhausen und Risch — mit unserem Familienbetrieb aus Luzern.",
-        "meta": "Maler Zug: Bühlmann Söhne AG arbeitet in Zug, Baar, Cham, Steinhausen. Innenmalerei, Fassade, Premium-Renovation für Privat und Gewerbe.",
-        "image": "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=1600&q=80",
-        "sections": [
-            ("Premium-Malerarbeiten in der Region Zug", "Wir kennen die hohen Ansprüche der Zuger Bauherrschaft — Villen am Zugersee, moderne Lofts in Zug-West, klassische Stadthäuser in der Altstadt."),
-            ("Anfahrt und Erreichbarkeit", "30 Minuten von unserem Sitz in Luzern — wir sind regelmässig im Raum Zug unterwegs. Festpreis-Offerten ohne Anreiseaufschlag ab CHF 5'000."),
-            ("Diskret, pünktlich, vertraulich", "Bei prominenten Bauherren und Geschäftsräumen mit hohen Anforderungen an Diskretion sind wir die richtige Wahl. NDA möglich."),
+        "slug": "maler-kriens",
+        "name": "Kriens",
+        "title": "Maler Kriens | Bühlmann Söhne AG",
+        "meta": "Malerarbeiten in Kriens: Innenmalerei, Fassadenrenovationen und Gipserarbeiten vom Luzerner Traditionsbetrieb. Tel. 041 269 88 50.",
+        "h1": "Ihr Maler in Kriens",
+        "image": IMG_LUZERN_PANO,
+        "lead": "Ob Wohnung, Einfamilienhaus oder Gewerbe: In Kriens sind wir seit Jahrzehnten regelmässig im Einsatz.",
+        "body": [
+            ("Kurze Wege, schnelle Termine", "Kriens erreichen wir von unserem Betrieb in Luzern in wenigen Minuten. Das gilt für grosse Renovationen genauso wie für kleine Kundendienst-Einsätze."),
+            ("Erfahrung mit jedem Baustil", "Vom älteren Einfamilienhaus bis zur modernen Überbauung: Unsere Fachleute kennen die Bausubstanz der Region und wählen Material und Technik passend aus."),
+            ("Fassaden mit Farbstudie", "Für Fassadenrenovationen in Kriens erstellen wir auf Wunsch Farbstudien am Computer, damit Sie das Ergebnis vorab sehen."),
         ],
-        "faq": [
-            ("Bedienen Sie ganz Zug?", "Ja — Stadt Zug, Baar, Cham, Steinhausen, Risch, Walchwil, Hünenberg, Menzingen."),
-            ("Anfahrtskosten?", "Ab CHF 5'000 Auftragsvolumen ohne Aufpreis. Darunter Pauschale CHF 280."),
-        ],
-        "cta": "Offerte für Zug anfragen",
     },
     {
-        "slug": "maler-sursee",
-        "title": "Maler Sursee – Malerarbeiten Region Sursee | Bühlmann Söhne AG",
-        "h1": "Maler in Sursee & Region",
-        "lead": "Sursee, Schenkon, Oberkirch, Knutwil: In der ganzen Region rund um den Sempachersee sind wir der Schweizer Maler Ihres Vertrauens.",
-        "meta": "Maler Sursee: Bühlmann Söhne AG für Maler-, Fassaden- und Renovationsarbeiten in Sursee, Schenkon, Oberkirch, Knutwil und Region Sempachersee.",
-        "image": "https://images.unsplash.com/photo-1599619351208-3e6c839d6828?w=1600&q=80",
-        "sections": [
-            ("Region Sursee — wir sind regelmässig hier", "Wir bedienen Sursee, Schenkon, Oberkirch, Knutwil, Mauensee und die ganze Region rund um den Sempachersee."),
-            ("Landwirtschaftliche Liegenschaften", "Spezialerfahrung mit Bauernhäusern, Scheunen, Riegelbauten — wir kennen die Anforderungen an traditionelle Holzbauten."),
-            ("Anfahrt aus Luzern", "Regelmässige Touren ins Suhrental — keine Verzögerungen, keine Aufschläge."),
+        "slug": "maler-hergiswil",
+        "name": "Hergiswil NW",
+        "title": "Maler Hergiswil NW | Bühlmann Söhne AG",
+        "meta": "Die Bühlmann Söhne AG ist mit einem Standort in Hergiswil NW präsent: Malerarbeiten innen und aussen für ganz Nidwalden. Tel. 041 269 88 50.",
+        "h1": "Ihr Maler in Hergiswil und Nidwalden",
+        "image": IMG_SEEHAUS,
+        "lead": "Hergiswil ist einer unserer drei Standorte. Für Kundinnen und Kunden in Nidwalden sind wir darum besonders schnell zur Stelle.",
+        "body": [
+            ("Vor Ort in Hergiswil", "Neben Luzern und Alpnach ist Hergiswil NW einer unserer Standorte. Wir kennen die Häuser am See und am Berg und sind schnell bei Ihnen."),
+            ("Innen und aussen", "Von der Innenmalerei über Tapezierarbeiten bis zur kompletten Fassadenrenovation erhalten Sie bei uns alles aus einer Hand."),
+            ("Werterhalt am See", "Seelage und Wetter fordern die Gebäudehülle. Wir beraten Sie zu langlebigen, farbbeständigen und umweltgerechten Lösungen."),
         ],
-        "faq": [
-            ("Bedienen Sie auch ländliche Gemeinden?", "Ja — wir kennen die Region und arbeiten in fast allen Gemeinden des Wahlkreises Sursee."),
-            ("Können Sie auch Bauernhäuser sanieren?", "Ja, inklusive traditionelle Holzbeschichtungen und Riegelbau-Anstriche."),
-        ],
-        "cta": "Offerte für Sursee anfragen",
     },
     {
-        "slug": "maler-stans-nidwalden",
-        "title": "Maler Stans & Nidwalden – Malerbetrieb für die Innerschweiz | Bühlmann Söhne AG",
-        "h1": "Maler in Stans & Kanton Nidwalden",
-        "lead": "Vom Bürgenstock bis nach Engelberg — wir streichen Wohnungen, Chalets, Hotels und Gewerbeflächen im Kanton Nidwalden.",
-        "meta": "Maler Stans Nidwalden: Bühlmann Söhne AG renoviert in Stans, Hergiswil, Buochs, Beckenried und am Bürgenstock. Schweizer Premium-Qualität.",
-        "image": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1600&q=80",
-        "sections": [
-            ("Kanton Nidwalden — unser zweites Zuhause", "Wir arbeiten in Stans, Stansstad, Hergiswil, Buochs, Beckenried, Emmetten und auf dem Bürgenstock."),
-            ("Chalet- und Hotel-Spezialist", "Holzlasuren, traditionelle Beschichtungen, Almhütten- und Chaletstil — alles, was Berghäuser brauchen."),
-            ("Anfahrt mit Auto und Schiff", "Wir kommen über die A2 oder bei Inseln (Bürgenstock-Hotel) auch mit dem Schiff. Kein Aufschlag bis Beckenried."),
+        "slug": "maler-alpnach",
+        "name": "Alpnach OW",
+        "title": "Maler Alpnach OW | Bühlmann Söhne AG",
+        "meta": "Die Bühlmann Söhne AG ist mit einem Standort in Alpnach OW präsent: Maler- und Gipserarbeiten für ganz Obwalden. Tel. 041 269 88 50.",
+        "h1": "Ihr Maler in Alpnach und Obwalden",
+        "image": IMG_BERGDORF,
+        "lead": "Alpnach ist einer unserer drei Standorte. Obwaldner Kundinnen und Kunden profitieren von kurzen Wegen und promptem Service.",
+        "body": [
+            ("Vor Ort in Alpnach", "Neben Luzern und Hergiswil sind wir auch in Alpnach OW präsent. So sind wir in ganz Obwalden schnell und flexibel im Einsatz."),
+            ("Vom Bauernhaus bis zum Neubau", "Unsere Fachleute beherrschen traditionelle Techniken genauso wie moderne Beschichtungen und werden jedem Objekt gerecht."),
+            ("Maler und Gipser in einem", "Auch in Obwalden bieten wir Maler- und Kundengipserarbeiten kombiniert an. Das spart Ihnen Koordination, Zeit und Kosten."),
         ],
-        "faq": [
-            ("Renovieren Sie auch Chalets?", "Ja, mit allen traditionellen Holztechniken (Lasuren, Öle, Wachse, Beizen)."),
-            ("Bedienen Sie den Bürgenstock?", "Ja, regelmässig — auch im Hotelbetrieb mit nächtlicher oder geräuscharmer Arbeit."),
-        ],
-        "cta": "Offerte für Nidwalden anfragen",
-    },
-    {
-        "slug": "kontakt",
-        "title": "Kontakt & Offerte – Bühlmann Söhne AG | Maler Luzern",
-        "h1": "Kontakt — Wir freuen uns auf Ihr Projekt",
-        "lead": "Schreiben Sie uns, rufen Sie an oder fordern Sie direkt eine Offerte an. Wir antworten innerhalb von 24 Stunden — werktags meistens schon gleich.",
-        "meta": "Kontakt zu Bühlmann Söhne AG, Ihrem Maler in Luzern. Telefon, E-Mail oder direkt Offerte anfragen. Antwort innert 24 Stunden garantiert.",
-        "image": "https://images.unsplash.com/photo-1503174971373-b1f69850bded?w=1600&q=80",
-        "sections": [
-            ("Persönliche Beratung", "Sie erreichen uns direkt — nicht über ein Callcenter. Geschäftsinhaber Lukas Bühlmann nimmt Ihren Anruf in der Regel persönlich entgegen."),
-            ("Standort", "Handwerkstrasse 12, 6000 Luzern. Parkplätze direkt vor dem Haus, gut erreichbar mit Bus 8 (Haltestelle Handwerkstrasse) ab Bahnhof Luzern."),
-            ("Öffnungszeiten Büro", "Montag bis Freitag 7:30 – 11:30 und 13:00 – 17:00. Termine vor Ort auch ausserhalb dieser Zeiten — einfach anrufen."),
-        ],
-        "faq": [
-            ("Wie schnell erhalte ich eine Offerte?", "Nach Vor-Ort-Termin innerhalb von 5 Werktagen — mit Festpreisgarantie."),
-            ("Kostet die Vor-Ort-Besichtigung?", "Nein. Erstberatung und Aufmass sind kostenlos und unverbindlich."),
-            ("Was muss ich für den Termin vorbereiten?", "Nichts. Wir messen aus und stellen alle Fragen vor Ort."),
-        ],
-        "cta": "Jetzt Offerte anfragen",
     },
 ]
 
 NAV_LINKS = [
     ("index.html", "Home"),
-    ("leistungen.html", "Leistungen"),
-    ("portfolio.html", "Portfolio"),
-    ("blog.html", "Blog"),
+    ("malerei.html", "Malerei"),
+    ("referenzen.html", "Referenzen"),
+    ("unternehmen.html", "Unternehmen"),
+    ("jobs.html", "Jobs"),
     ("kontakt.html", "Kontakt"),
 ]
 
+# ---------------------------------------------------------------------------
+# Design-Bausteine
+# ---------------------------------------------------------------------------
+HEAD_BASE = dedent("""
+<meta charset="utf-8" />
+<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+<link rel="icon" type="image/png" href="assets/logo.png" />
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+<script id="tailwind-config">
+  tailwind.config = {
+    theme: { extend: {
+      colors: {
+        "ink": "#101c3d",
+        "ink-soft": "#3d4763",
+        "accent": "#fddc00",
+        "accent-deep": "#e5c700",
+        "paper": "#fcfcfa",
+        "mist": "#f4f5f7",
+        "line": "#e4e6eb",
+      },
+      fontFamily: {
+        sans: ["Inter", "system-ui", "sans-serif"],
+        display: ["Playfair Display", "Georgia", "serif"],
+      },
+    } },
+  };
+</script>
+<style>
+  body { font-family: "Inter", system-ui, sans-serif; }
+  .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24; display: inline-block; line-height: 1; }
+  .eyebrow { font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 600; }
+  .accent-bar { display: inline-block; width: 56px; height: 4px; background: #fddc00; border-radius: 2px; }
+  .card-lift { transition: transform .35s ease, box-shadow .35s ease; }
+  .card-lift:hover { transform: translateY(-4px); box-shadow: 0 18px 40px -18px rgba(16,28,61,.25); }
+  html { scroll-behavior: smooth; }
+  /* Logo: Einblenden, gelegentliches Winken, interaktiver Hover */
+  @keyframes logo-in { 0% { opacity: 0; transform: translateY(-10px) rotate(-8deg); } 100% { opacity: 1; transform: translateY(0) rotate(0); } }
+  @keyframes logo-wave { 0%, 86%, 100% { transform: rotate(0); } 88% { transform: rotate(-5deg); } 92% { transform: rotate(4deg); } 96% { transform: rotate(-2deg); } }
+  .logo-anim { animation: logo-in .8s ease-out both, logo-wave 9s ease-in-out 3s infinite; transform-origin: 50% 80%; transition: transform .35s ease, filter .35s ease; cursor: pointer; }
+  .logo-anim:hover { animation-play-state: paused, paused; transform: rotate(-5deg) scale(1.12); filter: drop-shadow(0 6px 14px rgba(16,28,61,.35)); }
+  .logo-anim:active { transform: rotate(3deg) scale(.96); }
+  /* Sanftes Einblenden beim Scrollen */
+  .reveal { opacity: 0; transform: translateY(26px); transition: opacity .8s ease, transform .8s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+  /* Farbstudie */
+  .swatch { width: 44px; height: 44px; border-radius: 9999px; border: 3px solid #fff; box-shadow: 0 2px 8px rgba(16,28,61,.2); cursor: pointer; transition: transform .25s ease, box-shadow .25s ease; }
+  .swatch:hover { transform: scale(1.15); }
+  .swatch.aktiv { transform: scale(1.15); box-shadow: 0 0 0 3px #101c3d, 0 2px 8px rgba(16,28,61,.3); }
+  #haus-fassade, #haus-giebel { transition: fill .5s ease; }
+</style>
+""").strip()
 
-def nav_html(active_slug: str) -> str:
+
+# Scroll-Einblendung: alle Sektionen und Seiten-Heros sanft einblenden
+SCRIPTS = dedent("""
+<script>
+(function () {
+  var els = Array.prototype.slice.call(document.querySelectorAll('section, body > header'));
+  els.forEach(function (e) { e.classList.add('reveal'); });
+  function check() {
+    var limit = window.innerHeight * 0.92;
+    els.forEach(function (e) {
+      if (!e.classList.contains('visible') && e.getBoundingClientRect().top < limit) {
+        e.classList.add('visible');
+      }
+    });
+  }
+  check();
+  window.addEventListener('scroll', check, { passive: true });
+  window.addEventListener('resize', check);
+  setInterval(check, 600);
+})();
+</script>
+""").strip()
+
+# Interaktive Farbstudie: Haus per Klick umfaerben
+FARBSTUDIE = dedent("""
+<section class="bg-paper" id="farbstudie">
+  <div class="max-w-6xl mx-auto px-6 py-20 grid md:grid-cols-2 gap-14 items-center">
+    <div>
+      <span class="eyebrow text-ink-soft block mb-4">Zum Ausprobieren</span>
+      <h2 class="font-display text-3xl md:text-4xl text-ink mb-5">Welche Farbe passt zu Ihrem Haus?</h2>
+      <span class="accent-bar mb-6"></span>
+      <p class="text-ink-soft text-[16px] leading-relaxed mb-8">Klicken Sie auf einen Farbton und sehen Sie sofort, wie die Fassade wirkt. Genau so erstellen wir professionelle Farbstudien am Computer, mit Ihrem Haus als Vorlage und allen Nuancen ab Bildschirm.</p>
+      <div class="flex flex-wrap gap-3 mb-5" id="swatches" aria-label="Fassadenfarbe wählen"></div>
+      <p class="text-[14px] text-ink-soft mb-9">Gewählter Farbton: <span id="farbname" class="font-semibold text-ink">Sonnengelb</span></p>
+      <a href="kontakt.html" class="bg-ink text-white text-[13px] font-semibold tracking-[0.14em] uppercase px-7 py-4 rounded hover:bg-[#1a2a55] transition-colors inline-block">Farbstudie für mein Haus anfragen</a>
+    </div>
+    <div class="bg-mist border border-line rounded-lg p-6 md:p-10">
+      <svg viewBox="0 0 480 340" role="img" aria-label="Haus mit wählbarer Fassadenfarbe" class="w-full h-auto">
+        <ellipse cx="240" cy="320" rx="215" ry="14" fill="#e0e3e8"/>
+        <polygon id="haus-giebel" points="240,52 100,140 380,140" fill="#E8C64B"/>
+        <polygon points="240,40 82,140 98,140 240,52 382,140 398,140" fill="#3a4046"/>
+        <rect id="haus-fassade" x="100" y="140" width="280" height="178" fill="#E8C64B"/>
+        <rect x="100" y="140" width="280" height="8" fill="rgba(0,0,0,.08)"/>
+        <rect x="126" y="166" width="52" height="62" rx="2" fill="#ffffff"/>
+        <rect x="130" y="170" width="44" height="54" fill="#bcd6e8"/>
+        <line x1="152" y1="170" x2="152" y2="224" stroke="#ffffff" stroke-width="3"/>
+        <rect x="302" y="166" width="52" height="62" rx="2" fill="#ffffff"/>
+        <rect x="306" y="170" width="44" height="54" fill="#bcd6e8"/>
+        <line x1="328" y1="170" x2="328" y2="224" stroke="#ffffff" stroke-width="3"/>
+        <rect x="126" y="248" width="52" height="62" rx="2" fill="#ffffff"/>
+        <rect x="130" y="252" width="44" height="54" fill="#bcd6e8"/>
+        <line x1="152" y1="252" x2="152" y2="306" stroke="#ffffff" stroke-width="3"/>
+        <rect x="302" y="248" width="52" height="62" rx="2" fill="#ffffff"/>
+        <rect x="306" y="252" width="44" height="54" fill="#bcd6e8"/>
+        <line x1="328" y1="252" x2="328" y2="306" stroke="#ffffff" stroke-width="3"/>
+        <rect x="216" y="238" width="48" height="80" rx="3" fill="#59616b"/>
+        <circle cx="256" cy="280" r="3" fill="#fddc00"/>
+        <rect x="212" y="70" width="18" height="42" fill="#59616b"/>
+        <circle cx="412" cy="284" r="22" fill="#a9b7a0"/>
+        <rect x="408" y="300" width="8" height="18" fill="#8a7a63"/>
+        <circle cx="66" cy="292" r="16" fill="#a9b7a0"/>
+      </svg>
+    </div>
+  </div>
+</section>
+<script>
+(function () {
+  var farben = [
+    ["Altweiss", "#EAE4D6"], ["Sandbeige", "#D8C6A5"], ["Terracotta", "#C1713F"],
+    ["Rosé", "#D6A99C"], ["Salbeigrün", "#A9B7A0"], ["Taubenblau", "#7F97AD"],
+    ["Sonnengelb", "#E8C64B"], ["Graphit", "#555B63"]
+  ];
+  var wrap = document.getElementById('swatches');
+  if (!wrap) return;
+  farben.forEach(function (f, idx) {
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'swatch' + (f[0] === 'Sonnengelb' ? ' aktiv' : '');
+    b.style.background = f[1];
+    b.title = f[0];
+    b.setAttribute('aria-label', 'Fassadenfarbe ' + f[0]);
+    b.addEventListener('click', function () {
+      document.getElementById('haus-fassade').setAttribute('fill', f[1]);
+      document.getElementById('haus-giebel').setAttribute('fill', f[1]);
+      document.getElementById('farbname').textContent = f[0];
+      wrap.querySelectorAll('.swatch').forEach(function (s) { s.classList.remove('aktiv'); });
+      b.classList.add('aktiv');
+    });
+    wrap.appendChild(b);
+  });
+})();
+</script>
+""").strip()
+
+
+def nav_html(active: str) -> str:
     items = []
     for href, label in NAV_LINKS:
-        is_active = (active_slug == href.replace(".html", "")) or (active_slug == "index" and href == "index.html")
-        cls = (
-            "text-primary font-bold border-b-2 border-primary pb-1 font-label-md uppercase whitespace-nowrap"
-            if is_active
-            else "text-slate-600 font-medium hover:text-primary transition-colors font-label-md uppercase whitespace-nowrap"
-        )
-        items.append(f'<a class="{cls}" href="{href}">{label}</a>')
-    return "\n      ".join(items)
+        slug = href.replace(".html", "")
+        cls = "text-ink font-semibold border-b-2 border-accent pb-0.5" if active == slug else "text-ink-soft hover:text-ink transition-colors"
+        items.append(f'<a class="text-[15px] {cls}" href="{href}">{label}</a>')
+    return "\n        ".join(items)
 
 
-def header_html(active_slug: str) -> str:
+def mobile_nav_html(active: str) -> str:
+    items = []
+    for href, label in NAV_LINKS:
+        slug = href.replace(".html", "")
+        cls = "text-ink font-semibold" if active == slug else "text-ink-soft"
+        items.append(f'<a class="py-2.5 text-[16px] border-b border-line {cls}" href="{href}">{label}</a>')
+    return "\n          ".join(items)
+
+
+def header_html(active: str) -> str:
     return dedent(f"""
-    <nav class="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm">
-      <div class="flex justify-between items-center max-w-7xl mx-auto px-6 md:px-8 h-40 md:h-52 gap-6">
+    <div class="bg-ink text-white/90 text-[13px]">
+      <div class="max-w-6xl mx-auto px-6 flex justify-between items-center h-9">
+        <span class="hidden sm:block tracking-wide">Wir setzen Zeichen mit Farbe · Luzern · Hergiswil NW · Alpnach OW</span>
+        <span class="flex items-center gap-5">
+          <a href="tel:{PHONE_LINK}" class="hover:text-accent transition-colors flex items-center gap-1.5"><span class="material-symbols-outlined text-[16px]">call</span>{PHONE_DISPLAY}</a>
+          <a href="mailto:{EMAIL}" class="hidden md:flex hover:text-accent transition-colors items-center gap-1.5"><span class="material-symbols-outlined text-[16px]">mail</span>{EMAIL}</a>
+        </span>
+      </div>
+    </div>
+    <nav class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-line">
+      <div class="max-w-6xl mx-auto px-6 flex items-center justify-between h-28 md:h-40 gap-6">
         <a href="index.html" class="flex items-center gap-3 shrink-0">
-          <img src="assets/logo.png" alt="Bühlmann Söhne AG — Maler Luzern" class="h-32 md:h-44 w-auto" />
+          <img src="assets/logo.png" alt="Bühlmann Söhne AG, Maler und Gipser in Luzern" class="h-20 md:h-[120px] w-auto logo-anim" />
+          <span class="hidden lg:block leading-tight">
+            <span class="block font-display font-semibold text-ink text-lg">Bühlmann Söhne AG</span>
+            <span class="block text-[12px] tracking-[0.18em] uppercase text-ink-soft">Malerei · Gipserei · Luzern</span>
+          </span>
         </a>
-        <div class="hidden md:flex items-center space-x-8">
-          {nav_html(active_slug)}
+        <div class="hidden md:flex items-center gap-7">
+        {nav_html(active)}
         </div>
-        <div class="flex items-center space-x-3 shrink-0">
-          <a class="hidden xl:flex items-center text-slate-600 font-medium hover:text-primary transition-colors font-label-md uppercase" href="tel:+41410000000">
-            <span class="material-symbols-outlined mr-2">call</span>Anrufen
-          </a>
-          <a href="kontakt.html" class="bg-primary-container text-white px-5 py-3 rounded-lg font-label-md uppercase tracking-widest hover:bg-primary transition-all active:scale-95 whitespace-nowrap">
-            Offerte
-          </a>
+        <div class="flex items-center gap-3">
+          <a href="kontakt.html" class="hidden sm:block bg-ink text-white text-[13px] font-semibold tracking-[0.14em] uppercase px-5 py-3 rounded hover:bg-[#1a2a55] transition-colors whitespace-nowrap">Offerte anfragen</a>
+          <button type="button" class="md:hidden p-2 text-ink" aria-label="Menü öffnen" onclick="document.getElementById('mobilemenu').classList.toggle('hidden')">
+            <span class="material-symbols-outlined text-[28px]">menu</span>
+          </button>
+        </div>
+      </div>
+      <div id="mobilemenu" class="hidden md:hidden border-t border-line bg-white">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex flex-col gap-1">
+          {mobile_nav_html(active)}
+          <a href="kontakt.html" class="mt-3 bg-ink text-white text-center text-[13px] font-semibold tracking-[0.14em] uppercase px-5 py-3.5 rounded">Offerte anfragen</a>
         </div>
       </div>
     </nav>
     """).strip()
 
 
-FOOTER = dedent("""
-<footer class="bg-[#F4F7FA] w-full py-12 border-t border-slate-200 mt-0">
-  <div class="grid grid-cols-1 md:grid-cols-4 gap-8 max-w-7xl mx-auto px-6 md:px-8">
-    <div>
-      <img src="assets/logo.png" alt="Bühlmann Söhne AG" class="h-20 w-auto mb-6" />
-      <p class="text-slate-500 font-body-md">Schweizer Malerhandwerk seit 1924. Architektonische Malerlösungen für Luzern und die Innerschweiz.</p>
-    </div>
-    <div>
-      <h4 class="font-label-md text-primary mb-6 uppercase">Leistungen</h4>
-      <ul class="space-y-3">
-        <li><a class="text-slate-500 hover:text-primary font-body-md" href="innenmalerei.html">Innenmalerei</a></li>
-        <li><a class="text-slate-500 hover:text-primary font-body-md" href="fassadenrenovation.html">Fassadenrenovation</a></li>
-        <li><a class="text-slate-500 hover:text-primary font-body-md" href="farbberatung.html">Farbberatung</a></li>
-        <li><a class="text-slate-500 hover:text-primary font-body-md" href="altbau-renovation.html">Altbau-Renovation</a></li>
-        <li><a class="text-slate-500 hover:text-primary font-body-md" href="maler-neubau.html">Maler für Neubau</a></li>
-      </ul>
-    </div>
-    <div>
-      <h4 class="font-label-md text-primary mb-6 uppercase">Für wen</h4>
-      <ul class="space-y-3">
-        <li><a class="text-slate-500 hover:text-primary font-body-md" href="maler-einfamilienhaus.html">Einfamilienhaus</a></li>
-        <li><a class="text-slate-500 hover:text-primary font-body-md" href="maler-mehrfamilienhaus.html">Mehrfamilienhaus</a></li>
-        <li><a class="text-slate-500 hover:text-primary font-body-md" href="wohnung-streichen.html">Wohnung streichen</a></li>
-        <li><a class="text-slate-500 hover:text-primary font-body-md" href="maler-gewerbe-buero.html">Geschäftsräume</a></li>
-      </ul>
-    </div>
-    <div>
-      <h4 class="font-label-md text-primary mb-6 uppercase">Kontakt</h4>
-      <ul class="space-y-3 text-slate-500 font-body-md">
-        <li>Bühlmann Söhne AG</li>
-        <li>Handwerkstrasse 12</li>
-        <li>6000 Luzern</li>
-        <li><a href="tel:+41410000000" class="hover:text-primary">+41 41 000 00 00</a></li>
-        <li><a href="mailto:info@buehlmann-soehne.ch" class="hover:text-primary">info@buehlmann-soehne.ch</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="max-w-7xl mx-auto px-6 md:px-8 mt-16 pt-8 border-t border-slate-200 flex flex-col md:flex-row justify-between items-center gap-4">
-    <p class="text-slate-500 text-sm">© 2026 Bühlmann Söhne AG · Schweizer Malerhandwerk Luzern</p>
-    <div class="flex items-center gap-2">
-      <span class="material-symbols-outlined text-primary">verified</span>
-      <span class="font-label-md text-primary uppercase">Schweizer Handwerksqualität seit 1924</span>
-    </div>
-  </div>
-</footer>
-""").strip()
-
-
-HEAD_BASE = dedent("""
-<meta charset="utf-8" />
-<meta content="width=device-width, initial-scale=1.0" name="viewport" />
-<link rel="icon" type="image/png" href="assets/logo.png" />
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
-<script id="tailwind-config">
-  tailwind.config = {
-    darkMode: "class",
-    theme: { extend: {
-      colors: {
-        "primary": "#000a3f", "primary-container": "#001a72", "on-primary": "#ffffff",
-        "secondary-container": "#fddc00", "secondary-fixed": "#ffe24a",
-        "on-surface": "#1a1c1e", "on-surface-variant": "#454651",
-        "surface": "#f9f9fc", "surface-container-low": "#f3f3f6",
-        "surface-container": "#eeeef0", "background": "#f9f9fc",
-      },
-      borderRadius: { DEFAULT: "0.125rem", lg: "0.25rem", xl: "0.5rem" },
-      fontFamily: { sans: ["Inter", "system-ui", "sans-serif"] },
-    } },
-  };
-</script>
-<style>
-  body { font-family: "Inter", system-ui, sans-serif; }
-  .material-symbols-outlined {
-    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-    display: inline-block; line-height: 1;
-  }
-  .font-headline-xl { font-size: 48px; line-height: 1.1; letter-spacing: -0.02em; font-weight: 700; }
-  .font-headline-lg { font-size: 32px; line-height: 1.2; letter-spacing: -0.01em; font-weight: 600; }
-  .font-headline-md { font-size: 24px; line-height: 1.3; font-weight: 600; }
-  .font-body-lg    { font-size: 18px; line-height: 1.6; font-weight: 400; }
-  .font-body-md    { font-size: 16px; line-height: 1.5; font-weight: 400; }
-  .font-label-md   { font-size: 14px; line-height: 1; letter-spacing: 0.05em; font-weight: 600; }
-  .hero-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; }
-  .hero-overlay { position: absolute; inset: 0; z-index: 1; background: linear-gradient(180deg, rgba(0,10,63,0.6) 0%, rgba(0,10,63,0.85) 100%); }
-  .prose-content p { margin-bottom: 1rem; }
-  .prose-content h2 { font-size: 28px; font-weight: 600; color: #000a3f; margin: 2.5rem 0 1rem; line-height: 1.2; }
-</style>
-""").strip()
-
-
-def landing_page(p: dict) -> str:
-    sections_html = "\n".join(
-        f'<section class="mb-10"><h2>{title}</h2><p class="font-body-lg text-on-surface-variant">{body}</p></section>'
-        for title, body in p["sections"]
+def footer_html() -> str:
+    service_links = "".join(
+        f'<li><a class="hover:text-ink transition-colors" href="{s["slug"]}.html">{s["nav"]}</a></li>' for s in SERVICES
     )
-
-    faq_html = "\n".join(
-        f'<details class="bg-surface-container-low rounded-lg p-6 mb-3 group">'
-        f'<summary class="font-headline-md text-primary cursor-pointer list-none flex justify-between items-center">'
-        f'{q}<span class="material-symbols-outlined text-primary group-open:rotate-180 transition-transform">expand_more</span>'
-        f'</summary>'
-        f'<p class="font-body-md text-on-surface-variant mt-4">{a}</p>'
-        f'</details>'
-        for q, a in p["faq"]
+    region_links = "".join(
+        f'<li><a class="hover:text-ink transition-colors" href="{r["slug"]}.html">Maler {r["name"]}</a></li>' for r in REGIONS
     )
-
-    faq_schema_items = ",".join(
-        f'{{"@type":"Question","name":"{q}","acceptedAnswer":{{"@type":"Answer","text":"{a}"}}}}'
-        for q, a in p["faq"]
-    )
-
-    schema_json = (
-        '{"@context":"https://schema.org","@graph":['
-        '{"@type":"LocalBusiness","@id":"' + SITE_URL + '/#org",'
-        '"name":"Bühlmann Söhne AG","image":"' + SITE_URL + '/assets/logo.png",'
-        '"telephone":"+41 41 000 00 00","email":"info@buehlmann-soehne.ch",'
-        '"url":"' + SITE_URL + '/' + p['slug'] + '.html",'
-        '"priceRange":"$$","address":{"@type":"PostalAddress","streetAddress":"Handwerkstrasse 12","addressLocality":"Luzern","postalCode":"6000","addressCountry":"CH"},'
-        '"areaServed":["Luzern","Innerschweiz","Zug","Schwyz","Nidwalden","Obwalden"],'
-        '"foundingDate":"1924"},'
-        '{"@type":"FAQPage","mainEntity":[' + faq_schema_items + ']}'
-        ']}'
-    )
-
     return dedent(f"""
-<!DOCTYPE html>
-<html class="scroll-smooth" lang="de">
+    <footer class="bg-mist border-t border-line">
+      <div class="max-w-6xl mx-auto px-6 py-16 grid grid-cols-1 md:grid-cols-4 gap-10">
+        <div>
+          <img src="assets/logo.png" alt="Bühlmann Söhne AG" class="h-16 w-auto mb-5" />
+          <p class="text-ink-soft text-[15px] leading-relaxed">Malerei und Gipserei in Luzern seit 1935. Familienbetrieb in dritter Generation.</p>
+          <p class="mt-4 text-[13px] text-ink-soft italic">«Wir setzen Zeichen mit Farbe»</p>
+        </div>
+        <div>
+          <h4 class="eyebrow text-ink mb-5">Leistungen</h4>
+          <ul class="space-y-2.5 text-ink-soft text-[15px]">{service_links}</ul>
+        </div>
+        <div>
+          <h4 class="eyebrow text-ink mb-5">Einsatzgebiet</h4>
+          <ul class="space-y-2.5 text-ink-soft text-[15px]">{region_links}</ul>
+        </div>
+        <div>
+          <h4 class="eyebrow text-ink mb-5">Kontakt</h4>
+          <ul class="space-y-2.5 text-ink-soft text-[15px]">
+            <li class="font-semibold text-ink">Bühlmann Söhne AG</li>
+            <li>{ADDRESS}, {CITY}</li>
+            <li><a href="tel:{PHONE_LINK}" class="hover:text-ink">Tel. {PHONE_DISPLAY}</a></li>
+            <li>Fax {FAX_DISPLAY}</li>
+            <li><a href="mailto:{EMAIL}" class="hover:text-ink">{EMAIL}</a></li>
+            <li><a href="{MAPS_URL}" target="_blank" rel="noopener" class="underline decoration-accent decoration-2 underline-offset-4 hover:text-ink">Auf Google Maps zeigen</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="border-t border-line">
+        <div class="max-w-6xl mx-auto px-6 py-5 flex flex-col md:flex-row justify-between items-center gap-3 text-[13px] text-ink-soft">
+          <span>v{VERSION}</span>
+          <span>© 2026 Bühlmann Söhne AG · {ADDRESS} · {CITY}</span>
+          <span class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[16px] text-ink">verified</span>Schweizer Handwerk seit 1935</span>
+        </div>
+      </div>
+    </footer>
+    """).strip()
+
+
+def schema_org(page_url: str, extra: str = "") -> str:
+    return (
+        '<script type="application/ld+json">'
+        '{"@context":"https://schema.org","@graph":[{"@type":"LocalBusiness","@id":"' + SITE_URL + '/#org",'
+        '"name":"Bühlmann Söhne AG","image":"' + SITE_URL + '/assets/logo.png","logo":"' + SITE_URL + '/assets/logo.png",'
+        '"slogan":"Wir setzen Zeichen mit Farbe",'
+        '"telephone":"+41 41 269 88 50","faxNumber":"+41 41 269 88 60","email":"' + EMAIL + '",'
+        '"url":"' + page_url + '",'
+        '"address":{"@type":"PostalAddress","streetAddress":"' + ADDRESS + '","addressLocality":"Luzern","postalCode":"6015","addressCountry":"CH"},'
+        '"areaServed":["Luzern","Emmen","Kriens","Hergiswil","Alpnach","Nidwalden","Obwalden","Innerschweiz"],'
+        '"foundingDate":"1935","founder":{"@type":"Person","name":"Harry Bühlmann"},'
+        '"employee":{"@type":"Person","name":"Patrick Bühlmann","jobTitle":"Geschäftsführer"},'
+        '"numberOfEmployees":{"@type":"QuantitativeValue","value":13}}'
+        + ("," + extra if extra else "") + "]}"
+        "</script>"
+    )
+
+
+def page_shell(slug: str, title: str, meta: str, og_image: str, body: str, extra_schema: str = "") -> str:
+    page_url = f"{SITE_URL}/" if slug == "index" else f"{SITE_URL}/{slug}.html"
+    return dedent(f"""<!DOCTYPE html>
+<html lang="de">
 <head>
 {HEAD_BASE}
-<title>{p['title']}</title>
-<meta name="description" content="{p['meta']}" />
-<link rel="canonical" href="{SITE_URL}/{p['slug']}.html" />
+<title>{title}</title>
+<meta name="description" content="{meta}" />
+<link rel="canonical" href="{page_url}" />
 <meta property="og:type" content="website" />
-<meta property="og:title" content="{p['title']}" />
-<meta property="og:description" content="{p['meta']}" />
-<meta property="og:image" content="{p['image']}" />
-<meta property="og:url" content="{SITE_URL}/{p['slug']}.html" />
+<meta property="og:title" content="{title}" />
+<meta property="og:description" content="{meta}" />
+<meta property="og:image" content="{og_image if og_image.startswith("http") else SITE_URL + "/" + og_image}" />
+<meta property="og:url" content="{page_url}" />
 <meta name="robots" content="index, follow" />
-<script type="application/ld+json">{schema_json}</script>
+{schema_org(page_url, extra_schema)}
 </head>
-<body class="bg-background text-on-surface antialiased">
-
-{header_html(p['slug'])}
-
-<header class="relative h-[55vh] min-h-[480px] w-full flex items-center justify-center overflow-hidden bg-primary mt-40 md:mt-52">
-  <img src="{p['image']}" alt="{p['h1']}" class="hero-img" />
-  <div class="hero-overlay"></div>
-  <div class="relative z-10 text-center px-4 max-w-4xl">
-    <span class="font-label-md text-secondary-fixed tracking-[0.3em] uppercase mb-6 block">Bühlmann Söhne AG · Luzern</span>
-    <h1 class="font-headline-xl text-white mb-6 text-4xl md:text-6xl leading-tight">{p['h1']}</h1>
-    <p class="font-body-lg text-white/85 mb-8 max-w-2xl mx-auto">{p['lead']}</p>
-    <div class="flex flex-col sm:flex-row gap-4 justify-center">
-      <a href="kontakt.html" class="bg-secondary-container text-primary font-label-md px-10 py-5 rounded-lg uppercase tracking-widest hover:opacity-90 transition-all active:scale-95 shadow-xl">{p['cta']}</a>
-      <a href="tel:+41410000000" class="border border-white/40 text-white backdrop-blur-sm font-label-md px-10 py-5 rounded-lg uppercase tracking-widest hover:bg-white/10 transition-all">+41 41 000 00 00</a>
-    </div>
-  </div>
-</header>
-
-<main class="bg-white">
-  <article class="max-w-3xl mx-auto px-6 md:px-8 py-20 prose-content">
-    {sections_html}
-  </article>
-
-  <section class="bg-surface-container-low py-20">
-    <div class="max-w-3xl mx-auto px-6 md:px-8">
-      <h2 class="font-headline-lg text-primary text-3xl md:text-4xl mb-10 text-center">Häufige Fragen</h2>
-      {faq_html}
-    </div>
-  </section>
-
-  <section class="bg-primary text-white py-20">
-    <div class="max-w-3xl mx-auto px-6 md:px-8 text-center">
-      <h2 class="font-headline-lg text-3xl md:text-4xl mb-6">{p['cta']}</h2>
-      <p class="font-body-lg text-white/80 mb-8">Antwort innert 24 Stunden. Kostenlose Vor-Ort-Besichtigung. Festpreis-Offerte.</p>
-      <a href="kontakt.html" class="inline-block bg-secondary-container text-primary font-label-md px-10 py-5 rounded-lg uppercase tracking-widest hover:opacity-90 transition-all active:scale-95 shadow-xl">Jetzt Kontakt aufnehmen</a>
-    </div>
-  </section>
-</main>
-
-{FOOTER}
+<body class="bg-paper text-ink antialiased">
+{header_html(slug)}
+{body}
+{footer_html()}
+{SCRIPTS}
 </body>
-</html>
-""").strip()
+</html>""").strip()
 
 
+def hero_light(eyebrow: str, h1: str, lead: str, image: str, cta_label: str) -> str:
+    """Heller, edler Seiten-Hero: Text links, Bild rechts."""
+    return dedent(f"""
+    <header class="bg-paper">
+      <div class="max-w-6xl mx-auto px-6 pt-16 pb-14 md:pt-24 md:pb-20 grid md:grid-cols-2 gap-12 items-center">
+        <div>
+          <span class="eyebrow text-ink-soft block mb-4">{eyebrow}</span>
+          <h1 class="font-display text-4xl md:text-5xl leading-[1.12] text-ink mb-6">{h1}</h1>
+          <span class="accent-bar mb-6"></span>
+          <p class="text-ink-soft text-lg leading-relaxed mb-9 max-w-xl">{lead}</p>
+          <div class="flex flex-wrap gap-4">
+            <a href="kontakt.html" class="bg-ink text-white text-[13px] font-semibold tracking-[0.14em] uppercase px-7 py-4 rounded hover:bg-[#1a2a55] transition-colors">{cta_label}</a>
+            <a href="tel:{PHONE_LINK}" class="border border-line bg-white text-ink text-[13px] font-semibold tracking-[0.14em] uppercase px-7 py-4 rounded hover:border-ink transition-colors flex items-center gap-2"><span class="material-symbols-outlined text-[18px]">call</span>{PHONE_DISPLAY}</a>
+          </div>
+        </div>
+        <div class="relative">
+          <div class="absolute -top-4 -left-4 w-full h-full rounded-lg bg-accent/25" aria-hidden="true"></div>
+          <img src="{image}" alt="{h1}" class="relative rounded-lg shadow-xl w-full aspect-[4/3] object-cover" />
+        </div>
+      </div>
+    </header>
+    """).strip()
+
+
+def cta_section(title: str) -> str:
+    return dedent(f"""
+    <section class="bg-ink text-white">
+      <div class="max-w-4xl mx-auto px-6 py-20 text-center">
+        <h2 class="font-display text-3xl md:text-4xl mb-5">{title}</h2>
+        <p class="text-white/75 text-lg mb-9">Rufen Sie uns an oder schreiben Sie uns. Wir beraten Sie gerne persönlich.</p>
+        <div class="flex flex-wrap gap-4 justify-center">
+          <a href="tel:{PHONE_LINK}" class="bg-accent text-ink text-[13px] font-semibold tracking-[0.14em] uppercase px-8 py-4 rounded hover:bg-accent-deep transition-colors flex items-center gap-2"><span class="material-symbols-outlined text-[18px]">call</span>{PHONE_DISPLAY}</a>
+          <a href="kontakt.html" class="border border-white/30 text-white text-[13px] font-semibold tracking-[0.14em] uppercase px-8 py-4 rounded hover:bg-white/10 transition-colors">Kontaktformular</a>
+        </div>
+      </div>
+    </section>
+    """).strip()
+
+
+# ---------------------------------------------------------------------------
+# Startseite
+# ---------------------------------------------------------------------------
 def index_page() -> str:
-    """Home page — keeps the existing video hero, gets the multi-page nav."""
-    services = [
-        ("Innenmalerei", "innenmalerei.html", "Wände & Decken streichen, Wandgestaltung, Tapezierarbeiten.", "https://images.unsplash.com/photo-1505691938895-1758d7feb511?w=1200&q=80"),
-        ("Fassadenrenovation", "fassadenrenovation.html", "Fassade streichen & sanieren mit 10 Jahren Garantie.", "https://images.unsplash.com/photo-1572120360610-d971b9d7767c?w=1200&q=80"),
-        ("Altbau-Renovation", "altbau-renovation.html", "Denkmalpflege, Stuck und historische Putze seit 1924.", "https://images.unsplash.com/photo-1464146072230-91cabc968266?w=1200&q=80"),
-        ("Farbberatung", "farbberatung.html", "Zertifizierte Farbdesignerin, drei Konzeptvarianten.", "https://images.unsplash.com/photo-1562663474-6cbb3eaa4d14?w=1200&q=80"),
-        ("Maler für Einfamilienhaus", "maler-einfamilienhaus.html", "Innen, aussen, mit Festpreis und ein Ansprechpartner.", "https://images.unsplash.com/photo-1625602812206-5ec545ca1231?w=1200&q=80"),
-        ("Wohnung streichen", "wohnung-streichen.html", "Mieterwohnung in 48–72 h bezugsfertig.", "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=1200&q=80"),
-        ("Maler für Mehrfamilienhaus", "maler-mehrfamilienhaus.html", "Treppenhäuser, Fassaden und ganze Liegenschaften.", "https://images.unsplash.com/photo-1503174971373-b1f69850bded?w=1200&q=80"),
-        ("Maler für Neubau", "maler-neubau.html", "Erstanstrich Q4, Designflächen, 0-Mängel-Übergabe.", "https://images.unsplash.com/photo-1604689598793-b8bf1dc445a1?w=1600&q=80"),
-        ("Geschäftsräume & Büro", "maler-gewerbe-buero.html", "Renovation ohne Betriebsausfall, auch nachts.", "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=1600&q=80"),
-        ("Tapezieren", "tapezieren-luzern.html", "Vlies, Designtapeten, Fototapeten — sauber & blasenfrei.", "https://images.unsplash.com/photo-1505691938895-1758d7feb511?w=1200&q=80"),
-        ("Spritzlackierung", "spritzlackierung.html", "Türen, Schränke, Küchenfronten — wie neu lackiert.", "https://images.unsplash.com/photo-1604689598793-b8bf1dc445a1?w=1600&q=80"),
-        ("Balkon streichen", "balkon-streichen.html", "Wasserdichte Balkonböden, Geländer, Brüstungen.", "https://images.unsplash.com/photo-1572120360610-d971b9d7767c?w=1200&q=80"),
-        ("Schimmel entfernen", "schimmel-entfernen.html", "Schimmelsanierung mit Ursachenanalyse, dauerhafte Lösung.", "https://images.unsplash.com/photo-1505691938895-1758d7feb511?w=1200&q=80"),
+    service_cards = [
+        ("Innenmalerei", "innenmalerei.html", "format_paint", "Malen, Spritzen und Tapezieren für jeden Innenraum, vom Altbau bis zum Büro."),
+        ("Fassaden", "fassaden.html", "apartment", "Renovation und Isolation jeder Fassade, mit eigenen Gerüsten und Farbstudien am Computer."),
+        ("Renovation", "renovation.html", "history_edu", "Sorgfalt und Liebe zum Detail, inklusive Werterhaltungs-Kundendienst mit Garantie."),
+        ("Neubau und Umbau", "neubau.html", "domain_add", "Eingespielter Partner für Architekten, Generalunternehmer und private Bauherren."),
+        ("Spritzwerk", "spritzwerk.html", "airline_seat_flat", "Eigene Spritzanlage für Bauteile und Jalousieläden im Thermo-Lackier-Verfahren."),
+        ("Gipserei", "gipserei.html", "handyman", "Kundengipserei für prompte Einsätze, Verputzarbeiten und Betonsanierungen."),
+    ]
+    cards_html = "\n".join(
+        f'<a href="{href}" class="card-lift bg-white border border-line rounded-lg p-8 block group">'
+        f'<span class="material-symbols-outlined text-4xl text-ink mb-5">{icon}</span>'
+        f'<h3 class="font-display text-xl text-ink mb-3">{title}</h3>'
+        f'<p class="text-ink-soft text-[15px] leading-relaxed mb-5">{desc}</p>'
+        f'<span class="text-[13px] font-semibold tracking-[0.14em] uppercase text-ink border-b-2 border-accent pb-1">Mehr erfahren</span>'
+        f'</a>'
+        for title, href, icon, desc in service_cards
+    )
+
+    refs = [
+        ("assets/referenz-ueberbauung.jpg", "Wohnüberbauung, Neubau"),
+        ("assets/referenz-altstadt.jpg", "Stadthaus Luzern, Fassade"),
+        ("assets/referenz-wohnung.jpg", "Wohnungsrenovation"),
+    ]
+    refs_html = "\n".join(
+        f'<figure class="card-lift rounded-lg overflow-hidden bg-white border border-line">'
+        f'<img src="{img}" alt="{cap}" class="w-full aspect-[4/3] object-cover" />'
+        f'<figcaption class="px-5 py-4 text-[14px] text-ink-soft">{cap}</figcaption>'
+        f'</figure>'
+        for img, cap in refs
+    )
+
+    body = dedent(f"""
+    <header class="relative bg-paper overflow-hidden">
+      <div class="max-w-6xl mx-auto px-6 pt-16 pb-16 md:pt-28 md:pb-24 grid md:grid-cols-[1.1fr_1fr] gap-14 items-center">
+        <div>
+          <span class="eyebrow text-ink-soft block mb-5">Malerei und Gipserei in Luzern · seit 1935</span>
+          <h1 class="font-display text-5xl md:text-6xl leading-[1.08] text-ink mb-7">Wir setzen Zeichen mit&nbsp;Farbe.</h1>
+          <span class="accent-bar mb-7"></span>
+          <p class="text-ink-soft text-lg leading-relaxed mb-10 max-w-xl">Familienbetrieb in dritter Generation. Malerarbeiten innen und aussen, Kundengipserei und eigenes Spritzwerk, in Luzern, Hergiswil NW und Alpnach OW.</p>
+          <div class="flex flex-wrap gap-4">
+            <a href="kontakt.html" class="bg-ink text-white text-[13px] font-semibold tracking-[0.14em] uppercase px-8 py-4 rounded hover:bg-[#1a2a55] transition-colors">Offerte anfragen</a>
+            <a href="malerei.html" class="border border-line bg-white text-ink text-[13px] font-semibold tracking-[0.14em] uppercase px-8 py-4 rounded hover:border-ink transition-colors">Unsere Leistungen</a>
+          </div>
+          <div class="mt-12 grid grid-cols-3 gap-6 max-w-md">
+            <div><span class="font-display text-3xl text-ink block">1935</span><span class="text-[13px] text-ink-soft">gegründet</span></div>
+            <div><span class="font-display text-3xl text-ink block">3.</span><span class="text-[13px] text-ink-soft">Generation</span></div>
+            <div><span class="font-display text-3xl text-ink block">13</span><span class="text-[13px] text-ink-soft">Mitarbeitende</span></div>
+          </div>
+        </div>
+        <div class="relative">
+          <div class="absolute -top-5 -right-5 w-full h-full rounded-lg bg-accent/30" aria-hidden="true"></div>
+          <img src="assets/hero-farben.jpg" alt="Farbeimer und Malerleiter in hellem Raum" class="relative rounded-lg shadow-2xl w-full aspect-[4/3] object-cover" />
+        </div>
+      </div>
+    </header>
+
+    <section class="bg-mist border-y border-line">
+      <div class="max-w-6xl mx-auto px-6 py-20">
+        <div class="text-center mb-12">
+          <span class="eyebrow text-ink-soft block mb-3">Unsere Leistungen</span>
+          <h2 class="font-display text-3xl md:text-4xl text-ink">Das komplette Maler- und Gipserhandwerk</h2>
+        </div>
+        <div class="grid md:grid-cols-3 gap-6">
+          {cards_html}
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-paper">
+      <div class="max-w-6xl mx-auto px-6 py-20 grid md:grid-cols-2 gap-14 items-center">
+        <div class="relative order-2 md:order-1">
+          <img src="{IMG_LUZERN}" alt="Luzern, die Heimat der Bühlmann Söhne AG" class="rounded-lg shadow-lg w-full aspect-[4/3] object-cover" />
+          <img src="assets/referenz-altstadt.jpg" alt="Referenzobjekt in der Stadt Luzern" class="hidden md:block absolute -bottom-8 -right-8 w-56 rounded-lg shadow-xl border-4 border-white" />
+        </div>
+        <div class="order-1 md:order-2">
+          <span class="eyebrow text-ink-soft block mb-4">Unternehmen</span>
+          <h2 class="font-display text-3xl md:text-4xl text-ink mb-5">Drei Generationen Handwerk</h2>
+          <span class="accent-bar mb-6"></span>
+          <p class="text-ink-soft text-[16px] leading-relaxed mb-4">1935 von Harry Bühlmann in einer einfachen Garage an der Dammstrasse gegründet, ist die Bühlmann Söhne AG heute ein moderner Betrieb im eigenen Gebäude im Rothenbad, Luzern.</p>
+          <p class="text-ink-soft text-[16px] leading-relaxed mb-8">Geschäftsführer Patrick Bühlmann führt das Unternehmen mit 10 Malern und 3 Mitarbeitenden in der Administration. Moderne Maschinen und ein umfangreicher Wagenpark sorgen für effizientes Arbeiten. Und weil uns der Nachwuchs wichtig ist, bilden wir regelmässig Malerlehrlinge aus.</p>
+          <a href="unternehmen.html" class="text-[13px] font-semibold tracking-[0.14em] uppercase text-ink border-b-2 border-accent pb-1">Geschichte und Leitbild</a>
+        </div>
+      </div>
+    </section>
+
+    {FARBSTUDIE}
+
+    <section class="bg-mist border-y border-line">
+      <div class="max-w-6xl mx-auto px-6 py-20">
+        <div class="flex flex-wrap items-end justify-between gap-6 mb-12">
+          <div>
+            <span class="eyebrow text-ink-soft block mb-3">Referenzen</span>
+            <h2 class="font-display text-3xl md:text-4xl text-ink">Spuren unserer Arbeit</h2>
+          </div>
+          <a href="referenzen.html" class="text-[13px] font-semibold tracking-[0.14em] uppercase text-ink border-b-2 border-accent pb-1">Alle Referenzen</a>
+        </div>
+        <div class="grid md:grid-cols-3 gap-6">
+          {refs_html}
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-paper">
+      <div class="max-w-6xl mx-auto px-6 py-20 grid md:grid-cols-2 gap-14 items-center">
+        <div>
+          <span class="eyebrow text-ink-soft block mb-4">Einsatzgebiet</span>
+          <h2 class="font-display text-3xl md:text-4xl text-ink mb-5">Drei Standorte, eine Region</h2>
+          <span class="accent-bar mb-6"></span>
+          <p class="text-ink-soft text-[16px] leading-relaxed mb-8">Von Luzern, Hergiswil NW und Alpnach OW aus sind wir in der ganzen Innerschweiz im Einsatz. Spuren unserer Arbeit finden sich auf Fassaden und in Wohn- und Geschäftsräumen der ganzen Region.</p>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <a href="maler-luzern.html" class="bg-white border border-line rounded px-5 py-4 flex justify-between items-center hover:border-ink transition-colors"><span class="font-semibold text-[15px]">Maler Luzern</span><span class="material-symbols-outlined text-[18px]">arrow_forward</span></a>
+            <a href="maler-emmen.html" class="bg-white border border-line rounded px-5 py-4 flex justify-between items-center hover:border-ink transition-colors"><span class="font-semibold text-[15px]">Maler Emmen</span><span class="material-symbols-outlined text-[18px]">arrow_forward</span></a>
+            <a href="maler-kriens.html" class="bg-white border border-line rounded px-5 py-4 flex justify-between items-center hover:border-ink transition-colors"><span class="font-semibold text-[15px]">Maler Kriens</span><span class="material-symbols-outlined text-[18px]">arrow_forward</span></a>
+            <a href="maler-hergiswil.html" class="bg-white border border-line rounded px-5 py-4 flex justify-between items-center hover:border-ink transition-colors"><span class="font-semibold text-[15px]">Maler Hergiswil NW</span><span class="material-symbols-outlined text-[18px]">arrow_forward</span></a>
+            <a href="maler-alpnach.html" class="bg-white border border-line rounded px-5 py-4 flex justify-between items-center hover:border-ink transition-colors"><span class="font-semibold text-[15px]">Maler Alpnach OW</span><span class="material-symbols-outlined text-[18px]">arrow_forward</span></a>
+          </div>
+        </div>
+        <div class="bg-mist border border-line rounded-lg p-10">
+          <span class="eyebrow text-ink-soft block mb-4">Jobs</span>
+          <h3 class="font-display text-2xl text-ink mb-4">Wir suchen dich: Maler/in EFZ, 100 %</h3>
+          <p class="text-ink-soft text-[15px] leading-relaxed mb-6">Kleines Team, familiärer Stil, vielseitige Aufgaben in Kundenmalerei, Renovation und Neubau. Per sofort oder nach Vereinbarung.</p>
+          <a href="jobs.html" class="bg-ink text-white text-[13px] font-semibold tracking-[0.14em] uppercase px-6 py-3.5 rounded inline-block hover:bg-[#1a2a55] transition-colors">Zur Stellenanzeige</a>
+          <p class="text-[13px] text-ink-soft mt-5">Wir bilden ausserdem regelmässig Malerlehrlinge aus.</p>
+        </div>
+      </div>
+    </section>
+
+    {cta_section("Bereit für Ihr Projekt?")}
+    """).strip()
+
+    return page_shell(
+        "index",
+        "Maler Luzern | Bühlmann Söhne AG | Malerei und Gipserei seit 1935",
+        "Bühlmann Söhne AG: Maler und Gipser in Luzern seit 1935. Innenmalerei, Fassaden, Renovation, Neubau, Spritzwerk. Standorte Luzern, Hergiswil NW, Alpnach OW. Tel. 041 269 88 50.",
+        "assets/hero-farben.jpg",
+        body,
+    )
+
+
+# ---------------------------------------------------------------------------
+# Malerei-Übersicht
+# ---------------------------------------------------------------------------
+def malerei_page() -> str:
+    blocks = [
+        ("Innen", IMG_INNEN, "Malen, Spritzen, Tapezieren: Mit Spachtel, Pinsel, Spritzpistole und Tapetenbürste verschönern wir jeden Innenraum. Ob denkmalgeschützte Ratsherrenstube, modernes Bürogebäude oder Industriebau.", "innenmalerei.html"),
+        ("Aussen", IMG_FASSADENMALER, "Ob Holz, Beton, Naturstein, Verputz, Metall oder Kunststoff: Wir bearbeiten jede Fassade fachmännisch. Eigene Roll- und Fassadengerüste machen uns schnell und flexibel.", "fassaden.html"),
+        ("Unser Spritzwerk", IMG_FARBEIMER, "Mit unserer modernen Spritzanlage für Industrie- und Bauteile lackieren wir auch grossflächige Gegenstände wie Jalousieläden im Thermo-Lackier-Verfahren.", "spritzwerk.html"),
+        ("Kundengipserei", IMG_ROLLER, "Unsere Kundengipserei ist für Einsätze jeglicher Art ausgerüstet. Verputzarbeiten und Betonsanierungen erledigen wir prompt und unkompliziert.", "gipserei.html"),
+    ]
+    blocks_html = "\n".join(
+        f'<div class="grid md:grid-cols-2 gap-10 items-center {"md:[direction:rtl]" if i % 2 else ""}">'
+        f'<div class="[direction:ltr]"><img src="{img}" alt="{title}, Bühlmann Söhne AG" class="rounded-lg shadow-lg w-full aspect-[16/9] object-cover" /></div>'
+        f'<div class="[direction:ltr]">'
+        f'<h2 class="font-display text-2xl md:text-3xl text-ink mb-4">{title}</h2>'
+        f'<span class="accent-bar mb-5"></span>'
+        f'<p class="text-ink-soft text-[16px] leading-relaxed mb-6">{desc}</p>'
+        f'<a href="{href}" class="text-[13px] font-semibold tracking-[0.14em] uppercase text-ink border-b-2 border-accent pb-1">Mehr erfahren</a>'
+        f'</div></div>'
+        for i, (title, img, desc, href) in enumerate(blocks)
+    )
+
+    detail_links = "\n".join(
+        f'<a href="{s["slug"]}.html" class="bg-white border border-line rounded px-5 py-4 flex justify-between items-center hover:border-ink transition-colors"><span class="font-semibold text-[15px]">{s["nav"]}</span><span class="material-symbols-outlined text-[18px]">arrow_forward</span></a>'
+        for s in SERVICES
+    )
+
+    body = dedent(f"""
+    {hero_light("Malerei", "Seit über 90 Jahren Farbe im Alltag", "Spuren unserer Arbeit finden Sie in der ganzen Schweiz, auf Gebäudefassaden ebenso wie in Wohn- und Geschäftsräumen. Traditionelles Handwerk, kombiniert mit zukunftsorientierten Techniken und neuen Werkstoffen.", "assets/hero-farben.jpg", "Offerte anfragen")}
+
+    <section class="bg-mist border-y border-line">
+      <div class="max-w-6xl mx-auto px-6 py-20 space-y-20">
+        {blocks_html}
+      </div>
+    </section>
+
+    <section class="bg-paper">
+      <div class="max-w-6xl mx-auto px-6 py-20">
+        <div class="text-center mb-10">
+          <span class="eyebrow text-ink-soft block mb-3">Kompetente Mitarbeitende</span>
+          <h2 class="font-display text-3xl text-ink mb-5">Qualität vor Quantität</h2>
+          <p class="text-ink-soft text-[16px] leading-relaxed max-w-3xl mx-auto">Unser Team umfasst kompetente Fachleute für Neu- und Umbauten sowie Renovationen im Innen- und Aussenbereich. Dank laufender Weiterbildung sind unsere Mitarbeitenden stets auf dem neusten Stand der Technik. Die Nachwuchsförderung ist uns seit jeher ein wichtiges Anliegen: Wir bilden regelmässig Malerlehrlinge aus.</p>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 max-w-4xl mx-auto">
+          {detail_links}
+        </div>
+      </div>
+    </section>
+
+    {cta_section("Welches Projekt dürfen wir für Sie umsetzen?")}
+    """).strip()
+
+    return page_shell(
+        "malerei",
+        "Malerei Luzern | Innen, Aussen, Spritzwerk, Gipserei | Bühlmann Söhne AG",
+        "Das komplette Maler- und Gipserhandwerk in Luzern: Innenmalerei, Fassaden, Spritzwerk und Kundengipserei. Seit über 90 Jahren. Tel. 041 269 88 50.",
+        "assets/hero-farben.jpg",
+        body,
+    )
+
+
+# ---------------------------------------------------------------------------
+# Leistungs-Detailseite
+# ---------------------------------------------------------------------------
+def service_page(s: dict) -> str:
+    sections_html = "\n".join(
+        f'<section class="mb-12"><h2 class="font-display text-2xl md:text-3xl text-ink mb-4">{t}</h2><p class="text-ink-soft text-[16px] leading-relaxed">{b}</p></section>'
+        for t, b in s["sections"]
+    )
+    faq_html = "\n".join(
+        f'<details class="bg-white border border-line rounded-lg px-6 py-5 mb-3 group">'
+        f'<summary class="font-semibold text-ink cursor-pointer list-none flex justify-between items-center gap-4">{q}<span class="material-symbols-outlined group-open:rotate-180 transition-transform shrink-0">expand_more</span></summary>'
+        f'<p class="text-ink-soft text-[15px] leading-relaxed mt-4">{a}</p></details>'
+        for q, a in s["faq"]
+    )
+    faq_schema = (
+        '{"@type":"FAQPage","mainEntity":['
+        + ",".join(
+            '{"@type":"Question","name":"' + q + '","acceptedAnswer":{"@type":"Answer","text":"' + a + '"}}'
+            for q, a in s["faq"]
+        )
+        + "]}"
+    )
+
+    farbstudie = FARBSTUDIE if s["slug"] == "fassaden" else ""
+    body = dedent(f"""
+    {hero_light("Bühlmann Söhne AG · Luzern", s["h1"], s["lead"], s["image"], "Offerte anfragen")}
+
+    <section class="bg-mist border-y border-line">
+      <div class="max-w-3xl mx-auto px-6 py-20">
+        {sections_html}
+      </div>
+    </section>
+
+    {farbstudie}
+
+    <section class="bg-paper">
+      <div class="max-w-3xl mx-auto px-6 py-20">
+        <h2 class="font-display text-3xl text-ink mb-8 text-center">Häufige Fragen</h2>
+        {faq_html}
+      </div>
+    </section>
+
+    {cta_section(s["cta"])}
+    """).strip()
+
+    return page_shell(s["slug"], s["title"], s["meta"], s["image"], body, faq_schema)
+
+
+# ---------------------------------------------------------------------------
+# Regionen-Seite
+# ---------------------------------------------------------------------------
+def region_page(r: dict) -> str:
+    sections_html = "\n".join(
+        f'<section class="mb-12"><h2 class="font-display text-2xl md:text-3xl text-ink mb-4">{t}</h2><p class="text-ink-soft text-[16px] leading-relaxed">{b}</p></section>'
+        for t, b in r["body"]
+    )
+    body = dedent(f"""
+    {hero_light("Einsatzgebiet · " + r["name"], r["h1"], r["lead"], r.get("image", IMG_GERUEST), "Offerte anfragen")}
+
+    <section class="bg-mist border-y border-line">
+      <div class="max-w-3xl mx-auto px-6 py-20">
+        {sections_html}
+      </div>
+    </section>
+
+    {cta_section("Ihr Malerprojekt in " + r["name"] + "?")}
+    """).strip()
+    return page_shell(r["slug"], r["title"], r["meta"], r.get("image", IMG_GERUEST), body)
+
+
+# ---------------------------------------------------------------------------
+# Unternehmen
+# ---------------------------------------------------------------------------
+def unternehmen_page() -> str:
+    timeline = [
+        ("1935", "Firmengründung durch Harry Bühlmann an der Dammstrasse in Luzern, in einer einfachen Garagenunterkunft."),
+        ("1940", "Umzug an die Weisenstrasse. Nach dem Krieg floriert die Bauwirtschaft, das Team wächst auf 15 Mitarbeitende."),
+        ("1965", "Bezug des neuen Domizils an der Friedbergstrasse 1a: eine damals hochmoderne Malerwerkstatt."),
+        ("1969", "Gründung der Abteilung Schriftenmalerei, mit erfolgreichen Synergien zur Malerei."),
+        ("1980", "Übernahme durch die zweite Generation: die Söhne von Harry Bühlmann führen den Betrieb weiter."),
+        ("1997", "Gründung der Bühlmann Söhne AG. Die dritte Generation wird auf die Nachfolge vorbereitet."),
+        ("2000", "Umzug in den modernen Neubau im Rothenbad in Reussbühl, den heutigen Firmensitz."),
+        ("2006", "Fokussierung auf die Kernkompetenzen: Kundendienst, Renovation, Fassade, Neubau und Umbau."),
+        ("2008", "Patrick Bühlmann erwirbt die Bühlmann Söhne AG und die Liegenschaft Rothenbad 18."),
+    ]
+    timeline_html = "\n".join(
+        f'<div class="relative pl-10 pb-10 border-l-2 border-line last:pb-0">'
+        f'<span class="absolute -left-[11px] top-0 w-5 h-5 rounded-full bg-accent border-4 border-white shadow"></span>'
+        f'<span class="font-display text-xl text-ink block mb-1.5">{year}</span>'
+        f'<p class="text-ink-soft text-[15px] leading-relaxed">{text}</p></div>'
+        for year, text in timeline
+    )
+
+    facts = [
+        ("Gründung", "1935"),
+        ("Rechtsform", "Aktiengesellschaft"),
+        ("Geschäftsführer", "Patrick Bühlmann"),
+        ("Sitz", f"{ADDRESS}, {CITY}"),
+        ("Standorte", "Luzern, Hergiswil NW, Alpnach OW"),
+        ("Team", "10 Maler, 3 Administration"),
+    ]
+    facts_html = "\n".join(
+        f'<div class="bg-white border border-line rounded-lg px-6 py-5"><span class="eyebrow text-ink-soft block mb-1.5">{k}</span><span class="font-semibold text-ink text-[15px]">{v}</span></div>'
+        for k, v in facts
+    )
+
+    leitbild = [
+        ("Wir gestalten für Ihre Zukunft", "Wir sind ein unabhängiges, regional verankertes Familienunternehmen im Malergewerbe und stolz auf unsere Arbeit. Wir arbeiten innovativ, kompetent und qualitätsbewusst."),
+        ("Unsere Kunden sind unsere Arbeitgeber", "Wir legen grossen Wert auf Kundennähe, Lieferbereitschaft und Flexibilität. In Baumalerei und Kundengipserei erbringen wir technologisch fortschrittliche Gesamtleistungen in optimaler Qualität, mit umweltgerechten Massnahmen."),
+        ("Wir gestalten mit Menschen für Mitmenschen", "Wir sorgen für Arbeitsbedingungen, die Leistung, Sicherheit und persönliche Entfaltung fördern. Unsere Mitarbeitenden werden aktiv ins Unternehmensgeschehen einbezogen, denn sie sind der Schlüssel zu unserem Erfolg."),
+    ]
+    leitbild_html = "\n".join(
+        f'<div class="bg-white border border-line rounded-lg p-8"><h3 class="font-display text-xl text-ink mb-4">{t}</h3><p class="text-ink-soft text-[15px] leading-relaxed">{b}</p></div>'
+        for t, b in leitbild
+    )
+
+    body = dedent(f"""
+    {hero_light("Unternehmen", "Ein Familienbetrieb in dritter Generation", "Seit 1935 steht der Name Bühlmann in Luzern für sauberes Maler- und Gipserhandwerk. Heute führt Patrick Bühlmann den Betrieb mit 13 Mitarbeitenden im eigenen Gebäude im Rothenbad.", IMG_LUZERN_PANO, "Kontakt aufnehmen")}
+
+    <section class="bg-mist border-y border-line">
+      <div class="max-w-6xl mx-auto px-6 py-20">
+        <h2 class="font-display text-3xl text-ink mb-10 text-center">Zahlen und Fakten</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl mx-auto">
+          {facts_html}
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-paper">
+      <div class="max-w-6xl mx-auto px-6 py-20 grid md:grid-cols-2 gap-16">
+        <div>
+          <span class="eyebrow text-ink-soft block mb-3">Geschichte</span>
+          <h2 class="font-display text-3xl text-ink mb-10">Von der Garage zum Neubau</h2>
+          {timeline_html}
+        </div>
+        <div>
+          <span class="eyebrow text-ink-soft block mb-3">Betrieb</span>
+          <h2 class="font-display text-3xl text-ink mb-10">Modern und dynamisch</h2>
+          <img src="{IMG_ROLLER2}" alt="Malerarbeit im Detail" class="rounded-lg shadow-lg w-full aspect-[16/9] object-cover mb-6" />
+          <p class="text-ink-soft text-[15px] leading-relaxed mb-4">Unser moderner Betrieb sowie der umfangreiche Maschinen- und Wagenpark bieten den Mitarbeitenden optimale Arbeitsbedingungen und ermöglichen eine effiziente Arbeitsweise.</p>
+          <img src="{IMG_FARBEIMER}" alt="Werkzeug und Farben der Bühlmann Söhne AG" class="rounded-lg shadow-lg w-full aspect-[16/9] object-cover mb-6" />
+          <p class="text-ink-soft text-[15px] leading-relaxed">Dank laufender Weiterbildung sind unsere Fachleute stets auf dem neusten Stand der Technik. Und weil uns der Nachwuchs am Herzen liegt, bilden wir regelmässig Malerlehrlinge aus.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-mist border-y border-line">
+      <div class="max-w-6xl mx-auto px-6 py-20">
+        <div class="text-center mb-12">
+          <span class="eyebrow text-ink-soft block mb-3">Unternehmensleitbild</span>
+          <h2 class="font-display text-3xl text-ink">Wofür wir stehen</h2>
+        </div>
+        <div class="grid md:grid-cols-3 gap-6">
+          {leitbild_html}
+        </div>
+      </div>
+    </section>
+
+    {cta_section("Lernen Sie uns persönlich kennen")}
+    """).strip()
+
+    return page_shell(
+        "unternehmen",
+        "Unternehmen | Bühlmann Söhne AG Luzern, seit 1935",
+        "Die Bühlmann Söhne AG ist ein Luzerner Familienbetrieb in dritter Generation: gegründet 1935, heute geführt von Patrick Bühlmann mit 13 Mitarbeitenden.",
+        IMG_LUZERN_PANO,
+        body,
+    )
+
+
+# ---------------------------------------------------------------------------
+# Referenzen
+# ---------------------------------------------------------------------------
+def referenzen_page() -> str:
+    refs = [
+        ("assets/referenz-ueberbauung.jpg", "Wohnüberbauung", "Neubau: Malerarbeiten innen und aussen in einer modernen Überbauung."),
+        ("assets/referenz-altstadt.jpg", "Stadthaus Luzern", "Fassadenrenovation eines historischen Stadthauses mit viel Liebe zum Detail."),
+        ("assets/referenz-stadthaus.jpg", "Geschäftshaus Luzern", "Komplette Fassadenrenovation an zentraler Lage."),
+        ("assets/referenz-wohnung.jpg", "Wohnungsrenovation", "Helle, frisch gestrichene Räume, sauber und termingerecht übergeben."),
+        ("assets/referenz-geschaeft.jpg", "Geschäftsräume", "Malerarbeiten in modernen Verkaufs- und Ausstellungsflächen."),
+        ("assets/spritzwerk.jpg", "Spritzwerk", "Bauteile und Läden, lackiert im Thermo-Lackier-Verfahren."),
+    ]
+    refs_html = "\n".join(
+        f'<figure class="card-lift rounded-lg overflow-hidden bg-white border border-line">'
+        f'<img src="{img}" alt="{t}" class="w-full aspect-[4/3] object-cover" />'
+        f'<figcaption class="px-6 py-5"><span class="font-display text-lg text-ink block mb-1">{t}</span><span class="text-[14px] text-ink-soft leading-relaxed">{d}</span></figcaption>'
+        f'</figure>'
+        for img, t, d in refs
+    )
+    body = dedent(f"""
+    {hero_light("Referenzen", "Spuren unserer Arbeit", "Auf Gebäudefassaden ebenso wie in Wohn- und Geschäftsräumen: Eine Auswahl von Projekten aus Luzern und der Innerschweiz.", IMG_ALTBAU, "Offerte anfragen")}
+
+    <section class="bg-mist border-y border-line">
+      <div class="max-w-6xl mx-auto px-6 py-20">
+        <div class="grid md:grid-cols-3 gap-6">
+          {refs_html}
+        </div>
+      </div>
+    </section>
+
+    {cta_section("Ihr Projekt als nächste Referenz?")}
+    """).strip()
+    return page_shell(
+        "referenzen",
+        "Referenzen | Bühlmann Söhne AG, Maler Luzern",
+        "Referenzprojekte der Bühlmann Söhne AG: Fassadenrenovationen, Wohnungsrenovationen, Neubauten und Geschäftsräume in Luzern und der Innerschweiz.",
+        IMG_ALTBAU,
+        body,
+    )
+
+
+# ---------------------------------------------------------------------------
+# Jobs
+# ---------------------------------------------------------------------------
+def jobs_page() -> str:
+    aufgaben = ["Malerarbeiten im Innen- und Aussenbereich", "Kundenmalerei und Renovationen", "Neubauten"]
+    profil = [
+        "Abgeschlossene Ausbildung als Maler/in EFZ oder gleichwertige Qualifikation",
+        "Gute Deutschkenntnisse",
+        "Körperliche Belastbarkeit",
+        "Zuverlässigkeit und Verantwortungsbewusstsein",
+        "Flexibilität und effiziente Arbeitsweise",
+        "Teamfähigkeit und Kundenorientierung",
+        "Führerschein der Kategorie B",
+    ]
+    wir_bieten = [
+        "Verantwortungsvolle, interessante und abwechslungsreiche Tätigkeit",
+        "Kollegiales Arbeitsklima mit familiärem Stil",
+        "Gute Lage nahe Seetalplatz",
     ]
 
-    geo_pages = [
-        ("Maler Luzern", "maler-luzern.html"),
-        ("Maler Kriens", "maler-kriens.html"),
-        ("Maler Emmen", "maler-emmen.html"),
-        ("Maler Zug", "maler-zug.html"),
-        ("Maler Sursee", "maler-sursee.html"),
-        ("Maler Stans / Nidwalden", "maler-stans-nidwalden.html"),
+    def ul(items):
+        return "".join(f'<li class="flex gap-3 items-start"><span class="material-symbols-outlined text-[18px] text-accent-deep mt-0.5">check_circle</span><span>{i}</span></li>' for i in items)
+
+    job_schema = (
+        '{"@type":"JobPosting","title":"Maler/in EFZ 100%","employmentType":"FULL_TIME",'
+        '"description":"Malerarbeiten im Innen- und Aussenbereich, Kundenmalerei, Renovationen und Neubauten bei der Bühlmann Söhne AG in Luzern.",'
+        '"datePosted":"2026-07-20",'
+        '"hiringOrganization":{"@type":"Organization","name":"Bühlmann Söhne AG","sameAs":"' + SITE_URL + '"},'
+        '"jobLocation":{"@type":"Place","address":{"@type":"PostalAddress","streetAddress":"' + ADDRESS + '","addressLocality":"Luzern","postalCode":"6015","addressCountry":"CH"}}}'
+    )
+
+    body = dedent(f"""
+    {hero_light("Jobs", "Wir suchen dich!", "Wir sind ein typisches kleineres KMU mit familiärem Stil: viel Freiraum, vielseitige Aufgaben und ein Team, in dem Mitdenken und Mitwirken zählen.", IMG_FASSADENMALER, "Jetzt bewerben")}
+
+    <section class="bg-mist border-y border-line">
+      <div class="max-w-4xl mx-auto px-6 py-20">
+        <div class="bg-white border border-line rounded-lg p-8 md:p-12 shadow-sm">
+          <div class="flex flex-wrap items-center justify-between gap-4 mb-8 pb-8 border-b border-line">
+            <div>
+              <h2 class="font-display text-3xl text-ink mb-2">Maler/in EFZ, 100 %</h2>
+              <p class="text-ink-soft text-[15px]">Per sofort oder nach Vereinbarung · Luzern (nähe Seetalplatz)</p>
+            </div>
+            <a href="mailto:{EMAIL}?subject=Bewerbung%20Maler%2Fin%20100%25" class="bg-ink text-white text-[13px] font-semibold tracking-[0.14em] uppercase px-6 py-3.5 rounded hover:bg-[#1a2a55] transition-colors">Jetzt bewerben</a>
+          </div>
+          <div class="grid md:grid-cols-3 gap-10 text-[15px] text-ink-soft leading-relaxed">
+            <div>
+              <h3 class="font-display text-lg text-ink mb-4">Deine Aufgaben</h3>
+              <ul class="space-y-3">{ul(aufgaben)}</ul>
+            </div>
+            <div>
+              <h3 class="font-display text-lg text-ink mb-4">Das bringst du mit</h3>
+              <ul class="space-y-3">{ul(profil)}</ul>
+            </div>
+            <div>
+              <h3 class="font-display text-lg text-ink mb-4">Wir bieten</h3>
+              <ul class="space-y-3">{ul(wir_bieten)}</ul>
+            </div>
+          </div>
+          <div class="mt-10 pt-8 border-t border-line">
+            <p class="text-ink-soft text-[15px] leading-relaxed">Konnten wir dich begeistern? Dann freuen wir uns auf deine vollständigen Bewerbungsunterlagen per E-Mail an <a href="mailto:{EMAIL}" class="font-semibold text-ink underline decoration-accent decoration-2 underline-offset-4">{EMAIL}</a>.</p>
+          </div>
+        </div>
+
+        <div class="mt-8 bg-white border border-line rounded-lg p-8 flex flex-wrap items-center justify-between gap-4">
+          <div>
+            <h3 class="font-display text-xl text-ink mb-1.5">Lehrstelle als Maler/in EFZ</h3>
+            <p class="text-ink-soft text-[15px]">Wir bilden regelmässig Malerlehrlinge aus. Interessiert an einer Schnupperlehre? Melde dich bei uns.</p>
+          </div>
+          <a href="mailto:{EMAIL}?subject=Schnupperlehre%20Maler%2Fin" class="border border-line text-ink text-[13px] font-semibold tracking-[0.14em] uppercase px-6 py-3.5 rounded hover:border-ink transition-colors">Schnupperlehre anfragen</a>
+        </div>
+      </div>
+    </section>
+
+    {cta_section("Fragen zur Stelle? Ruf uns an.")}
+    """).strip()
+
+    return page_shell(
+        "jobs",
+        "Jobs | Maler/in EFZ 100% | Bühlmann Söhne AG Luzern",
+        "Die Bühlmann Söhne AG in Luzern sucht eine/n Maler/in EFZ (100%), per sofort oder nach Vereinbarung. Familiäres KMU nahe Seetalplatz. Jetzt bewerben!",
+        IMG_FASSADENMALER,
+        body,
+        job_schema,
+    )
+
+
+# ---------------------------------------------------------------------------
+# Kontakt
+# ---------------------------------------------------------------------------
+def kontakt_page() -> str:
+    body = dedent(f"""
+    {hero_light("Kontakt", "Wir freuen uns auf Ihr Projekt", "Rufen Sie uns an, schreiben Sie uns oder besuchen Sie uns im Rothenbad in Luzern. Wir beraten Sie gerne persönlich.", IMG_LUZERN_UFER, "Anrufen: " + PHONE_DISPLAY)}
+
+    <section class="bg-mist border-y border-line">
+      <div class="max-w-6xl mx-auto px-6 py-20 grid md:grid-cols-2 gap-12">
+        <div>
+          <h2 class="font-display text-2xl text-ink mb-8">So erreichen Sie uns</h2>
+          <div class="space-y-4">
+            <div class="bg-white border border-line rounded-lg px-6 py-5 flex items-start gap-4">
+              <span class="material-symbols-outlined text-ink mt-0.5">location_on</span>
+              <div><span class="font-semibold text-ink block mb-0.5">Bühlmann Söhne AG</span><span class="text-ink-soft text-[15px]">{ADDRESS}, {CITY}</span><br /><a href="{MAPS_URL}" target="_blank" rel="noopener" class="text-[14px] font-semibold text-ink underline decoration-accent decoration-2 underline-offset-4">Route auf Google Maps</a></div>
+            </div>
+            <div class="bg-white border border-line rounded-lg px-6 py-5 flex items-start gap-4">
+              <span class="material-symbols-outlined text-ink mt-0.5">call</span>
+              <div><span class="font-semibold text-ink block mb-0.5">Telefon</span><a href="tel:{PHONE_LINK}" class="text-ink-soft text-[15px] hover:text-ink">{PHONE_DISPLAY}</a><span class="text-ink-soft text-[15px]"> · Fax {FAX_DISPLAY}</span></div>
+            </div>
+            <div class="bg-white border border-line rounded-lg px-6 py-5 flex items-start gap-4">
+              <span class="material-symbols-outlined text-ink mt-0.5">mail</span>
+              <div><span class="font-semibold text-ink block mb-0.5">E-Mail</span><a href="mailto:{EMAIL}" class="text-ink-soft text-[15px] hover:text-ink">{EMAIL}</a></div>
+            </div>
+            <div class="bg-white border border-line rounded-lg px-6 py-5 flex items-start gap-4">
+              <span class="material-symbols-outlined text-ink mt-0.5">place</span>
+              <div><span class="font-semibold text-ink block mb-0.5">Standorte</span><span class="text-ink-soft text-[15px]">Luzern · Hergiswil NW · Alpnach OW</span></div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <h2 class="font-display text-2xl text-ink mb-8">Nachricht schreiben</h2>
+          <form class="bg-white border border-line rounded-lg p-8 space-y-5" onsubmit="event.preventDefault(); const f=this; const b=encodeURIComponent('Name: '+f.name.value+'\\nTelefon: '+f.tel.value+'\\n\\n'+f.msg.value); location.href='mailto:{EMAIL}?subject='+encodeURIComponent('Anfrage über bs-luzern.ch')+'&body='+b;">
+            <p class="text-[14px] text-ink-soft">Füllen Sie das Formular aus, es öffnet sich Ihre E-Mail-App mit der fertigen Nachricht an uns.</p>
+            <div>
+              <label class="block text-[14px] font-semibold text-ink mb-1.5" for="name">Name*</label>
+              <input required id="name" name="name" type="text" class="w-full rounded border-line focus:border-ink focus:ring-accent" />
+            </div>
+            <div>
+              <label class="block text-[14px] font-semibold text-ink mb-1.5" for="tel">Telefon</label>
+              <input id="tel" name="tel" type="tel" class="w-full rounded border-line focus:border-ink focus:ring-accent" />
+            </div>
+            <div>
+              <label class="block text-[14px] font-semibold text-ink mb-1.5" for="msg">Nachricht*</label>
+              <textarea required id="msg" name="msg" rows="5" class="w-full rounded border-line focus:border-ink focus:ring-accent"></textarea>
+            </div>
+            <button type="submit" class="bg-ink text-white text-[13px] font-semibold tracking-[0.14em] uppercase px-7 py-4 rounded hover:bg-[#1a2a55] transition-colors w-full">Nachricht senden</button>
+          </form>
+        </div>
+      </div>
+    </section>
+    """).strip()
+
+    return page_shell(
+        "kontakt",
+        "Kontakt | Bühlmann Söhne AG, Rothenbad 18, 6015 Luzern",
+        "Kontakt zur Bühlmann Söhne AG in Luzern: Rothenbad 18, 6015 Luzern. Telefon 041 269 88 50, info@bs-luzern.ch. Standorte Luzern, Hergiswil NW, Alpnach OW.",
+        IMG_LUZERN_UFER,
+        body,
+    )
+
+
+# ---------------------------------------------------------------------------
+# Build
+# ---------------------------------------------------------------------------
+def main() -> None:
+    pages = {"index.html": index_page(), "malerei.html": malerei_page(), "unternehmen.html": unternehmen_page(),
+             "referenzen.html": referenzen_page(), "jobs.html": jobs_page(), "kontakt.html": kontakt_page()}
+    for s in SERVICES:
+        pages[f"{s['slug']}.html"] = service_page(s)
+    for r in REGIONS:
+        pages[f"{r['slug']}.html"] = region_page(r)
+
+    # Alte, nicht mehr generierte Seiten entfernen (fiktive Inhalte)
+    obsolete = [
+        "leistungen.html", "portfolio.html", "blog.html", "altbau-renovation.html", "balkon-streichen.html",
+        "farbberatung.html", "fassadenrenovation.html", "maler-einfamilienhaus.html", "maler-gewerbe-buero.html",
+        "maler-mehrfamilienhaus.html", "maler-neubau.html", "maler-stans-nidwalden.html", "maler-sursee.html",
+        "maler-zug.html", "schimmel-entfernen.html", "spritzlackierung.html", "tapezieren-luzern.html",
+        "wohnung-streichen.html",
     ]
-    geo_html = "\n".join(
-        f'<a href="{href}" class="block bg-white border border-slate-200 hover:border-primary px-6 py-5 rounded-lg transition-all hover:shadow-md group">'
-        f'<div class="flex items-center justify-between">'
-        f'<span class="font-headline-md text-primary text-lg">{name}</span>'
-        f'<span class="material-symbols-outlined text-primary group-hover:translate-x-1 transition-transform">arrow_forward</span>'
-        f'</div></a>'
-        for name, href in geo_pages
-    )
+    for name in obsolete:
+        f = ROOT / name
+        if f.exists():
+            f.unlink()
 
-    services_html_short = "\n".join(
-        f'<a href="{href}" class="bg-white border border-slate-200 group hover:border-primary-container transition-all duration-500 overflow-hidden block">'
-        f'<div class="h-56 overflow-hidden"><img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="{title}" src="{img}" /></div>'
-        f'<div class="p-6">'
-        f'<h3 class="font-headline-md text-primary mb-3">{title}</h3>'
-        f'<p class="text-on-surface-variant font-body-md mb-4">{desc}</p>'
-        f'<span class="font-label-md text-primary border-b border-primary/20 pb-1 group-hover:border-primary transition-all uppercase">Mehr erfahren →</span>'
-        f'</div></a>'
-        for title, href, desc, img in services[:6]
-    )
+    for name, html in pages.items():
+        (ROOT / name).write_text(html + "\n", encoding="utf-8")
 
-    schema = (
-        '{"@context":"https://schema.org","@type":"LocalBusiness",'
-        '"@id":"' + SITE_URL + '/#org",'
-        '"name":"Bühlmann Söhne AG","alternateName":"Maler Luzern Bühlmann",'
-        '"image":"' + SITE_URL + '/assets/logo.png","logo":"' + SITE_URL + '/assets/logo.png",'
-        '"telephone":"+41 41 000 00 00","email":"info@buehlmann-soehne.ch",'
-        '"url":"' + SITE_URL + '/","priceRange":"$$",'
-        '"address":{"@type":"PostalAddress","streetAddress":"Handwerkstrasse 12","addressLocality":"Luzern","postalCode":"6000","addressCountry":"CH"},'
-        '"areaServed":["Luzern","Kriens","Emmen","Horw","Sursee","Hochdorf","Innerschweiz","Zug","Schwyz","Nidwalden","Obwalden"],'
-        '"foundingDate":"1924",'
-        '"description":"Maler in Luzern seit 1924. Innenmalerei, Fassadenrenovation, Farbberatung und Restaurierung — Schweizer Handwerk in vierter Familiengeneration."}'
-    )
+    urls = [f"{SITE_URL}/"] + [f"{SITE_URL}/{n}" for n in sorted(pages) if n != "index.html"]
+    sitemap = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+    sitemap += "".join(f"  <url><loc>{u}</loc></url>\n" for u in urls)
+    sitemap += "</urlset>\n"
+    (ROOT / "sitemap.xml").write_text(sitemap, encoding="utf-8")
+    (ROOT / "robots.txt").write_text(f"User-agent: *\nAllow: /\nSitemap: {SITE_URL}/sitemap.xml\n", encoding="utf-8")
 
-    return dedent(f"""
-<!DOCTYPE html>
-<html class="scroll-smooth" lang="de">
-<head>
-{HEAD_BASE}
-<title>Maler Luzern – Bühlmann Söhne AG | Innenmalerei, Fassade, Renovation</title>
-<meta name="description" content="Maler Luzern seit 1924: Bühlmann Söhne AG bietet Innenmalerei, Fassadenrenovation, Altbau-Sanierung und Farbberatung. Festpreis, 10 Jahre Garantie." />
-<link rel="canonical" href="{SITE_URL}/" />
-<meta property="og:type" content="website" />
-<meta property="og:title" content="Maler Luzern – Bühlmann Söhne AG" />
-<meta property="og:description" content="Schweizer Malerhandwerk seit 1924 — Innenmalerei, Fassade, Restaurierung. Festpreis-Offerte." />
-<meta property="og:image" content="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1600&q=80" />
-<meta name="robots" content="index, follow" />
-<script type="application/ld+json">{schema}</script>
-</head>
-<body class="bg-background text-on-surface antialiased">
-
-{header_html('index')}
-
-<header id="home" class="relative h-[75vh] min-h-[600px] w-full flex items-center justify-center overflow-hidden bg-primary mt-40 md:mt-52">
-  <video class="hero-img" autoplay muted loop playsinline preload="metadata"
-         poster="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1920&q=80">
-    <source src="https://videos.pexels.com/video-files/3214448/3214448-uhd_2560_1440_25fps.mp4" type="video/mp4" />
-  </video>
-  <div class="hero-overlay"></div>
-  <div class="relative z-10 text-center px-4 max-w-4xl">
-    <span class="font-label-md text-secondary-fixed tracking-[0.3em] uppercase mb-6 block">Maler Luzern · seit 1924</span>
-    <h1 class="font-headline-xl text-white mb-8 text-5xl md:text-7xl leading-tight">PRÄZISION IN JEDER SCHICHT.</h1>
-    <p class="font-body-lg text-white/85 mb-10 max-w-2xl mx-auto">
-      Schweizer Malerhandwerk in vierter Familiengeneration. Innenmalerei, Fassadenrenovation, Restaurierung — in Luzern und der ganzen Innerschweiz.
-    </p>
-    <div class="flex flex-col sm:flex-row gap-4 justify-center">
-      <a href="kontakt.html" class="bg-secondary-container text-primary font-label-md px-10 py-5 rounded-lg uppercase tracking-widest hover:opacity-90 transition-all active:scale-95 shadow-xl">Offerte anfragen</a>
-      <a href="#leistungen" class="border border-white/40 text-white backdrop-blur-sm font-label-md px-10 py-5 rounded-lg uppercase tracking-widest hover:bg-white/10 transition-all">Leistungen ansehen</a>
-    </div>
-  </div>
-  <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce z-10">
-    <span class="material-symbols-outlined text-white text-4xl">keyboard_double_arrow_down</span>
-  </div>
-</header>
-
-<section class="py-20 bg-white">
-  <div class="max-w-7xl mx-auto px-6 md:px-8">
-    <div class="text-center mb-12">
-      <span class="font-label-md text-primary-container tracking-widest uppercase mb-4 block">Unsere Leistungen</span>
-      <h2 class="font-headline-lg text-primary text-4xl">Schweizer Malerhandwerk in vier Generationen</h2>
-      <p class="font-body-lg text-on-surface-variant mt-4 max-w-2xl mx-auto">Sechs unserer 13 Spezialgebiete im Überblick — die ganze Liste finden Sie auf der Leistungsseite.</p>
-    </div>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {services_html_short}
-    </div>
-    <div class="text-center mt-12">
-      <a href="leistungen.html" class="inline-block border-2 border-primary text-primary font-label-md px-10 py-4 rounded-lg uppercase tracking-widest hover:bg-primary hover:text-white transition-all">Alle 13 Leistungen ansehen →</a>
-    </div>
-  </div>
-</section>
-
-<section id="regionen" class="py-24 bg-surface-container">
-  <div class="max-w-7xl mx-auto px-6 md:px-8">
-    <div class="text-center mb-12">
-      <span class="font-label-md text-primary-container tracking-widest uppercase mb-4 block">Einsatzgebiet</span>
-      <h2 class="font-headline-lg text-primary text-4xl">Wo wir als Maler tätig sind</h2>
-      <p class="font-body-lg text-on-surface-variant mt-4">Stadt Luzern, Innerschweiz und Kanton Zug — eine eigene Seite für jede Region.</p>
-    </div>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl mx-auto">
-      {geo_html}
-    </div>
-  </div>
-</section>
-
-<section class="py-24 bg-surface-container-low">
-  <div class="max-w-7xl mx-auto px-6 md:px-8">
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-      <div>
-        <div class="font-headline-xl text-primary text-5xl mb-2">100+</div>
-        <div class="font-label-md text-on-surface-variant uppercase">Jahre Familienbetrieb</div>
-      </div>
-      <div>
-        <div class="font-headline-xl text-primary text-5xl mb-2">25</div>
-        <div class="font-label-md text-on-surface-variant uppercase">Festangestellte Maler</div>
-      </div>
-      <div>
-        <div class="font-headline-xl text-primary text-5xl mb-2">10</div>
-        <div class="font-label-md text-on-surface-variant uppercase">Jahre Fassaden-Garantie</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="py-24 bg-primary text-white text-center">
-  <div class="max-w-3xl mx-auto px-6 md:px-8">
-    <h2 class="font-headline-lg text-4xl mb-6">Bereit für Ihr Maler-Projekt?</h2>
-    <p class="font-body-lg text-white/80 mb-8">Kostenlose Vor-Ort-Besichtigung und Festpreis-Offerte innert 5 Werktagen.</p>
-    <a href="kontakt.html" class="inline-block bg-secondary-container text-primary font-label-md px-10 py-5 rounded-lg uppercase tracking-widest hover:opacity-90 transition-all active:scale-95 shadow-xl">Jetzt Offerte anfragen</a>
-  </div>
-</section>
-
-{FOOTER}
-</body>
-</html>
-""").strip()
-
-
-SERVICES_LIST = [
-    ("Innenmalerei", "innenmalerei.html", "Wände & Decken streichen, Wandgestaltung, Tapezierarbeiten.", "https://images.unsplash.com/photo-1505691938895-1758d7feb511?w=1200&q=80"),
-    ("Fassadenrenovation", "fassadenrenovation.html", "Fassade streichen & sanieren mit 10 Jahren Garantie.", "https://images.unsplash.com/photo-1572120360610-d971b9d7767c?w=1200&q=80"),
-    ("Altbau-Renovation", "altbau-renovation.html", "Denkmalpflege, Stuck und historische Putze seit 1924.", "https://images.unsplash.com/photo-1464146072230-91cabc968266?w=1200&q=80"),
-    ("Farbberatung", "farbberatung.html", "Zertifizierte Farbdesignerin, drei Konzeptvarianten.", "https://images.unsplash.com/photo-1562663474-6cbb3eaa4d14?w=1200&q=80"),
-    ("Maler für Einfamilienhaus", "maler-einfamilienhaus.html", "Innen, aussen, mit Festpreis und ein Ansprechpartner.", "https://images.unsplash.com/photo-1625602812206-5ec545ca1231?w=1200&q=80"),
-    ("Wohnung streichen", "wohnung-streichen.html", "Mieterwohnung in 48–72 h bezugsfertig.", "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=1200&q=80"),
-    ("Maler für Mehrfamilienhaus", "maler-mehrfamilienhaus.html", "Treppenhäuser, Fassaden und ganze Liegenschaften.", "https://images.unsplash.com/photo-1503174971373-b1f69850bded?w=1200&q=80"),
-    ("Maler für Neubau", "maler-neubau.html", "Erstanstrich Q4, Designflächen, 0-Mängel-Übergabe.", "https://images.unsplash.com/photo-1604689598793-b8bf1dc445a1?w=1600&q=80"),
-    ("Geschäftsräume & Büro", "maler-gewerbe-buero.html", "Renovation ohne Betriebsausfall, auch nachts.", "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=1600&q=80"),
-    ("Tapezieren", "tapezieren-luzern.html", "Vlies, Designtapeten, Fototapeten — sauber & blasenfrei.", "https://images.unsplash.com/photo-1505691938895-1758d7feb511?w=1200&q=80"),
-    ("Spritzlackierung", "spritzlackierung.html", "Türen, Schränke, Küchenfronten — wie neu lackiert.", "https://images.unsplash.com/photo-1604689598793-b8bf1dc445a1?w=1600&q=80"),
-    ("Balkon streichen", "balkon-streichen.html", "Wasserdichte Balkonböden, Geländer, Brüstungen.", "https://images.unsplash.com/photo-1572120360610-d971b9d7767c?w=1200&q=80"),
-    ("Schimmel entfernen", "schimmel-entfernen.html", "Schimmelsanierung mit Ursachenanalyse, dauerhafte Lösung.", "https://images.unsplash.com/photo-1505691938895-1758d7feb511?w=1200&q=80"),
-]
-
-GEO_LIST = [
-    ("Maler Luzern", "maler-luzern.html"),
-    ("Maler Kriens", "maler-kriens.html"),
-    ("Maler Emmen", "maler-emmen.html"),
-    ("Maler Zug", "maler-zug.html"),
-    ("Maler Sursee", "maler-sursee.html"),
-    ("Maler Stans / Nidwalden", "maler-stans-nidwalden.html"),
-]
-
-PORTFOLIO_PROJECTS = [
-    ("Villa am Vierwaldstättersee", "Wohnen", "Komplette Innen- und Fassadenrenovation einer Architektenvilla, 2025.", "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1600&q=80"),
-    ("Stadthaus Altstadt Luzern", "Denkmalpflege", "Restaurierung der Stuckdecken und Fassade, in Zusammenarbeit mit der Denkmalpflege.", "https://images.unsplash.com/photo-1464146072230-91cabc968266?w=1600&q=80"),
-    ("Mehrfamilienhaus Kriens", "Liegenschaft", "Sanierung Fassade & Treppenhäuser, 24 Wohnungen, Bauzeit 8 Wochen.", "https://images.unsplash.com/photo-1503174971373-b1f69850bded?w=1600&q=80"),
-    ("Loft Zug-West", "Innenmalerei", "Spachteltechnik Q4 und Sichtbeton-Optik im Designer-Loft, 220 m².", "https://images.unsplash.com/photo-1505691938895-1758d7feb511?w=1600&q=80"),
-    ("Boutique-Hotel Bürgenstock", "Gewerbe", "Renovation der Suiten während Saisonschluss, Termin eingehalten.", "https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=1600&q=80"),
-    ("Reiheneinfamilienhaus Sursee", "Wohnen", "Aussenfassade mit mineralischer Silikatfarbe, 10 Jahre Garantie.", "https://images.unsplash.com/photo-1572120360610-d971b9d7767c?w=1600&q=80"),
-    ("Penthouse Stadt Luzern", "Innenmalerei", "Designwände mit Effektputz und Beton-Optik, 4 Wochen Bauzeit.", "https://images.unsplash.com/photo-1503174971373-b1f69850bded?w=1600&q=80"),
-    ("Bürogebäude Emmen", "Gewerbe", "Komplette Renovation der Büroflächen während laufendem Betrieb.", "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=1600&q=80"),
-    ("Einfamilienhaus Horw", "Wohnen", "Aussenfassade und Holzläden, mit Farbberatung im Voraus.", "https://images.unsplash.com/photo-1625602812206-5ec545ca1231?w=1600&q=80"),
-]
-
-BLOG_POSTS = [
-    ("Die Psychologie von Tiefblau in der modernen Architektur", "design", "24. Mai 2026", "Designtrends", "Wie der gezielte Einsatz dunkler Töne Räume, Tiefe und Prestige im zeitgenössischen Wohnbau neu definiert. Wir zeigen drei Projekte aus Luzern, in denen Tiefblau die Hauptrolle spielt.", "https://images.unsplash.com/photo-1562663474-6cbb3eaa4d14?w=1600&q=80"),
-    ("Nachhaltiger Oberflächenschutz für das 21. Jahrhundert", "tech", "18. Mai 2026", "Technologie", "Wie wir umweltfreundliche Materialien einsetzen, ohne Kompromisse bei der legendären Schweizer Langlebigkeit. Mit Übersicht über unsere bevorzugten Schweizer Premium-Hersteller.", "https://images.unsplash.com/photo-1618220252344-8ec99ec624b1?w=1600&q=80"),
-    ("Was kostet ein Maler in Luzern wirklich?", "ratgeber", "10. Mai 2026", "Ratgeber", "Festpreis-Offerte versus Stundensatz: Wir zeigen Ihnen, worauf Sie bei einem Malerangebot achten müssen — und welche versteckten Kosten in günstigen Offerten lauern.", "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=1600&q=80"),
-    ("Fassade streichen: Welche Jahreszeit ist die beste?", "ratgeber", "2. Mai 2026", "Ratgeber", "Temperatur, Luftfeuchtigkeit, Sonneneinstrahlung — wir erklären, warum Mai bis September die ideale Bauzeit für eine Fassadenrenovation in der Schweiz ist.", "https://images.unsplash.com/photo-1572120360610-d971b9d7767c?w=1600&q=80"),
-    ("Schimmel an der Wand: Sofort handeln oder ignorieren?", "ratgeber", "20. April 2026", "Ratgeber", "Drei Anzeichen, dass Schimmel mehr als kosmetisch ist — und warum Sie nicht mit dem Anstrich überstreichen sollten, ohne die Ursache zu kennen.", "https://images.unsplash.com/photo-1505691938895-1758d7feb511?w=1600&q=80"),
-    ("Tapezieren statt streichen: Wann lohnt sich Tapete?", "design", "12. April 2026", "Designtrends", "Vlies, Glasfaser, Designtapete — wir zeigen, wann Tapete dem Anstrich überlegen ist und welche Tapeten in modernen Schweizer Wohnungen gerade angesagt sind.", "https://images.unsplash.com/photo-1505691938895-1758d7feb511?w=1600&q=80"),
-]
-
-
-def leistungen_page() -> str:
-    services_html = "\n".join(
-        f'<a href="{href}" class="bg-white border border-slate-200 group hover:border-primary-container transition-all duration-500 overflow-hidden block">'
-        f'<div class="h-56 overflow-hidden"><img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="{title}" src="{img}" /></div>'
-        f'<div class="p-6">'
-        f'<h3 class="font-headline-md text-primary mb-3">{title}</h3>'
-        f'<p class="text-on-surface-variant font-body-md mb-4">{desc}</p>'
-        f'<span class="font-label-md text-primary border-b border-primary/20 pb-1 group-hover:border-primary transition-all uppercase">Mehr erfahren →</span>'
-        f'</div></a>'
-        for title, href, desc, img in SERVICES_LIST
-    )
-    return dedent(f"""
-<!DOCTYPE html>
-<html class="scroll-smooth" lang="de">
-<head>
-{HEAD_BASE}
-<title>Leistungen – Bühlmann Söhne AG | Maler Luzern</title>
-<meta name="description" content="Alle Leistungen von Bühlmann Söhne AG: Innenmalerei, Fassadenrenovation, Altbau-Sanierung, Farbberatung, Tapezieren — Schweizer Malerhandwerk seit 1924." />
-<link rel="canonical" href="{SITE_URL}/leistungen.html" />
-<meta name="robots" content="index, follow" />
-</head>
-<body class="bg-background text-on-surface antialiased">
-
-{header_html('leistungen')}
-
-<header class="bg-primary text-white pt-44 md:pt-56 pb-16 mt-0">
-  <div class="max-w-7xl mx-auto px-6 md:px-8 text-center">
-    <span class="font-label-md text-secondary-fixed tracking-[0.3em] uppercase mb-4 block">Unsere Leistungen</span>
-    <h1 class="font-headline-xl text-4xl md:text-6xl mb-6">13 Spezialgebiete für Ihr Projekt</h1>
-    <p class="font-body-lg text-white/80 max-w-2xl mx-auto">Von der Akzentwand im Schlafzimmer bis zur Fassade des Mehrfamilienhauses — alles aus einer Hand, mit Schweizer Präzision seit 1924.</p>
-  </div>
-</header>
-
-<section class="py-20 bg-white">
-  <div class="max-w-7xl mx-auto px-6 md:px-8">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {services_html}
-    </div>
-  </div>
-</section>
-
-<section class="py-16 bg-surface-container-low">
-  <div class="max-w-3xl mx-auto px-6 md:px-8 text-center">
-    <h2 class="font-headline-lg text-primary text-3xl md:text-4xl mb-6">Nicht das Richtige dabei?</h2>
-    <p class="font-body-lg text-on-surface-variant mb-8">Sprechen Sie mit uns — wir realisieren auch Spezialwünsche und kombinieren mehrere Leistungen zu einer Komplett-Renovation.</p>
-    <a href="kontakt.html" class="inline-block bg-secondary-container text-primary font-label-md px-10 py-5 rounded-lg uppercase tracking-widest hover:opacity-90 transition-all active:scale-95 shadow-xl">Kontakt aufnehmen</a>
-  </div>
-</section>
-
-{FOOTER}
-</body></html>
-""").strip()
-
-
-def portfolio_page() -> str:
-    projects_html = "\n".join(
-        f'<article class="group">'
-        f'<div class="aspect-[4/3] overflow-hidden bg-slate-100 mb-4">'
-        f'<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="{title}" src="{img}" />'
-        f'</div>'
-        f'<span class="font-label-md text-slate-400 uppercase block mb-2">{cat}</span>'
-        f'<h3 class="font-headline-md text-primary mb-2">{title}</h3>'
-        f'<p class="text-on-surface-variant font-body-md">{desc}</p>'
-        f'</article>'
-        for title, cat, desc, img in PORTFOLIO_PROJECTS
-    )
-    return dedent(f"""
-<!DOCTYPE html>
-<html class="scroll-smooth" lang="de">
-<head>
-{HEAD_BASE}
-<title>Portfolio – Referenzprojekte | Bühlmann Söhne AG Luzern</title>
-<meta name="description" content="Referenzprojekte der Bühlmann Söhne AG: Villen, Mehrfamilienhäuser, Hotels und Denkmalpflege in Luzern, Zug und der Innerschweiz." />
-<link rel="canonical" href="{SITE_URL}/portfolio.html" />
-<meta name="robots" content="index, follow" />
-</head>
-<body class="bg-background text-on-surface antialiased">
-
-{header_html('portfolio')}
-
-<header class="bg-primary text-white pt-44 md:pt-56 pb-16">
-  <div class="max-w-7xl mx-auto px-6 md:px-8 text-center">
-    <span class="font-label-md text-secondary-fixed tracking-[0.3em] uppercase mb-4 block">Portfolio</span>
-    <h1 class="font-headline-xl text-4xl md:text-6xl mb-6">Unsere Meisterwerke</h1>
-    <p class="font-body-lg text-white/80 max-w-2xl mx-auto">Eine Auswahl der eindrücklichsten Projekte aus den letzten Jahren in Luzern und der Innerschweiz.</p>
-  </div>
-</header>
-
-<section class="py-20 bg-white">
-  <div class="max-w-7xl mx-auto px-6 md:px-8">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-      {projects_html}
-    </div>
-  </div>
-</section>
-
-<section class="py-16 bg-primary text-white text-center">
-  <div class="max-w-3xl mx-auto px-6 md:px-8">
-    <h2 class="font-headline-lg text-3xl md:text-4xl mb-6">Ihr Projekt als nächstes Meisterwerk?</h2>
-    <p class="font-body-lg text-white/80 mb-8">Erste Beratung kostenlos. Festpreis-Offerte innert 5 Werktagen.</p>
-    <a href="kontakt.html" class="inline-block bg-secondary-container text-primary font-label-md px-10 py-5 rounded-lg uppercase tracking-widest hover:opacity-90 transition-all active:scale-95 shadow-xl">Offerte anfragen</a>
-  </div>
-</section>
-
-{FOOTER}
-</body></html>
-""").strip()
-
-
-def blog_page() -> str:
-    posts_html = "\n".join(
-        f'<article class="grid md:grid-cols-2 gap-8 items-center mb-16">'
-        f'<div class="aspect-[4/3] overflow-hidden bg-slate-50">'
-        f'<img class="w-full h-full object-cover hover:scale-105 transition-transform duration-700" alt="{title}" src="{img}" />'
-        f'</div>'
-        f'<div>'
-        f'<div class="flex items-center gap-4 mb-3">'
-        f'<span class="font-label-md text-slate-400 uppercase">{date}</span>'
-        f'<span class="w-1 h-1 bg-slate-400 rounded-full"></span>'
-        f'<span class="font-label-md text-primary tracking-widest uppercase">{cat}</span>'
-        f'</div>'
-        f'<h2 class="font-headline-md text-primary text-2xl md:text-3xl mb-4">{title}</h2>'
-        f'<p class="font-body-md text-on-surface-variant">{excerpt}</p>'
-        f'</div>'
-        f'</article>'
-        for title, slug, date, cat, excerpt, img in BLOG_POSTS
-    )
-    return dedent(f"""
-<!DOCTYPE html>
-<html class="scroll-smooth" lang="de">
-<head>
-{HEAD_BASE}
-<title>Blog & Ratgeber – Maler-Wissen aus Luzern | Bühlmann Söhne AG</title>
-<meta name="description" content="Ratgeber-Artikel zu Malerarbeiten, Fassadenrenovation, Schimmelsanierung und Farbgestaltung aus 100 Jahren Erfahrung." />
-<link rel="canonical" href="{SITE_URL}/blog.html" />
-<meta name="robots" content="index, follow" />
-</head>
-<body class="bg-background text-on-surface antialiased">
-
-{header_html('blog')}
-
-<header class="bg-primary text-white pt-44 md:pt-56 pb-16">
-  <div class="max-w-7xl mx-auto px-6 md:px-8 text-center">
-    <span class="font-label-md text-secondary-fixed tracking-[0.3em] uppercase mb-4 block">Blog & Ratgeber</span>
-    <h1 class="font-headline-xl text-4xl md:text-6xl mb-6">Einblicke & Inspiration</h1>
-    <p class="font-body-lg text-white/80 max-w-2xl mx-auto">Wissen aus der Praxis: Was ein Maler weiss, was Sie als Bauherr/Eigentümer wissen sollten.</p>
-  </div>
-</header>
-
-<section class="py-20 bg-white">
-  <div class="max-w-5xl mx-auto px-6 md:px-8">
-    {posts_html}
-  </div>
-</section>
-
-{FOOTER}
-</body></html>
-""").strip()
-
-
-def sitemap_xml() -> str:
-    extra = ["leistungen.html", "portfolio.html", "blog.html"]
-    urls = ["", *extra, *(f"{p['slug']}.html" for p in PAGES)]
-    items = "\n".join(
-        f"  <url><loc>{SITE_URL}/{u}</loc><changefreq>monthly</changefreq><priority>{'1.0' if u == '' else '0.8'}</priority></url>"
-        for u in urls
-    )
-    return f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n{items}\n</urlset>'
-
-
-def robots_txt() -> str:
-    return f"User-agent: *\nAllow: /\nSitemap: {SITE_URL}/sitemap.xml\n"
-
-
-def main():
-    (ROOT / "index.html").write_text(index_page())
-    (ROOT / "leistungen.html").write_text(leistungen_page())
-    (ROOT / "portfolio.html").write_text(portfolio_page())
-    (ROOT / "blog.html").write_text(blog_page())
-    for p in PAGES:
-        (ROOT / f"{p['slug']}.html").write_text(landing_page(p))
-    (ROOT / "sitemap.xml").write_text(sitemap_xml())
-    (ROOT / "robots.txt").write_text(robots_txt())
-    print(f"Generated index + 3 main pages + {len(PAGES)} landing pages + sitemap + robots")
+    print(f"Generiert: {len(pages)} Seiten + sitemap.xml + robots.txt (v{VERSION})")
 
 
 if __name__ == "__main__":

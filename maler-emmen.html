@@ -1,161 +1,200 @@
 <!DOCTYPE html>
-<html class="scroll-smooth" lang="de">
+<html lang="de">
 <head>
 <meta charset="utf-8" />
 <meta content="width=device-width, initial-scale=1.0" name="viewport" />
 <link rel="icon" type="image/png" href="assets/logo.png" />
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
 <script id="tailwind-config">
   tailwind.config = {
-    darkMode: "class",
     theme: { extend: {
       colors: {
-        "primary": "#000a3f", "primary-container": "#001a72", "on-primary": "#ffffff",
-        "secondary-container": "#fddc00", "secondary-fixed": "#ffe24a",
-        "on-surface": "#1a1c1e", "on-surface-variant": "#454651",
-        "surface": "#f9f9fc", "surface-container-low": "#f3f3f6",
-        "surface-container": "#eeeef0", "background": "#f9f9fc",
+        "ink": "#101c3d",
+        "ink-soft": "#3d4763",
+        "accent": "#fddc00",
+        "accent-deep": "#e5c700",
+        "paper": "#fcfcfa",
+        "mist": "#f4f5f7",
+        "line": "#e4e6eb",
       },
-      borderRadius: { DEFAULT: "0.125rem", lg: "0.25rem", xl: "0.5rem" },
-      fontFamily: { sans: ["Inter", "system-ui", "sans-serif"] },
+      fontFamily: {
+        sans: ["Inter", "system-ui", "sans-serif"],
+        display: ["Playfair Display", "Georgia", "serif"],
+      },
     } },
   };
 </script>
 <style>
   body { font-family: "Inter", system-ui, sans-serif; }
-  .material-symbols-outlined {
-    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-    display: inline-block; line-height: 1;
-  }
-  .font-headline-xl { font-size: 48px; line-height: 1.1; letter-spacing: -0.02em; font-weight: 700; }
-  .font-headline-lg { font-size: 32px; line-height: 1.2; letter-spacing: -0.01em; font-weight: 600; }
-  .font-headline-md { font-size: 24px; line-height: 1.3; font-weight: 600; }
-  .font-body-lg    { font-size: 18px; line-height: 1.6; font-weight: 400; }
-  .font-body-md    { font-size: 16px; line-height: 1.5; font-weight: 400; }
-  .font-label-md   { font-size: 14px; line-height: 1; letter-spacing: 0.05em; font-weight: 600; }
-  .hero-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; }
-  .hero-overlay { position: absolute; inset: 0; z-index: 1; background: linear-gradient(180deg, rgba(0,10,63,0.6) 0%, rgba(0,10,63,0.85) 100%); }
-  .prose-content p { margin-bottom: 1rem; }
-  .prose-content h2 { font-size: 28px; font-weight: 600; color: #000a3f; margin: 2.5rem 0 1rem; line-height: 1.2; }
+  .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24; display: inline-block; line-height: 1; }
+  .eyebrow { font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 600; }
+  .accent-bar { display: inline-block; width: 56px; height: 4px; background: #fddc00; border-radius: 2px; }
+  .card-lift { transition: transform .35s ease, box-shadow .35s ease; }
+  .card-lift:hover { transform: translateY(-4px); box-shadow: 0 18px 40px -18px rgba(16,28,61,.25); }
+  html { scroll-behavior: smooth; }
+  /* Logo: Einblenden, gelegentliches Winken, interaktiver Hover */
+  @keyframes logo-in { 0% { opacity: 0; transform: translateY(-10px) rotate(-8deg); } 100% { opacity: 1; transform: translateY(0) rotate(0); } }
+  @keyframes logo-wave { 0%, 86%, 100% { transform: rotate(0); } 88% { transform: rotate(-5deg); } 92% { transform: rotate(4deg); } 96% { transform: rotate(-2deg); } }
+  .logo-anim { animation: logo-in .8s ease-out both, logo-wave 9s ease-in-out 3s infinite; transform-origin: 50% 80%; transition: transform .35s ease, filter .35s ease; cursor: pointer; }
+  .logo-anim:hover { animation-play-state: paused, paused; transform: rotate(-5deg) scale(1.12); filter: drop-shadow(0 6px 14px rgba(16,28,61,.35)); }
+  .logo-anim:active { transform: rotate(3deg) scale(.96); }
+  /* Sanftes Einblenden beim Scrollen */
+  .reveal { opacity: 0; transform: translateY(26px); transition: opacity .8s ease, transform .8s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+  /* Farbstudie */
+  .swatch { width: 44px; height: 44px; border-radius: 9999px; border: 3px solid #fff; box-shadow: 0 2px 8px rgba(16,28,61,.2); cursor: pointer; transition: transform .25s ease, box-shadow .25s ease; }
+  .swatch:hover { transform: scale(1.15); }
+  .swatch.aktiv { transform: scale(1.15); box-shadow: 0 0 0 3px #101c3d, 0 2px 8px rgba(16,28,61,.3); }
+  #haus-fassade, #haus-giebel { transition: fill .5s ease; }
 </style>
-<title>Maler Emmen – Malerarbeiten in Emmenbrücke | Bühlmann Söhne AG</title>
-<meta name="description" content="Maler Emmen: Bühlmann Söhne AG für Innenmalerei, Fassade, Renovation in Emmen und Emmenbrücke. Festpreis und Schweizer Qualität." />
-<link rel="canonical" href="https://buehlmann-soehne.ch/maler-emmen.html" />
+<title>Maler Emmen und Emmenbrücke | Bühlmann Söhne AG</title>
+<meta name="description" content="Malerarbeiten in Emmen und Emmenbrücke: Der Betrieb der Bühlmann Söhne AG liegt direkt beim Seetalplatz. Tel. 041 269 88 50." />
+<link rel="canonical" href="https://www.bs-luzern.ch/maler-emmen.html" />
 <meta property="og:type" content="website" />
-<meta property="og:title" content="Maler Emmen – Malerarbeiten in Emmenbrücke | Bühlmann Söhne AG" />
-<meta property="og:description" content="Maler Emmen: Bühlmann Söhne AG für Innenmalerei, Fassade, Renovation in Emmen und Emmenbrücke. Festpreis und Schweizer Qualität." />
-<meta property="og:image" content="https://images.unsplash.com/photo-1503174971373-b1f69850bded?w=1600&q=80" />
-<meta property="og:url" content="https://buehlmann-soehne.ch/maler-emmen.html" />
+<meta property="og:title" content="Maler Emmen und Emmenbrücke | Bühlmann Söhne AG" />
+<meta property="og:description" content="Malerarbeiten in Emmen und Emmenbrücke: Der Betrieb der Bühlmann Söhne AG liegt direkt beim Seetalplatz. Tel. 041 269 88 50." />
+<meta property="og:image" content="https://images.unsplash.com/photo-1783282643449-5f026f572931?w=1600&q=80" />
+<meta property="og:url" content="https://www.bs-luzern.ch/maler-emmen.html" />
 <meta name="robots" content="index, follow" />
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"LocalBusiness","@id":"https://buehlmann-soehne.ch/#org","name":"Bühlmann Söhne AG","image":"https://buehlmann-soehne.ch/assets/logo.png","telephone":"+41 41 000 00 00","email":"info@buehlmann-soehne.ch","url":"https://buehlmann-soehne.ch/maler-emmen.html","priceRange":"$$","address":{"@type":"PostalAddress","streetAddress":"Handwerkstrasse 12","addressLocality":"Luzern","postalCode":"6000","addressCountry":"CH"},"areaServed":["Luzern","Innerschweiz","Zug","Schwyz","Nidwalden","Obwalden"],"foundingDate":"1924"},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Bedienen Sie auch Emmenbrücke?","acceptedAnswer":{"@type":"Answer","text":"Ja — Emmenbrücke ist Teil unseres Kerngebiets, ohne Anreisepauschale."}},{"@type":"Question","name":"Übernehmen Sie auch grosse Industrieaufträge?","acceptedAnswer":{"@type":"Answer","text":"Ja, mit unserem 25-köpfigen Team realisieren wir auch Hallensanierungen mit grossen Quadratmetern."}}]}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"LocalBusiness","@id":"https://www.bs-luzern.ch/#org","name":"Bühlmann Söhne AG","image":"https://www.bs-luzern.ch/assets/logo.png","logo":"https://www.bs-luzern.ch/assets/logo.png","slogan":"Wir setzen Zeichen mit Farbe","telephone":"+41 41 269 88 50","faxNumber":"+41 41 269 88 60","email":"info@bs-luzern.ch","url":"https://www.bs-luzern.ch/maler-emmen.html","address":{"@type":"PostalAddress","streetAddress":"Rothenbad 18","addressLocality":"Luzern","postalCode":"6015","addressCountry":"CH"},"areaServed":["Luzern","Emmen","Kriens","Hergiswil","Alpnach","Nidwalden","Obwalden","Innerschweiz"],"foundingDate":"1935","founder":{"@type":"Person","name":"Harry Bühlmann"},"employee":{"@type":"Person","name":"Patrick Bühlmann","jobTitle":"Geschäftsführer"},"numberOfEmployees":{"@type":"QuantitativeValue","value":13}}]}</script>
 </head>
-<body class="bg-background text-on-surface antialiased">
-
-<nav class="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm">
-  <div class="flex justify-between items-center max-w-7xl mx-auto px-6 md:px-8 h-40 md:h-52 gap-6">
+<body class="bg-paper text-ink antialiased">
+<div class="bg-ink text-white/90 text-[13px]">
+  <div class="max-w-6xl mx-auto px-6 flex justify-between items-center h-9">
+    <span class="hidden sm:block tracking-wide">Wir setzen Zeichen mit Farbe · Luzern · Hergiswil NW · Alpnach OW</span>
+    <span class="flex items-center gap-5">
+      <a href="tel:+41412698850" class="hover:text-accent transition-colors flex items-center gap-1.5"><span class="material-symbols-outlined text-[16px]">call</span>041 269 88 50</a>
+      <a href="mailto:info@bs-luzern.ch" class="hidden md:flex hover:text-accent transition-colors items-center gap-1.5"><span class="material-symbols-outlined text-[16px]">mail</span>info@bs-luzern.ch</a>
+    </span>
+  </div>
+</div>
+<nav class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-line">
+  <div class="max-w-6xl mx-auto px-6 flex items-center justify-between h-28 md:h-40 gap-6">
     <a href="index.html" class="flex items-center gap-3 shrink-0">
-      <img src="assets/logo.png" alt="Bühlmann Söhne AG — Maler Luzern" class="h-32 md:h-44 w-auto" />
+      <img src="assets/logo.png" alt="Bühlmann Söhne AG, Maler und Gipser in Luzern" class="h-20 md:h-[120px] w-auto logo-anim" />
+      <span class="hidden lg:block leading-tight">
+        <span class="block font-display font-semibold text-ink text-lg">Bühlmann Söhne AG</span>
+        <span class="block text-[12px] tracking-[0.18em] uppercase text-ink-soft">Malerei · Gipserei · Luzern</span>
+      </span>
     </a>
-    <div class="hidden md:flex items-center space-x-8">
-      <a class="text-slate-600 font-medium hover:text-primary transition-colors font-label-md uppercase whitespace-nowrap" href="index.html">Home</a>
-  <a class="text-slate-600 font-medium hover:text-primary transition-colors font-label-md uppercase whitespace-nowrap" href="leistungen.html">Leistungen</a>
-  <a class="text-slate-600 font-medium hover:text-primary transition-colors font-label-md uppercase whitespace-nowrap" href="portfolio.html">Portfolio</a>
-  <a class="text-slate-600 font-medium hover:text-primary transition-colors font-label-md uppercase whitespace-nowrap" href="blog.html">Blog</a>
-  <a class="text-slate-600 font-medium hover:text-primary transition-colors font-label-md uppercase whitespace-nowrap" href="kontakt.html">Kontakt</a>
+    <div class="hidden md:flex items-center gap-7">
+    <a class="text-[15px] text-ink-soft hover:text-ink transition-colors" href="index.html">Home</a>
+    <a class="text-[15px] text-ink-soft hover:text-ink transition-colors" href="malerei.html">Malerei</a>
+    <a class="text-[15px] text-ink-soft hover:text-ink transition-colors" href="referenzen.html">Referenzen</a>
+    <a class="text-[15px] text-ink-soft hover:text-ink transition-colors" href="unternehmen.html">Unternehmen</a>
+    <a class="text-[15px] text-ink-soft hover:text-ink transition-colors" href="jobs.html">Jobs</a>
+    <a class="text-[15px] text-ink-soft hover:text-ink transition-colors" href="kontakt.html">Kontakt</a>
     </div>
-    <div class="flex items-center space-x-3 shrink-0">
-      <a class="hidden xl:flex items-center text-slate-600 font-medium hover:text-primary transition-colors font-label-md uppercase" href="tel:+41410000000">
-        <span class="material-symbols-outlined mr-2">call</span>Anrufen
-      </a>
-      <a href="kontakt.html" class="bg-primary-container text-white px-5 py-3 rounded-lg font-label-md uppercase tracking-widest hover:bg-primary transition-all active:scale-95 whitespace-nowrap">
-        Offerte
-      </a>
+    <div class="flex items-center gap-3">
+      <a href="kontakt.html" class="hidden sm:block bg-ink text-white text-[13px] font-semibold tracking-[0.14em] uppercase px-5 py-3 rounded hover:bg-[#1a2a55] transition-colors whitespace-nowrap">Offerte anfragen</a>
+      <button type="button" class="md:hidden p-2 text-ink" aria-label="Menü öffnen" onclick="document.getElementById('mobilemenu').classList.toggle('hidden')">
+        <span class="material-symbols-outlined text-[28px]">menu</span>
+      </button>
+    </div>
+  </div>
+  <div id="mobilemenu" class="hidden md:hidden border-t border-line bg-white">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex flex-col gap-1">
+      <a class="py-2.5 text-[16px] border-b border-line text-ink-soft" href="index.html">Home</a>
+      <a class="py-2.5 text-[16px] border-b border-line text-ink-soft" href="malerei.html">Malerei</a>
+      <a class="py-2.5 text-[16px] border-b border-line text-ink-soft" href="referenzen.html">Referenzen</a>
+      <a class="py-2.5 text-[16px] border-b border-line text-ink-soft" href="unternehmen.html">Unternehmen</a>
+      <a class="py-2.5 text-[16px] border-b border-line text-ink-soft" href="jobs.html">Jobs</a>
+      <a class="py-2.5 text-[16px] border-b border-line text-ink-soft" href="kontakt.html">Kontakt</a>
+      <a href="kontakt.html" class="mt-3 bg-ink text-white text-center text-[13px] font-semibold tracking-[0.14em] uppercase px-5 py-3.5 rounded">Offerte anfragen</a>
     </div>
   </div>
 </nav>
-
-<header class="relative h-[55vh] min-h-[480px] w-full flex items-center justify-center overflow-hidden bg-primary mt-40 md:mt-52">
-  <img src="https://images.unsplash.com/photo-1503174971373-b1f69850bded?w=1600&q=80" alt="Maler in Emmen & Emmenbrücke" class="hero-img" />
-  <div class="hero-overlay"></div>
-  <div class="relative z-10 text-center px-4 max-w-4xl">
-    <span class="font-label-md text-secondary-fixed tracking-[0.3em] uppercase mb-6 block">Bühlmann Söhne AG · Luzern</span>
-    <h1 class="font-headline-xl text-white mb-6 text-4xl md:text-6xl leading-tight">Maler in Emmen & Emmenbrücke</h1>
-    <p class="font-body-lg text-white/85 mb-8 max-w-2xl mx-auto">Vom Seetalplatz bis zum Gersag: Wir streichen, sanieren und renovieren in der gesamten Gemeinde Emmen — Wohnungen, Häuser, Gewerbeflächen.</p>
-    <div class="flex flex-col sm:flex-row gap-4 justify-center">
-      <a href="kontakt.html" class="bg-secondary-container text-primary font-label-md px-10 py-5 rounded-lg uppercase tracking-widest hover:opacity-90 transition-all active:scale-95 shadow-xl">Offerte für Emmen anfragen</a>
-      <a href="tel:+41410000000" class="border border-white/40 text-white backdrop-blur-sm font-label-md px-10 py-5 rounded-lg uppercase tracking-widest hover:bg-white/10 transition-all">+41 41 000 00 00</a>
+<header class="bg-paper">
+  <div class="max-w-6xl mx-auto px-6 pt-16 pb-14 md:pt-24 md:pb-20 grid md:grid-cols-2 gap-12 items-center">
+    <div>
+      <span class="eyebrow text-ink-soft block mb-4">Einsatzgebiet · Emmen und Emmenbrücke</span>
+      <h1 class="font-display text-4xl md:text-5xl leading-[1.12] text-ink mb-6">Ihr Maler in Emmen und Emmenbrücke</h1>
+      <span class="accent-bar mb-6"></span>
+      <p class="text-ink-soft text-lg leading-relaxed mb-9 max-w-xl">Unser Betrieb liegt in Reussbühl, nur wenige Minuten vom Seetalplatz entfernt. Näher kann ein Maler kaum sein.</p>
+      <div class="flex flex-wrap gap-4">
+        <a href="kontakt.html" class="bg-ink text-white text-[13px] font-semibold tracking-[0.14em] uppercase px-7 py-4 rounded hover:bg-[#1a2a55] transition-colors">Offerte anfragen</a>
+        <a href="tel:+41412698850" class="border border-line bg-white text-ink text-[13px] font-semibold tracking-[0.14em] uppercase px-7 py-4 rounded hover:border-ink transition-colors flex items-center gap-2"><span class="material-symbols-outlined text-[18px]">call</span>041 269 88 50</a>
+      </div>
+    </div>
+    <div class="relative">
+      <div class="absolute -top-4 -left-4 w-full h-full rounded-lg bg-accent/25" aria-hidden="true"></div>
+      <img src="https://images.unsplash.com/photo-1783282643449-5f026f572931?w=1600&q=80" alt="Ihr Maler in Emmen und Emmenbrücke" class="relative rounded-lg shadow-xl w-full aspect-[4/3] object-cover" />
     </div>
   </div>
 </header>
 
-<main class="bg-white">
-  <article class="max-w-3xl mx-auto px-6 md:px-8 py-20 prose-content">
-    <section class="mb-10"><h2>Erfahrung in Emmen</h2><p class="font-body-lg text-on-surface-variant">Wir arbeiten regelmässig in den Quartieren Rüeggisingen, Gerliswil, Kapf — und für die Verwaltungen der grossen Liegenschaften am Seetalplatz.</p></section>
-<section class="mb-10"><h2>Industrie- und Gewerbe-Anstriche</h2><p class="font-body-lg text-on-surface-variant">Hallen, Lager, Werkstätten in Emmenbrücke und im Industriegebiet Rothen — wir streichen wirtschaftlich und auch mit Spezialfarben (Beton, Stahl, Boden).</p></section>
-<section class="mb-10"><h2>Liegenschafts-Renovation Emmen</h2><p class="font-body-lg text-on-surface-variant">Treppenhaus-Renovationen, Fassadensanierungen — wir kennen die Bauphysik der Bauten der 70er-/80er-Jahre in Emmen.</p></section>
-  </article>
+    <section class="bg-mist border-y border-line">
+      <div class="max-w-3xl mx-auto px-6 py-20">
+        <section class="mb-12"><h2 class="font-display text-2xl md:text-3xl text-ink mb-4">Ihr Nachbar im Rothenbad</h2><p class="text-ink-soft text-[16px] leading-relaxed">Von unserem Firmensitz an der Grenze zu Emmenbrücke sind wir in wenigen Minuten bei Ihnen. Das macht uns schnell, flexibel und günstig in der Anfahrt.</p></section>
+<section class="mb-12"><h2 class="font-display text-2xl md:text-3xl text-ink mb-4">Für Private und Liegenschaftsverwaltungen</h2><p class="text-ink-soft text-[16px] leading-relaxed">Wir streichen Wohnungen, Treppenhäuser und Fassaden in Emmen und Emmenbrücke, für Eigentümer, Mieter und Verwaltungen.</p></section>
+<section class="mb-12"><h2 class="font-display text-2xl md:text-3xl text-ink mb-4">Prompter Kundendienst</h2><p class="text-ink-soft text-[16px] leading-relaxed">Kleine Reparaturen und Auffrischungen erledigen wir unkompliziert. Ein Anruf genügt.</p></section>
+      </div>
+    </section>
 
-  <section class="bg-surface-container-low py-20">
-    <div class="max-w-3xl mx-auto px-6 md:px-8">
-      <h2 class="font-headline-lg text-primary text-3xl md:text-4xl mb-10 text-center">Häufige Fragen</h2>
-      <details class="bg-surface-container-low rounded-lg p-6 mb-3 group"><summary class="font-headline-md text-primary cursor-pointer list-none flex justify-between items-center">Bedienen Sie auch Emmenbrücke?<span class="material-symbols-outlined text-primary group-open:rotate-180 transition-transform">expand_more</span></summary><p class="font-body-md text-on-surface-variant mt-4">Ja — Emmenbrücke ist Teil unseres Kerngebiets, ohne Anreisepauschale.</p></details>
-<details class="bg-surface-container-low rounded-lg p-6 mb-3 group"><summary class="font-headline-md text-primary cursor-pointer list-none flex justify-between items-center">Übernehmen Sie auch grosse Industrieaufträge?<span class="material-symbols-outlined text-primary group-open:rotate-180 transition-transform">expand_more</span></summary><p class="font-body-md text-on-surface-variant mt-4">Ja, mit unserem 25-köpfigen Team realisieren wir auch Hallensanierungen mit grossen Quadratmetern.</p></details>
+    <section class="bg-ink text-white">
+  <div class="max-w-4xl mx-auto px-6 py-20 text-center">
+    <h2 class="font-display text-3xl md:text-4xl mb-5">Ihr Malerprojekt in Emmen und Emmenbrücke?</h2>
+    <p class="text-white/75 text-lg mb-9">Rufen Sie uns an oder schreiben Sie uns. Wir beraten Sie gerne persönlich.</p>
+    <div class="flex flex-wrap gap-4 justify-center">
+      <a href="tel:+41412698850" class="bg-accent text-ink text-[13px] font-semibold tracking-[0.14em] uppercase px-8 py-4 rounded hover:bg-accent-deep transition-colors flex items-center gap-2"><span class="material-symbols-outlined text-[18px]">call</span>041 269 88 50</a>
+      <a href="kontakt.html" class="border border-white/30 text-white text-[13px] font-semibold tracking-[0.14em] uppercase px-8 py-4 rounded hover:bg-white/10 transition-colors">Kontaktformular</a>
     </div>
-  </section>
-
-  <section class="bg-primary text-white py-20">
-    <div class="max-w-3xl mx-auto px-6 md:px-8 text-center">
-      <h2 class="font-headline-lg text-3xl md:text-4xl mb-6">Offerte für Emmen anfragen</h2>
-      <p class="font-body-lg text-white/80 mb-8">Antwort innert 24 Stunden. Kostenlose Vor-Ort-Besichtigung. Festpreis-Offerte.</p>
-      <a href="kontakt.html" class="inline-block bg-secondary-container text-primary font-label-md px-10 py-5 rounded-lg uppercase tracking-widest hover:opacity-90 transition-all active:scale-95 shadow-xl">Jetzt Kontakt aufnehmen</a>
-    </div>
-  </section>
-</main>
-
-<footer class="bg-[#F4F7FA] w-full py-12 border-t border-slate-200 mt-0">
-  <div class="grid grid-cols-1 md:grid-cols-4 gap-8 max-w-7xl mx-auto px-6 md:px-8">
+  </div>
+</section>
+<footer class="bg-mist border-t border-line">
+  <div class="max-w-6xl mx-auto px-6 py-16 grid grid-cols-1 md:grid-cols-4 gap-10">
     <div>
-      <img src="assets/logo.png" alt="Bühlmann Söhne AG" class="h-20 w-auto mb-6" />
-      <p class="text-slate-500 font-body-md">Schweizer Malerhandwerk seit 1924. Architektonische Malerlösungen für Luzern und die Innerschweiz.</p>
+      <img src="assets/logo.png" alt="Bühlmann Söhne AG" class="h-16 w-auto mb-5" />
+      <p class="text-ink-soft text-[15px] leading-relaxed">Malerei und Gipserei in Luzern seit 1935. Familienbetrieb in dritter Generation.</p>
+      <p class="mt-4 text-[13px] text-ink-soft italic">«Wir setzen Zeichen mit Farbe»</p>
     </div>
     <div>
-      <h4 class="font-label-md text-primary mb-6 uppercase">Leistungen</h4>
-      <ul class="space-y-3">
-        <li><a class="text-slate-500 hover:text-primary font-body-md" href="innenmalerei.html">Innenmalerei</a></li>
-        <li><a class="text-slate-500 hover:text-primary font-body-md" href="fassadenrenovation.html">Fassadenrenovation</a></li>
-        <li><a class="text-slate-500 hover:text-primary font-body-md" href="farbberatung.html">Farbberatung</a></li>
-        <li><a class="text-slate-500 hover:text-primary font-body-md" href="altbau-renovation.html">Altbau-Renovation</a></li>
-        <li><a class="text-slate-500 hover:text-primary font-body-md" href="maler-neubau.html">Maler für Neubau</a></li>
-      </ul>
+      <h4 class="eyebrow text-ink mb-5">Leistungen</h4>
+      <ul class="space-y-2.5 text-ink-soft text-[15px]"><li><a class="hover:text-ink transition-colors" href="innenmalerei.html">Innenmalerei</a></li><li><a class="hover:text-ink transition-colors" href="fassaden.html">Fassaden</a></li><li><a class="hover:text-ink transition-colors" href="renovation.html">Renovation</a></li><li><a class="hover:text-ink transition-colors" href="neubau.html">Neubau</a></li><li><a class="hover:text-ink transition-colors" href="umbau.html">Umbau</a></li><li><a class="hover:text-ink transition-colors" href="spritzwerk.html">Spritzwerk</a></li><li><a class="hover:text-ink transition-colors" href="gipserei.html">Gipserei</a></li></ul>
     </div>
     <div>
-      <h4 class="font-label-md text-primary mb-6 uppercase">Für wen</h4>
-      <ul class="space-y-3">
-        <li><a class="text-slate-500 hover:text-primary font-body-md" href="maler-einfamilienhaus.html">Einfamilienhaus</a></li>
-        <li><a class="text-slate-500 hover:text-primary font-body-md" href="maler-mehrfamilienhaus.html">Mehrfamilienhaus</a></li>
-        <li><a class="text-slate-500 hover:text-primary font-body-md" href="wohnung-streichen.html">Wohnung streichen</a></li>
-        <li><a class="text-slate-500 hover:text-primary font-body-md" href="maler-gewerbe-buero.html">Geschäftsräume</a></li>
-      </ul>
+      <h4 class="eyebrow text-ink mb-5">Einsatzgebiet</h4>
+      <ul class="space-y-2.5 text-ink-soft text-[15px]"><li><a class="hover:text-ink transition-colors" href="maler-luzern.html">Maler Luzern</a></li><li><a class="hover:text-ink transition-colors" href="maler-emmen.html">Maler Emmen und Emmenbrücke</a></li><li><a class="hover:text-ink transition-colors" href="maler-kriens.html">Maler Kriens</a></li><li><a class="hover:text-ink transition-colors" href="maler-hergiswil.html">Maler Hergiswil NW</a></li><li><a class="hover:text-ink transition-colors" href="maler-alpnach.html">Maler Alpnach OW</a></li></ul>
     </div>
     <div>
-      <h4 class="font-label-md text-primary mb-6 uppercase">Kontakt</h4>
-      <ul class="space-y-3 text-slate-500 font-body-md">
-        <li>Bühlmann Söhne AG</li>
-        <li>Handwerkstrasse 12</li>
-        <li>6000 Luzern</li>
-        <li><a href="tel:+41410000000" class="hover:text-primary">+41 41 000 00 00</a></li>
-        <li><a href="mailto:info@buehlmann-soehne.ch" class="hover:text-primary">info@buehlmann-soehne.ch</a></li>
+      <h4 class="eyebrow text-ink mb-5">Kontakt</h4>
+      <ul class="space-y-2.5 text-ink-soft text-[15px]">
+        <li class="font-semibold text-ink">Bühlmann Söhne AG</li>
+        <li>Rothenbad 18, 6015 Luzern</li>
+        <li><a href="tel:+41412698850" class="hover:text-ink">Tel. 041 269 88 50</a></li>
+        <li>Fax 041 269 88 60</li>
+        <li><a href="mailto:info@bs-luzern.ch" class="hover:text-ink">info@bs-luzern.ch</a></li>
+        <li><a href="https://maps.google.com/?q=B%C3%BChlmann+S%C3%B6hne+AG,+Rothenbad+18,+6015+Luzern" target="_blank" rel="noopener" class="underline decoration-accent decoration-2 underline-offset-4 hover:text-ink">Auf Google Maps zeigen</a></li>
       </ul>
     </div>
   </div>
-  <div class="max-w-7xl mx-auto px-6 md:px-8 mt-16 pt-8 border-t border-slate-200 flex flex-col md:flex-row justify-between items-center gap-4">
-    <p class="text-slate-500 text-sm">© 2026 Bühlmann Söhne AG · Schweizer Malerhandwerk Luzern</p>
-    <div class="flex items-center gap-2">
-      <span class="material-symbols-outlined text-primary">verified</span>
-      <span class="font-label-md text-primary uppercase">Schweizer Handwerksqualität seit 1924</span>
+  <div class="border-t border-line">
+    <div class="max-w-6xl mx-auto px-6 py-5 flex flex-col md:flex-row justify-between items-center gap-3 text-[13px] text-ink-soft">
+      <span>v2.0.0</span>
+      <span>© 2026 Bühlmann Söhne AG · Rothenbad 18 · 6015 Luzern</span>
+      <span class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[16px] text-ink">verified</span>Schweizer Handwerk seit 1935</span>
     </div>
   </div>
 </footer>
+<script>
+(function () {
+  var els = Array.prototype.slice.call(document.querySelectorAll('section, body > header'));
+  els.forEach(function (e) { e.classList.add('reveal'); });
+  function check() {
+    var limit = window.innerHeight * 0.92;
+    els.forEach(function (e) {
+      if (!e.classList.contains('visible') && e.getBoundingClientRect().top < limit) {
+        e.classList.add('visible');
+      }
+    });
+  }
+  check();
+  window.addEventListener('scroll', check, { passive: true });
+  window.addEventListener('resize', check);
+  setInterval(check, 600);
+})();
+</script>
 </body>
 </html>
