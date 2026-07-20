@@ -7,7 +7,7 @@ Texte sind modernisiert, Fakten unverändert (Gründung 1935, Rothenbad 18 usw.)
 from pathlib import Path
 from textwrap import dedent
 
-VERSION = "2.2.0"
+VERSION = "2.2.1"
 SITE_URL = "https://www.bs-luzern.ch"
 ROOT = Path(__file__).parent
 
@@ -23,7 +23,6 @@ MAPS_URL = "https://maps.google.com/?q=B%C3%BChlmann+S%C3%B6hne+AG,+Rothenbad+18
 # sind nur 520-600 px breit und werden darum nur klein (Karten) verwendet.
 U = "https://images.unsplash.com/"
 IMG_INNEN = U + "photo-1693985120993-e9b203ce7631?w=1600&q=80"          # Roller streicht Wand
-IMG_FASSADENMALER = U + "photo-1779292348440-25d0ce2462ab?w=1600&q=80"  # Maler streicht Fassade
 IMG_GERUEST = U + "photo-1646608220368-c604d8e8130f?w=1600&q=80"        # Mann auf Geruest
 IMG_ALTBAU = U + "photo-1626471671222-9d89fe4c2668?w=1600&q=80"         # Geruest an historischer Fassade
 IMG_FARBEIMER = U + "photo-1652572036885-b5e9205dd847?w=1600&q=80"      # Farbeimer und Pinsel
@@ -768,7 +767,7 @@ def index_page() -> str:
 def malerei_page() -> str:
     blocks = [
         ("Innen", "assets/team-streichen.jpg", "Malen, Spritzen, Tapezieren: Mit Spachtel, Pinsel, Spritzpistole und Tapetenbürste verschönern wir jeden Innenraum. Ob denkmalgeschützte Ratsherrenstube, modernes Bürogebäude oder Industriebau.", "innenmalerei.html"),
-        ("Aussen", IMG_FASSADENMALER, "Ob Holz, Beton, Naturstein, Verputz, Metall oder Kunststoff: Wir bearbeiten jede Fassade fachmännisch. Eigene Roll- und Fassadengerüste machen uns schnell und flexibel.", "fassaden.html"),
+        ("Aussen", IMG_ALTBAU, "Ob Holz, Beton, Naturstein, Verputz, Metall oder Kunststoff: Wir bearbeiten jede Fassade fachmännisch. Eigene Roll- und Fassadengerüste machen uns schnell und flexibel.", "fassaden.html"),
         ("Unser Spritzwerk", IMG_FARBEIMER, "Mit unserer modernen Spritzanlage für Industrie- und Bauteile lackieren wir auch grossflächige Gegenstände wie Jalousieläden im Thermo-Lackier-Verfahren.", "spritzwerk.html"),
         ("Kundengipserei", IMG_ROLLER, "Unsere Kundengipserei ist für Einsätze jeglicher Art ausgerüstet. Verputzarbeiten und Betonsanierungen erledigen wir prompt und unkompliziert.", "gipserei.html"),
     ]
