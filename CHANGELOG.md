@@ -1,5 +1,10 @@
 # Changelog
 
+## v2.0.1 — 2026-07-20
+
+- Navigation: Text neben dem Logo entfernt (Firmenname steht im Logo selber)
+- Logo auf maximale scharfe Grösse gebracht (130 px, Original-Auflösung der Logo-Datei)
+
 ## v2.0.0 — 2026-07-20
 
 Kompletter Neuaufbau mit echten Firmendaten von www.bs-luzern.ch.
