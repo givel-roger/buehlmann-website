@@ -1,5 +1,11 @@
 # Changelog
 
+## v2.3.0 — 2026-07-20
+
+- Startseite: Image-Video läuft jetzt gross und vollflächig im Hintergrund des Heros
+  (moderner Video-Slider), Titel und Kennzahlen in Weiss darüber, Loop neu in 720p (13 MB)
+- Separater Abschnitt "Ein Blick in unsere Arbeit" samt 32-MB-Video entfernt
+
 ## v2.2.1 — 2026-07-20
 
 - Malerei-Seite, Block "Aussen": unpassendes Stockbild (Arbeiter in heruntergekommener

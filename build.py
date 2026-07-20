@@ -7,7 +7,7 @@ Texte sind modernisiert, Fakten unverändert (Gründung 1935, Rothenbad 18 usw.)
 from pathlib import Path
 from textwrap import dedent
 
-VERSION = "2.2.1"
+VERSION = "2.3.0"
 SITE_URL = "https://www.bs-luzern.ch"
 ROOT = Path(__file__).parent
 
@@ -638,28 +638,26 @@ def index_page() -> str:
     )
 
     body = dedent(f"""
-    <header class="relative bg-paper overflow-hidden">
-      <div class="max-w-6xl mx-auto px-6 pt-16 pb-16 md:pt-28 md:pb-24 grid md:grid-cols-[1.1fr_1fr] gap-14 items-center">
-        <div>
-          <span class="eyebrow text-ink-soft block mb-5">Malerei und Gipserei in Luzern · seit 1935</span>
-          <h1 class="font-display text-5xl md:text-6xl leading-[1.08] text-ink mb-7">Wir setzen Zeichen mit&nbsp;Farbe.</h1>
+    <header class="relative min-h-[82vh] flex items-center overflow-hidden bg-ink">
+      <video class="absolute inset-0 w-full h-full object-cover" autoplay muted loop playsinline preload="metadata" poster="assets/hero-farben.jpg" aria-label="Einblick in die Arbeit der Bühlmann Söhne AG">
+        <source src="assets/hero-loop.mp4" type="video/mp4" />
+      </video>
+      <div class="absolute inset-0 bg-gradient-to-r from-ink/85 via-ink/55 to-ink/25" aria-hidden="true"></div>
+      <div class="relative max-w-6xl mx-auto px-6 py-24 w-full">
+        <div class="max-w-2xl">
+          <span class="eyebrow text-accent block mb-5">Malerei und Gipserei in Luzern · seit 1935</span>
+          <h1 class="font-display text-5xl md:text-6xl leading-[1.08] text-white mb-7">Wir setzen Zeichen mit&nbsp;Farbe.</h1>
           <span class="accent-bar mb-7"></span>
-          <p class="text-ink-soft text-lg leading-relaxed mb-10 max-w-xl">Familienbetrieb in dritter Generation. Malerarbeiten innen und aussen, Kundengipserei und eigenes Spritzwerk, in Luzern, Hergiswil NW und Alpnach OW.</p>
+          <p class="text-white/85 text-lg leading-relaxed mb-10 max-w-xl">Familienbetrieb in dritter Generation. Malerarbeiten innen und aussen, Kundengipserei und eigenes Spritzwerk, in Luzern, Hergiswil NW und Alpnach OW.</p>
           <div class="flex flex-wrap gap-4">
-            <a href="kontakt.html" class="bg-ink text-white text-[13px] font-semibold tracking-[0.14em] uppercase px-8 py-4 rounded hover:bg-[#1a2a55] transition-colors">Offerte anfragen</a>
-            <a href="malerei.html" class="border border-line bg-white text-ink text-[13px] font-semibold tracking-[0.14em] uppercase px-8 py-4 rounded hover:border-ink transition-colors">Unsere Leistungen</a>
+            <a href="kontakt.html" class="bg-accent text-ink text-[13px] font-semibold tracking-[0.14em] uppercase px-8 py-4 rounded hover:bg-accent-deep transition-colors shadow-xl">Offerte anfragen</a>
+            <a href="malerei.html" class="border border-white/40 text-white text-[13px] font-semibold tracking-[0.14em] uppercase px-8 py-4 rounded hover:bg-white/10 transition-colors">Unsere Leistungen</a>
           </div>
           <div class="mt-12 grid grid-cols-3 gap-6 max-w-md">
-            <div><span class="font-display text-3xl text-ink block">1935</span><span class="text-[13px] text-ink-soft">gegründet</span></div>
-            <div><span class="font-display text-3xl text-ink block">3.</span><span class="text-[13px] text-ink-soft">Generation</span></div>
-            <div><span class="font-display text-3xl text-ink block">13</span><span class="text-[13px] text-ink-soft">Mitarbeitende</span></div>
+            <div><span class="font-display text-3xl text-white block">1935</span><span class="text-[13px] text-white/70">gegründet</span></div>
+            <div><span class="font-display text-3xl text-white block">3.</span><span class="text-[13px] text-white/70">Generation</span></div>
+            <div><span class="font-display text-3xl text-white block">13</span><span class="text-[13px] text-white/70">Mitarbeitende</span></div>
           </div>
-        </div>
-        <div class="relative">
-          <div class="absolute -top-5 -right-5 w-full h-full rounded-lg bg-accent/30" aria-hidden="true"></div>
-          <video class="relative rounded-lg shadow-2xl w-full aspect-[4/3] object-cover" autoplay muted loop playsinline preload="metadata" poster="assets/hero-farben.jpg" aria-label="Einblick in die Arbeit der Bühlmann Söhne AG">
-            <source src="assets/hero-loop.mp4" type="video/mp4" />
-          </video>
         </div>
       </div>
     </header>
@@ -690,20 +688,6 @@ def index_page() -> str:
           <p class="text-ink-soft text-[16px] leading-relaxed mb-8">Geschäftsführer Patrick Bühlmann führt das Unternehmen mit 10 Malern und 3 Mitarbeitenden in der Administration. Moderne Maschinen und ein umfangreicher Wagenpark sorgen für effizientes Arbeiten. Und weil uns der Nachwuchs wichtig ist, bilden wir regelmässig Malerlehrlinge aus.</p>
           <a href="unternehmen.html" class="text-[13px] font-semibold tracking-[0.14em] uppercase text-ink border-b-2 border-accent pb-1">Geschichte und Leitbild</a>
         </div>
-      </div>
-    </section>
-
-    <section class="bg-mist border-y border-line">
-      <div class="max-w-5xl mx-auto px-6 py-20">
-        <div class="text-center mb-10">
-          <span class="eyebrow text-ink-soft block mb-3">Image-Video</span>
-          <h2 class="font-display text-3xl md:text-4xl text-ink mb-4">Ein Blick in unsere Arbeit</h2>
-          <p class="text-ink-soft text-[16px] max-w-2xl mx-auto">Eine Minute Bühlmann Söhne AG: unser Team, unser Handwerk und die Sorgfalt hinter jedem Auftrag.</p>
-        </div>
-        <video class="rounded-lg shadow-2xl w-full aspect-video bg-ink" controls preload="none" poster="assets/hero-farben.jpg">
-          <source src="assets/imagevideo.mp4" type="video/mp4" />
-          Ihr Browser kann dieses Video nicht abspielen.
-        </video>
       </div>
     </section>
 
