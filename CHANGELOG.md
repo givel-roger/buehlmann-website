@@ -1,5 +1,10 @@
 # Changelog
 
+## v2.3.1 — 2026-07-20
+
+- Hero-Video: statt 16-Sekunden-Ausschnitt läuft jetzt das ganze Image-Video (61 s)
+  im Hintergrund; neu mit ffmpeg komprimiert (720p, 7.5 MB — kleiner als der alte Ausschnitt)
+
 ## v2.3.0 — 2026-07-20
 
 - Startseite: Image-Video läuft jetzt gross und vollflächig im Hintergrund des Heros
