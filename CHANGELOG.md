@@ -1,5 +1,16 @@
 # Changelog
 
+## v2.1.0 — 2026-07-20
+
+Echte Arbeitsfotos der Firma eingebaut (WeTransfer vom 20.07.2026, 1920x1080, scharf):
+
+- Jobs: Teamfoto (zwei Maler beim Streichen) statt Stockbild
+- Innenmalerei: echter Maler mit Roller als Hero, auch auf der Startseite (Drei Generationen)
+- Renovation: sorgfältiges Abdecken; Umbau: Küche schützen; Gipserei: Fugen-Detailarbeit
+- Unternehmen: Firmenwagen mit BS-Logo und Abdeck-Foto statt Stockbilder
+- Referenzen: unscharfe Spritzwerk-Kachel (520px) durch scharfes Arbeitsfoto ersetzt
+- Zwei private Fotos (Stadionbesuch) bewusst nicht verwendet
+
 ## v2.0.1 — 2026-07-20
 
 - Navigation: Text neben dem Logo entfernt (Firmenname steht im Logo selber)

@@ -7,7 +7,7 @@ Texte sind modernisiert, Fakten unverändert (Gründung 1935, Rothenbad 18 usw.)
 from pathlib import Path
 from textwrap import dedent
 
-VERSION = "2.0.1"
+VERSION = "2.1.0"
 SITE_URL = "https://www.bs-luzern.ch"
 ROOT = Path(__file__).parent
 
@@ -50,7 +50,7 @@ SERVICES = [
         "meta": "Malen, Spritzen und Tapezieren für jeden Innenraum in Luzern und der Innerschweiz. Von der denkmalgeschützten Stube bis zum modernen Büro. Tel. 041 269 88 50.",
         "h1": "Innenmalerei mit Liebe zum Detail",
         "lead": "Malen, Spritzen, Tapezieren: Mit Spachtel, Pinsel, Roller und Spritzpistole verschönern wir jeden Innenraum in Luzern und der Innerschweiz.",
-        "image": IMG_INNEN,
+        "image": "assets/arbeit-roller.jpg",
         "sections": [
             ("Jeder Raum hat seinen eigenen Charakter", "Ob denkmalgeschützte Ratsherrenstube, modernes Bürogebäude oder nüchterner Industriebau: Unsere Malerinnen und Maler gehen auf jeden Raum individuell ein und arbeiten sauber, präzise und termingerecht."),
             ("Das ganze Spektrum des Malerhandwerks", "Unsere Fachleute malen, marmorieren, maserieren, vergolden, stuckatieren, tapezieren und spritzlackieren. Durch laufende Weiterbildung sind sie stets auf dem neusten Stand der Technik."),
@@ -91,7 +91,7 @@ SERVICES = [
         "meta": "Renovationen mit Sorgfalt und Liebe zum Detail in Luzern. Malen, Tapezieren, Vergolden, Stuckatieren. Mit Werterhaltungs-Kundendienst. Tel. 041 269 88 50.",
         "h1": "Renovation mit Sorgfalt und Detailtreue",
         "lead": "Renovationsarbeiten verlangen gut ausgebildete Fachleute, Sorgfalt und Liebe zum Detail. Genau dafür stehen wir seit Jahrzehnten.",
-        "image": IMG_HELLER_RAUM,
+        "image": "assets/arbeit-abdecken.jpg",
         "sections": [
             ("Vertrauen, über Jahrzehnte aufgebaut", "In diesem Bereich zählen wir auf eine treue, über Jahrzehnte sorgfältig aufgebaute Privatkundschaft. Diese Kundinnen und Kunden wissen: Bei uns ist ihr Zuhause in besten Händen."),
             ("Handwerk auf höchstem Niveau", "Unsere Mitarbeiter malen, marmorieren, maserieren, vergolden, stuckatieren, tapezieren und spritzlackieren. Weiterbildung hält sie auf dem neusten Stand, oft sogar einen Schritt voraus."),
@@ -131,7 +131,7 @@ SERVICES = [
         "meta": "Umbau ohne unangenehme Überraschungen: vom Kostenvoranschlag bis zum letzten Pinselstrich in besten Händen. Tel. 041 269 88 50.",
         "h1": "Umbau ohne Nebengeräusche",
         "lead": "Mehr Platz, bessere Nutzung oder einfach Lust auf einen Tapetenwechsel: Beim Umbau sind Sie vom Kostenvoranschlag bis zum letzten Pinselstrich in besten Händen.",
-        "image": IMG_WEISSER_RAUM,
+        "image": "assets/arbeit-kueche.jpg",
         "sections": [
             ("Eingespieltes Mannschaftsspiel", "Hohe Flexibilität, Termintreue und das eingespielte Zusammenspiel mit unseren Partnerfirmen sorgen für einen Umbau-Ablauf ohne unangenehme Überraschungen."),
             ("Optimales Preis-Leistungs-Verhältnis", "Einer der Leitgedanken unserer Firma ist ein optimales Preis-Leistungs-Verhältnis. Das hat sich schon immer für beide Seiten gelohnt."),
@@ -171,7 +171,7 @@ SERVICES = [
         "meta": "Kundengipserei für kleine und mittlere Einsätze: Verputzarbeiten, Reparaturen und Betonsanierungen in Luzern. Prompt und unkompliziert. Tel. 041 269 88 50.",
         "h1": "Wir setzen Zeichen mit Gips",
         "lead": "Unsere Kundengipserei ist für Einsätze jeglicher Art ausgerüstet. Wir erledigen Ihre Aufträge prompt und unkompliziert.",
-        "image": IMG_ROLLER,
+        "image": "assets/arbeit-fugen.jpg",
         "sections": [
             ("Kleine Einsätze, grosse Wirkung", "Risse, Löcher, beschädigte Ecken: Unsere Kundengipserei behebt Schäden schnell und sauber, bevor der Maler für das perfekte Finish sorgt."),
             ("Verputz- und Gipserarbeiten", "Wir führen Kundengipser- und Verputzarbeiten aller Art aus, innen wie aussen, und kombinieren sie auf Wunsch direkt mit den Malerarbeiten."),
@@ -678,7 +678,7 @@ def index_page() -> str:
     <section class="bg-paper">
       <div class="max-w-6xl mx-auto px-6 py-20 grid md:grid-cols-2 gap-14 items-center">
         <div class="relative order-2 md:order-1">
-          <img src="{IMG_LUZERN}" alt="Luzern, die Heimat der Bühlmann Söhne AG" class="rounded-lg shadow-lg w-full aspect-[4/3] object-cover" />
+          <img src="assets/arbeit-roller.jpg" alt="Maler der Bühlmann Söhne AG bei der Arbeit" class="rounded-lg shadow-lg w-full aspect-[4/3] object-cover" />
           <img src="assets/referenz-altstadt.jpg" alt="Referenzobjekt in der Stadt Luzern" class="hidden md:block absolute -bottom-8 -right-8 w-56 rounded-lg shadow-xl border-4 border-white" />
         </div>
         <div class="order-1 md:order-2">
@@ -751,7 +751,7 @@ def index_page() -> str:
 # ---------------------------------------------------------------------------
 def malerei_page() -> str:
     blocks = [
-        ("Innen", IMG_INNEN, "Malen, Spritzen, Tapezieren: Mit Spachtel, Pinsel, Spritzpistole und Tapetenbürste verschönern wir jeden Innenraum. Ob denkmalgeschützte Ratsherrenstube, modernes Bürogebäude oder Industriebau.", "innenmalerei.html"),
+        ("Innen", "assets/team-streichen.jpg", "Malen, Spritzen, Tapezieren: Mit Spachtel, Pinsel, Spritzpistole und Tapetenbürste verschönern wir jeden Innenraum. Ob denkmalgeschützte Ratsherrenstube, modernes Bürogebäude oder Industriebau.", "innenmalerei.html"),
         ("Aussen", IMG_FASSADENMALER, "Ob Holz, Beton, Naturstein, Verputz, Metall oder Kunststoff: Wir bearbeiten jede Fassade fachmännisch. Eigene Roll- und Fassadengerüste machen uns schnell und flexibel.", "fassaden.html"),
         ("Unser Spritzwerk", IMG_FARBEIMER, "Mit unserer modernen Spritzanlage für Industrie- und Bauteile lackieren wir auch grossflächige Gegenstände wie Jalousieläden im Thermo-Lackier-Verfahren.", "spritzwerk.html"),
         ("Kundengipserei", IMG_ROLLER, "Unsere Kundengipserei ist für Einsätze jeglicher Art ausgerüstet. Verputzarbeiten und Betonsanierungen erledigen wir prompt und unkompliziert.", "gipserei.html"),
@@ -945,9 +945,9 @@ def unternehmen_page() -> str:
         <div>
           <span class="eyebrow text-ink-soft block mb-3">Betrieb</span>
           <h2 class="font-display text-3xl text-ink mb-10">Modern und dynamisch</h2>
-          <img src="{IMG_ROLLER2}" alt="Malerarbeit im Detail" class="rounded-lg shadow-lg w-full aspect-[16/9] object-cover mb-6" />
+          <img src="assets/firmenwagen.jpg" alt="Firmenwagen der Bühlmann Söhne AG" class="rounded-lg shadow-lg w-full aspect-[16/9] object-cover mb-6" />
           <p class="text-ink-soft text-[15px] leading-relaxed mb-4">Unser moderner Betrieb sowie der umfangreiche Maschinen- und Wagenpark bieten den Mitarbeitenden optimale Arbeitsbedingungen und ermöglichen eine effiziente Arbeitsweise.</p>
-          <img src="{IMG_FARBEIMER}" alt="Werkzeug und Farben der Bühlmann Söhne AG" class="rounded-lg shadow-lg w-full aspect-[16/9] object-cover mb-6" />
+          <img src="assets/arbeit-abdecken.jpg" alt="Sorgfältiges Abdecken vor dem Streichen" class="rounded-lg shadow-lg w-full aspect-[16/9] object-cover mb-6" />
           <p class="text-ink-soft text-[15px] leading-relaxed">Dank laufender Weiterbildung sind unsere Fachleute stets auf dem neusten Stand der Technik. Und weil uns der Nachwuchs am Herzen liegt, bilden wir regelmässig Malerlehrlinge aus.</p>
         </div>
       </div>
@@ -987,7 +987,7 @@ def referenzen_page() -> str:
         ("assets/referenz-stadthaus.jpg", "Geschäftshaus Luzern", "Komplette Fassadenrenovation an zentraler Lage."),
         ("assets/referenz-wohnung.jpg", "Wohnungsrenovation", "Helle, frisch gestrichene Räume, sauber und termingerecht übergeben."),
         ("assets/referenz-geschaeft.jpg", "Geschäftsräume", "Malerarbeiten in modernen Verkaufs- und Ausstellungsflächen."),
-        ("assets/spritzwerk.jpg", "Spritzwerk", "Bauteile und Läden, lackiert im Thermo-Lackier-Verfahren."),
+        ("assets/arbeit-kueche.jpg", "Sauberes Arbeiten", "Abdecken, schützen, streichen: So sieht Sorgfalt bei uns aus."),
     ]
     refs_html = "\n".join(
         f'<figure class="card-lift rounded-lg overflow-hidden bg-white border border-line">'
@@ -1050,7 +1050,7 @@ def jobs_page() -> str:
     )
 
     body = dedent(f"""
-    {hero_light("Jobs", "Wir suchen dich!", "Wir sind ein typisches kleineres KMU mit familiärem Stil: viel Freiraum, vielseitige Aufgaben und ein Team, in dem Mitdenken und Mitwirken zählen.", IMG_FASSADENMALER, "Jetzt bewerben")}
+    {hero_light("Jobs", "Wir suchen dich!", "Wir sind ein typisches kleineres KMU mit familiärem Stil: viel Freiraum, vielseitige Aufgaben und ein Team, in dem Mitdenken und Mitwirken zählen.", "assets/team-streichen.jpg", "Jetzt bewerben")}
 
     <section class="bg-mist border-y border-line">
       <div class="max-w-4xl mx-auto px-6 py-20">
@@ -1098,7 +1098,7 @@ def jobs_page() -> str:
         "jobs",
         "Jobs | Maler/in EFZ 100% | Bühlmann Söhne AG Luzern",
         "Die Bühlmann Söhne AG in Luzern sucht eine/n Maler/in EFZ (100%), per sofort oder nach Vereinbarung. Familiäres KMU nahe Seetalplatz. Jetzt bewerben!",
-        IMG_FASSADENMALER,
+        "assets/team-streichen.jpg",
         body,
         job_schema,
     )
