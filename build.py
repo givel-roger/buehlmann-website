@@ -7,7 +7,7 @@ Texte sind modernisiert, Fakten unverändert (Gründung 1935, Rothenbad 18 usw.)
 from pathlib import Path
 from textwrap import dedent
 
-VERSION = "2.3.2"
+VERSION = "2.3.3"
 SITE_URL = "https://www.bs-luzern.ch"
 ROOT = Path(__file__).parent
 
@@ -449,9 +449,9 @@ def header_html(active: str) -> str:
       </div>
     </div>
     <nav class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-line">
-      <div class="max-w-6xl mx-auto px-6 flex items-center justify-between h-28 md:h-40 gap-6">
+      <div class="max-w-6xl mx-auto px-6 flex items-center justify-between h-28 md:h-48 gap-6">
         <a href="index.html" class="flex items-center shrink-0">
-          <img src="assets/logo.png" alt="Bühlmann Söhne AG, Maler und Gipser in Luzern" class="h-24 md:h-[130px] w-auto logo-anim" />
+          <img src="assets/logo.png" alt="Bühlmann Söhne AG, Maler und Gipser in Luzern" class="h-24 md:h-[180px] w-auto logo-anim" />
         </a>
         <div class="hidden md:flex items-center gap-7">
         {nav_html(active)}

@@ -1,5 +1,10 @@
 # Changelog
 
+## v2.3.3 — 2026-07-20
+
+- Logo in der Navigation grösser (180 px statt 130 px), Nav-Höhe angepasst;
+  bleibt dank hochauflösender Logo-Datei (600x423) auch auf Retina scharf
+
 ## v2.3.2 — 2026-07-20
 
 - Unpassendes Stockbild (amerikanisches Gebäude mit Bauarbeiter) ersetzt:
