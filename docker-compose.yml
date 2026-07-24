@@ -1,0 +1,8 @@
+services:
+  buehlmann:
+    build: .
+    container_name: buehlmann-app
+    restart: unless-stopped
+    # Nur lokal erreichbar; der Host-nginx macht Reverse-Proxy + SSL
+    ports:
+      - "127.0.0.1:3016:80"

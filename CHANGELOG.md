@@ -1,5 +1,11 @@
 # Changelog
 
+## v2.4.0 — 2026-07-20
+
+- Dockerisierung fürs Deployment: Dockerfile (nginx:alpine), docker-compose.yml
+  (Container buehlmann-app auf 127.0.0.1:3016), nginx-Site-Config und deploy/deploy.sh
+- Ziel: Server 2 (schulung-video, 204.168.145.158) als statischer nginx-Container
+
 ## v2.3.3 — 2026-07-20
 
 - Logo in der Navigation grösser (180 px statt 130 px), Nav-Höhe angepasst;
