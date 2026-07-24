@@ -1,5 +1,10 @@
 # Changelog
 
+## v2.4.1 — 2026-07-20
+
+- Logo nochmals grösser (200 px Desktop, 112 px Handy), Nav-Höhe angepasst;
+  auf allen Seiten identisch, bleibt scharf
+
 ## v2.4.0 — 2026-07-20
 
 - Dockerisierung fürs Deployment: Dockerfile (nginx:alpine), docker-compose.yml
