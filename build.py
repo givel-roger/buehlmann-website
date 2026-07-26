@@ -7,7 +7,7 @@ Texte sind modernisiert, Fakten unverändert (Gründung 1935, Rothenbad 18 usw.)
 from pathlib import Path
 from textwrap import dedent
 
-VERSION = "2.4.1"
+VERSION = "2.4.2"
 SITE_URL = "https://www.bs-luzern.ch"
 ROOT = Path(__file__).parent
 
@@ -639,7 +639,7 @@ def index_page() -> str:
 
     body = dedent(f"""
     <header class="relative min-h-[82vh] flex items-center overflow-hidden bg-ink">
-      <video class="absolute inset-0 w-full h-full object-cover" autoplay muted loop playsinline preload="metadata" poster="assets/hero-farben.jpg" aria-label="Einblick in die Arbeit der Bühlmann Söhne AG">
+      <video class="absolute inset-0 w-full h-full object-cover" autoplay muted loop playsinline preload="metadata" poster="assets/hero-poster.jpg" aria-label="Einblick in die Arbeit der Bühlmann Söhne AG">
         <source src="assets/hero-loop.mp4" type="video/mp4" />
       </video>
       <div class="absolute inset-0 bg-gradient-to-r from-ink/85 via-ink/55 to-ink/25" aria-hidden="true"></div>

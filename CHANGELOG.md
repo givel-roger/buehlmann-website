@@ -1,5 +1,11 @@
 # Changelog
 
+## v2.4.2 — 2026-07-26
+
+- Hero-Video ausgewechselt: neue Version (55 s, 720p, 5.9 MB, stumm/faststart)
+- Neues Ladevorschau-Bild direkt aus dem Video (echter Mitarbeiter im
+  bs-luzern.ch-Shirt) statt Unsplash-Bild
+
 ## v2.4.1 — 2026-07-20
 
 - Logo nochmals grösser (200 px Desktop, 112 px Handy), Nav-Höhe angepasst;
