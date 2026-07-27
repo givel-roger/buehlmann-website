@@ -1,5 +1,10 @@
 # Changelog
 
+## v2.5.8 — 2026-07-27
+
+- Mobile: zentriertes Logo nochmals groesser (160px), Leiste 176px
+
+
 ## v2.5.7 — 2026-07-27
 
 - Mobile: zentriertes Logo nochmals groesser (128px), Leiste 144px
