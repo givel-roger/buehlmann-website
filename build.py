@@ -7,7 +7,7 @@ Texte sind modernisiert, Fakten unverändert (Gründung 1935, Rothenbad 18 usw.)
 from pathlib import Path
 from textwrap import dedent
 
-VERSION = "2.5.1"
+VERSION = "2.5.2"
 SITE_URL = "https://www.bs-luzern.ch"
 ROOT = Path(__file__).parent
 
@@ -68,7 +68,7 @@ SERVICES = [
         "meta": "Fassaden streichen, renovieren und isolieren in Luzern. Eigene Roll- und Fassadengerüste, Farbstudien am Computer, Betonsanierung. Tel. 041 269 88 50.",
         "h1": "Fassaden, die Zeichen setzen",
         "lead": "Ob Holz, Beton, Naturstein, Verputz, Metall oder Kunststoff: Wir bearbeiten jede Fassade fachmännisch, mit eigenen Roll- und Fassadengerüsten.",
-        "image": IMG_GERUEST,
+        "image": "assets/arbeit-fassade.jpg",
         "sections": [
             ("Ein neues Kleid für Ihr Gebäude", "Eine neue Fassade ist für unsere Fachleute eine kreative Herausforderung, die viel Gefühl für das Objekt und seine Umgebung voraussetzt. Wir nehmen uns diese Zeit."),
             ("Farbstudien am Computer", "Bevor wir loslegen, zeigen wir Ihnen Ihr Gebäude in verschiedenen Farbvarianten am Bildschirm. So sehen Sie alle Nuancen Ihres zukünftigen Objekts und haben die Qual der Wahl."),
@@ -828,7 +828,7 @@ def index_page() -> str:
 def malerei_page() -> str:
     blocks = [
         ("Innen", "assets/team-streichen.jpg", "Malen, Spritzen, Tapezieren: Mit Spachtel, Pinsel, Spritzpistole und Tapetenbürste verschönern wir jeden Innenraum. Ob denkmalgeschützte Ratsherrenstube, modernes Bürogebäude oder Industriebau.", "innenmalerei.html"),
-        ("Aussen", IMG_GERUEST, "Ob Holz, Beton, Naturstein, Verputz, Metall oder Kunststoff: Wir bearbeiten jede Fassade fachmännisch. Eigene Roll- und Fassadengerüste machen uns schnell und flexibel.", "fassaden.html"),
+        ("Aussen", "assets/arbeit-fassade.jpg", "Ob Holz, Beton, Naturstein, Verputz, Metall oder Kunststoff: Wir bearbeiten jede Fassade fachmännisch. Eigene Roll- und Fassadengerüste machen uns schnell und flexibel.", "fassaden.html"),
         ("Unser Spritzwerk", IMG_FARBEIMER, "Mit unserer modernen Spritzanlage für Industrie- und Bauteile lackieren wir auch grossflächige Gegenstände wie Jalousieläden im Thermo-Lackier-Verfahren.", "spritzwerk.html"),
         ("Kundengipserei", IMG_ROLLER, "Unsere Kundengipserei ist für Einsätze jeglicher Art ausgerüstet. Verputzarbeiten und Betonsanierungen erledigen wir prompt und unkompliziert.", "gipserei.html"),
     ]

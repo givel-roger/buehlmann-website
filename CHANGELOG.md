@@ -1,5 +1,11 @@
 # Changelog
 
+## v2.5.2 — 2026-07-27
+
+- Gerüst-Stockbild auf Fassaden-Seite und Malerei-Block "Aussen" ersetzt durch
+  echtes Standbild aus dem Firmenvideo (Maler bei der Arbeit)
+
+
 ## v2.5.1 — 2026-07-27
 
 - Kontaktformular zusaetzlich unten auf der Startseite (Abschnitt "Bereit fuer Ihr Projekt?")
