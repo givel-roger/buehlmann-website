@@ -1,5 +1,13 @@
 # Changelog
 
+## v2.6.0 — 2026-07-27
+
+- Mobile-Header aufgeraeumt: solides weisses Header-Band statt halbtransparent
+  (gelber Schimmer/Durchscheinen entfernt), dezenter Schatten
+- Logo-Hover-Effekt nur noch auf Geraeten mit Maus (kein haengender Effekt auf Touch)
+- Tap-Highlight entfernt; zentriertes Logo auf stimmige Groesse (80px) gesetzt
+
+
 ## v2.5.8 — 2026-07-27
 
 - Mobile: zentriertes Logo nochmals groesser (160px), Leiste 176px

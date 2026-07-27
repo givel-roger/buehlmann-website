@@ -33,12 +33,14 @@
   .card-lift { transition: transform .35s ease, box-shadow .35s ease; }
   .card-lift:hover { transform: translateY(-4px); box-shadow: 0 18px 40px -18px rgba(16,28,61,.25); }
   html { scroll-behavior: smooth; }
+  a, button { -webkit-tap-highlight-color: transparent; }
   /* Logo: Einblenden, gelegentliches Winken, interaktiver Hover */
   @keyframes logo-in { 0% { opacity: 0; transform: translateY(-10px) rotate(-8deg); } 100% { opacity: 1; transform: translateY(0) rotate(0); } }
   @keyframes logo-wave { 0%, 86%, 100% { transform: rotate(0); } 88% { transform: rotate(-5deg); } 92% { transform: rotate(4deg); } 96% { transform: rotate(-2deg); } }
   .logo-anim { animation: logo-in .8s ease-out both, logo-wave 9s ease-in-out 3s infinite; transform-origin: 50% 80%; transition: transform .35s ease, filter .35s ease; cursor: pointer; }
-  .logo-anim:hover { animation-play-state: paused, paused; transform: rotate(-5deg) scale(1.12); filter: drop-shadow(0 6px 14px rgba(16,28,61,.35)); }
-  .logo-anim:active { transform: rotate(3deg) scale(.96); }
+  @media (hover: hover) {
+    .logo-anim:hover { animation-play-state: paused, paused; transform: rotate(-5deg) scale(1.08); filter: drop-shadow(0 6px 14px rgba(16,28,61,.35)); }
+  }
   /* Sanftes Einblenden beim Scrollen */
   .reveal { opacity: 0; transform: translateY(26px); transition: opacity .8s ease, transform .8s ease; }
   .reveal.visible { opacity: 1; transform: none; }
@@ -70,10 +72,10 @@
     </span>
   </div>
 </div>
-<nav class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-line">
-  <div class="relative max-w-6xl mx-auto px-6 flex items-center justify-between h-44 md:h-52 gap-6">
+<nav class="sticky top-0 z-50 bg-white border-b border-line shadow-sm">
+  <div class="relative max-w-6xl mx-auto px-6 flex items-center justify-between h-28 md:h-52 gap-6">
     <a href="index.html" class="flex items-center shrink-0 absolute left-1/2 -translate-x-1/2 md:static md:left-auto md:translate-x-0">
-      <img src="assets/logo.png" alt="Bühlmann Söhne AG, Maler und Gipser in Luzern" class="h-40 md:h-[200px] w-auto logo-anim" />
+      <img src="assets/logo.png" alt="Bühlmann Söhne AG, Maler und Gipser in Luzern" class="h-20 md:h-[200px] w-auto logo-anim" />
     </a>
     <div class="hidden md:flex items-center gap-7">
     <a class="text-[15px] text-ink-soft hover:text-ink transition-colors" href="index.html">Home</a>
@@ -213,7 +215,7 @@
   </div>
   <div class="border-t border-line">
     <div class="max-w-6xl mx-auto px-6 py-5 flex flex-col md:flex-row justify-between items-center gap-3 text-[13px] text-ink-soft">
-      <span>v2.5.8</span>
+      <span>v2.6.0</span>
       <span>© 2026 Bühlmann Söhne AG · Rothenbad 18 · 6015 Luzern</span>
       <span class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[16px] text-ink">verified</span>Schweizer Handwerk seit 1935</span>
     </div>
