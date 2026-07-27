@@ -7,7 +7,7 @@ Texte sind modernisiert, Fakten unverändert (Gründung 1935, Rothenbad 18 usw.)
 from pathlib import Path
 from textwrap import dedent
 
-VERSION = "2.5.3"
+VERSION = "2.5.4"
 SITE_URL = "https://www.bs-luzern.ch"
 ROOT = Path(__file__).parent
 
@@ -349,7 +349,7 @@ SCRIPTS = dedent("""
 # Interaktive Farbstudie: Haus per Klick umfaerben
 FARBSTUDIE = dedent("""
 <section class="bg-paper" id="farbstudie">
-  <div class="max-w-6xl mx-auto px-6 py-20 grid md:grid-cols-2 gap-14 items-center">
+  <div class="max-w-6xl mx-auto px-6 py-14 md:py-20 grid md:grid-cols-2 gap-8 md:gap-14 items-center">
     <div>
       <span class="eyebrow text-ink-soft block mb-4">Zum Ausprobieren</span>
       <h2 class="font-display text-3xl md:text-4xl text-ink mb-5">Welche Farbe passt zu Ihrem Haus?</h2>
@@ -565,7 +565,7 @@ def hero_light(eyebrow: str, h1: str, lead: str, image: str, cta_label: str, cta
     """Heller, edler Seiten-Hero: Text links, Bild rechts."""
     return dedent(f"""
     <header class="bg-paper">
-      <div class="max-w-6xl mx-auto px-6 pt-16 pb-14 md:pt-24 md:pb-20 grid md:grid-cols-2 gap-12 items-center">
+      <div class="max-w-6xl mx-auto px-6 pt-12 pb-12 md:pt-24 md:pb-20 grid md:grid-cols-2 gap-12 items-center">
         <div>
           <span class="eyebrow text-ink-soft block mb-4">{eyebrow}</span>
           <h1 class="font-display text-4xl md:text-5xl leading-[1.12] text-ink mb-6">{h1}</h1>
@@ -588,7 +588,7 @@ def hero_light(eyebrow: str, h1: str, lead: str, image: str, cta_label: str, cta
 def cta_section(title: str) -> str:
     return dedent(f"""
     <section class="bg-ink text-white">
-      <div class="max-w-4xl mx-auto px-6 py-20 text-center">
+      <div class="max-w-4xl mx-auto px-6 py-14 md:py-20 text-center">
         <h2 class="font-display text-3xl md:text-4xl mb-5">{title}</h2>
         <p class="text-white/75 text-lg mb-9">Rufen Sie uns an oder schreiben Sie uns. Wir beraten Sie gerne persönlich.</p>
         <div class="flex flex-wrap gap-4 justify-center">
@@ -721,8 +721,8 @@ def index_page() -> str:
     </header>
 
     <section class="bg-mist border-y border-line">
-      <div class="max-w-6xl mx-auto px-6 py-20">
-        <div class="text-center mb-12">
+      <div class="max-w-6xl mx-auto px-6 py-14 md:py-20">
+        <div class="text-center mb-8 md:mb-12">
           <span class="eyebrow text-ink-soft block mb-3">Unsere Leistungen</span>
           <h2 class="font-display text-3xl md:text-4xl text-ink">Das komplette Maler- und Gipserhandwerk</h2>
         </div>
@@ -733,7 +733,7 @@ def index_page() -> str:
     </section>
 
     <section class="bg-paper">
-      <div class="max-w-6xl mx-auto px-6 py-20 grid md:grid-cols-2 gap-14 items-center">
+      <div class="max-w-6xl mx-auto px-6 py-14 md:py-20 grid md:grid-cols-2 gap-8 md:gap-14 items-center">
         <div class="relative order-2 md:order-1">
           <img src="assets/arbeit-roller.jpg" alt="Maler der Bühlmann Söhne AG bei der Arbeit" class="rounded-lg shadow-lg w-full aspect-[4/3] object-cover" />
           <img src="assets/referenz-altstadt.jpg" alt="Referenzobjekt in der Stadt Luzern" class="hidden md:block absolute -bottom-8 -right-8 w-56 rounded-lg shadow-xl border-4 border-white" />
@@ -752,8 +752,8 @@ def index_page() -> str:
     {FARBSTUDIE}
 
     <section class="bg-paper border-y border-line">
-      <div class="max-w-6xl mx-auto px-6 py-20">
-        <div class="flex flex-wrap items-end justify-between gap-6 mb-12">
+      <div class="max-w-6xl mx-auto px-6 py-14 md:py-20">
+        <div class="flex flex-wrap items-end justify-between gap-6 mb-8 md:mb-12">
           <div>
             <span class="eyebrow text-ink-soft block mb-3">Referenzen</span>
             <h2 class="font-display text-3xl md:text-4xl text-ink">Spuren unserer Arbeit</h2>
@@ -767,7 +767,7 @@ def index_page() -> str:
     </section>
 
     <section class="bg-paper">
-      <div class="max-w-6xl mx-auto px-6 py-20 grid md:grid-cols-2 gap-14 items-center">
+      <div class="max-w-6xl mx-auto px-6 py-14 md:py-20 grid md:grid-cols-2 gap-8 md:gap-14 items-center">
         <div>
           <span class="eyebrow text-ink-soft block mb-4">Einsatzgebiet</span>
           <h2 class="font-display text-3xl md:text-4xl text-ink mb-5">Drei Standorte, eine Region</h2>
@@ -792,7 +792,7 @@ def index_page() -> str:
     </section>
 
     <section id="kontakt" class="bg-mist border-y border-line">
-      <div class="max-w-6xl mx-auto px-6 py-20 grid md:grid-cols-2 gap-12 items-start">
+      <div class="max-w-6xl mx-auto px-6 py-14 md:py-20 grid md:grid-cols-2 gap-12 items-start">
         <div>
           <span class="eyebrow text-ink-soft block mb-4">Kontakt</span>
           <h2 class="font-display text-3xl md:text-4xl text-ink mb-5">Bereit für Ihr Projekt?</h2>
@@ -853,13 +853,13 @@ def malerei_page() -> str:
     {hero_light("Malerei", "Seit über 90 Jahren Farbe im Alltag", "Spuren unserer Arbeit finden Sie in der ganzen Schweiz, auf Gebäudefassaden ebenso wie in Wohn- und Geschäftsräumen. Traditionelles Handwerk, kombiniert mit zukunftsorientierten Techniken und neuen Werkstoffen.", "assets/hero-farben.jpg", "Offerte anfragen")}
 
     <section class="bg-mist border-y border-line">
-      <div class="max-w-6xl mx-auto px-6 py-20 space-y-20">
+      <div class="max-w-6xl mx-auto px-6 py-14 md:py-20 space-y-14 md:space-y-20">
         {blocks_html}
       </div>
     </section>
 
     <section class="bg-paper">
-      <div class="max-w-6xl mx-auto px-6 py-20">
+      <div class="max-w-6xl mx-auto px-6 py-14 md:py-20">
         <div class="text-center mb-10">
           <span class="eyebrow text-ink-soft block mb-3">Kompetente Mitarbeitende</span>
           <h2 class="font-display text-3xl text-ink mb-5">Qualität vor Quantität</h2>
@@ -888,7 +888,7 @@ def malerei_page() -> str:
 # ---------------------------------------------------------------------------
 def service_page(s: dict) -> str:
     sections_html = "\n".join(
-        f'<section class="mb-12"><h2 class="font-display text-2xl md:text-3xl text-ink mb-4">{t}</h2><p class="text-ink-soft text-[16px] leading-relaxed">{b}</p></section>'
+        f'<section class="mb-8 md:mb-12"><h2 class="font-display text-2xl md:text-3xl text-ink mb-4">{t}</h2><p class="text-ink-soft text-[16px] leading-relaxed">{b}</p></section>'
         for t, b in s["sections"]
     )
     faq_html = "\n".join(
@@ -911,7 +911,7 @@ def service_page(s: dict) -> str:
     {hero_light("Bühlmann Söhne AG · Luzern", s["h1"], s["lead"], s["image"], "Offerte anfragen")}
 
     <section class="bg-mist border-y border-line">
-      <div class="max-w-3xl mx-auto px-6 py-20">
+      <div class="max-w-3xl mx-auto px-6 py-14 md:py-20">
         {sections_html}
       </div>
     </section>
@@ -919,7 +919,7 @@ def service_page(s: dict) -> str:
     {farbstudie}
 
     <section class="bg-paper">
-      <div class="max-w-3xl mx-auto px-6 py-20">
+      <div class="max-w-3xl mx-auto px-6 py-14 md:py-20">
         <h2 class="font-display text-3xl text-ink mb-8 text-center">Häufige Fragen</h2>
         {faq_html}
       </div>
@@ -936,14 +936,14 @@ def service_page(s: dict) -> str:
 # ---------------------------------------------------------------------------
 def region_page(r: dict) -> str:
     sections_html = "\n".join(
-        f'<section class="mb-12"><h2 class="font-display text-2xl md:text-3xl text-ink mb-4">{t}</h2><p class="text-ink-soft text-[16px] leading-relaxed">{b}</p></section>'
+        f'<section class="mb-8 md:mb-12"><h2 class="font-display text-2xl md:text-3xl text-ink mb-4">{t}</h2><p class="text-ink-soft text-[16px] leading-relaxed">{b}</p></section>'
         for t, b in r["body"]
     )
     body = dedent(f"""
     {hero_light("Einsatzgebiet · " + r["name"], r["h1"], r["lead"], r.get("image", IMG_GERUEST), "Offerte anfragen")}
 
     <section class="bg-mist border-y border-line">
-      <div class="max-w-3xl mx-auto px-6 py-20">
+      <div class="max-w-3xl mx-auto px-6 py-14 md:py-20">
         {sections_html}
       </div>
     </section>
@@ -1003,7 +1003,7 @@ def unternehmen_page() -> str:
     {hero_light("Unternehmen", "Ein Familienbetrieb in dritter Generation", "Seit 1935 steht der Name Bühlmann in Luzern für sauberes Maler- und Gipserhandwerk. Heute führt Patrick Bühlmann den Betrieb mit 13 Mitarbeitenden im eigenen Gebäude im Rothenbad.", IMG_LUZERN_PANO, "Kontakt aufnehmen")}
 
     <section class="bg-mist border-y border-line">
-      <div class="max-w-6xl mx-auto px-6 py-20">
+      <div class="max-w-6xl mx-auto px-6 py-14 md:py-20">
         <h2 class="font-display text-3xl text-ink mb-10 text-center">Zahlen und Fakten</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl mx-auto">
           {facts_html}
@@ -1012,7 +1012,7 @@ def unternehmen_page() -> str:
     </section>
 
     <section class="bg-paper">
-      <div class="max-w-6xl mx-auto px-6 py-20 grid md:grid-cols-2 gap-16">
+      <div class="max-w-6xl mx-auto px-6 py-14 md:py-20 grid md:grid-cols-2 gap-16">
         <div>
           <span class="eyebrow text-ink-soft block mb-3">Geschichte</span>
           <h2 class="font-display text-3xl text-ink mb-10">Von der Garage zum Neubau</h2>
@@ -1030,8 +1030,8 @@ def unternehmen_page() -> str:
     </section>
 
     <section class="bg-mist border-y border-line">
-      <div class="max-w-6xl mx-auto px-6 py-20">
-        <div class="text-center mb-12">
+      <div class="max-w-6xl mx-auto px-6 py-14 md:py-20">
+        <div class="text-center mb-8 md:mb-12">
           <span class="eyebrow text-ink-soft block mb-3">Unternehmensleitbild</span>
           <h2 class="font-display text-3xl text-ink">Wofür wir stehen</h2>
         </div>
@@ -1076,7 +1076,7 @@ def referenzen_page() -> str:
     {hero_light("Referenzen", "Spuren unserer Arbeit", "Auf Gebäudefassaden ebenso wie in Wohn- und Geschäftsräumen: Eine Auswahl von Projekten aus Luzern und der Innerschweiz.", "assets/referenz-hero.jpg", "Offerte anfragen")}
 
     <section class="bg-mist border-y border-line">
-      <div class="max-w-6xl mx-auto px-6 py-20">
+      <div class="max-w-6xl mx-auto px-6 py-14 md:py-20">
         <div class="grid md:grid-cols-3 gap-6">
           {refs_html}
         </div>
@@ -1129,7 +1129,7 @@ def jobs_page() -> str:
     {hero_light("Jobs", "Wir suchen dich!", "Wir sind ein typisches kleineres KMU mit familiärem Stil: viel Freiraum, vielseitige Aufgaben und ein Team, in dem Mitdenken und Mitwirken zählen.", "assets/team-streichen.jpg", "Jetzt bewerben")}
 
     <section class="bg-mist border-y border-line">
-      <div class="max-w-4xl mx-auto px-6 py-20">
+      <div class="max-w-4xl mx-auto px-6 py-14 md:py-20">
         <div class="bg-white border border-line rounded-lg p-8 md:p-12 shadow-sm">
           <div class="flex flex-wrap items-center justify-between gap-4 mb-8 pb-8 border-b border-line">
             <div>
@@ -1188,7 +1188,7 @@ def kontakt_page() -> str:
     {hero_light("Kontakt", "Wir freuen uns auf Ihr Projekt", "Rufen Sie uns an, schreiben Sie uns oder besuchen Sie uns im Rothenbad in Luzern. Wir beraten Sie gerne persönlich.", IMG_LUZERN_UFER, "E-Mail schreiben", "mailto:" + EMAIL)}
 
     <section class="bg-mist border-y border-line">
-      <div class="max-w-6xl mx-auto px-6 py-20 grid md:grid-cols-2 gap-12">
+      <div class="max-w-6xl mx-auto px-6 py-14 md:py-20 grid md:grid-cols-2 gap-8 md:gap-12">
         <div>
           <h2 class="font-display text-2xl text-ink mb-8">So erreichen Sie uns</h2>
           <div class="space-y-4">
