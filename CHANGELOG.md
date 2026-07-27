@@ -1,5 +1,13 @@
 # Changelog
 
+## v2.4.3 — 2026-07-26
+
+- Kontakt-Hero: doppelte Telefonnummer entfernt, erster Knopf jetzt "E-Mail schreiben"
+- Faxnummer überall entfernt (Footer + Kontaktseite)
+- Unscharfes Fassadenfoto (520 px) im Referenzen-Hero und Malerei-Block "Aussen"
+  ersetzt; Referenzen-Hero zeigt jetzt ein echtes, scharfes Standbild aus dem
+  Firmenvideo (zwei Maler beim Streichen, 1920 px)
+
 ## v2.4.2 — 2026-07-26
 
 - Hero-Video ausgewechselt: neue Version (55 s, 720p, 5.9 MB, stumm/faststart)

@@ -7,7 +7,7 @@ Texte sind modernisiert, Fakten unverändert (Gründung 1935, Rothenbad 18 usw.)
 from pathlib import Path
 from textwrap import dedent
 
-VERSION = "2.4.2"
+VERSION = "2.4.3"
 SITE_URL = "https://www.bs-luzern.ch"
 ROOT = Path(__file__).parent
 
@@ -502,7 +502,6 @@ def footer_html() -> str:
             <li class="font-semibold text-ink">Bühlmann Söhne AG</li>
             <li>{ADDRESS}, {CITY}</li>
             <li><a href="tel:{PHONE_LINK}" class="hover:text-ink">Tel. {PHONE_DISPLAY}</a></li>
-            <li>Fax {FAX_DISPLAY}</li>
             <li><a href="mailto:{EMAIL}" class="hover:text-ink">{EMAIL}</a></li>
             <li><a href="{MAPS_URL}" target="_blank" rel="noopener" class="underline decoration-accent decoration-2 underline-offset-4 hover:text-ink">Auf Google Maps zeigen</a></li>
           </ul>
@@ -563,7 +562,7 @@ def page_shell(slug: str, title: str, meta: str, og_image: str, body: str, extra
 </html>""").strip()
 
 
-def hero_light(eyebrow: str, h1: str, lead: str, image: str, cta_label: str) -> str:
+def hero_light(eyebrow: str, h1: str, lead: str, image: str, cta_label: str, cta_href: str = "kontakt.html") -> str:
     """Heller, edler Seiten-Hero: Text links, Bild rechts."""
     return dedent(f"""
     <header class="bg-paper">
@@ -574,7 +573,7 @@ def hero_light(eyebrow: str, h1: str, lead: str, image: str, cta_label: str) -> 
           <span class="accent-bar mb-6"></span>
           <p class="text-ink-soft text-lg leading-relaxed mb-9 max-w-xl">{lead}</p>
           <div class="flex flex-wrap gap-4">
-            <a href="kontakt.html" class="bg-ink text-white text-[13px] font-semibold tracking-[0.14em] uppercase px-7 py-4 rounded hover:bg-[#1a2a55] transition-colors">{cta_label}</a>
+            <a href="{cta_href}" class="bg-ink text-white text-[13px] font-semibold tracking-[0.14em] uppercase px-7 py-4 rounded hover:bg-[#1a2a55] transition-colors">{cta_label}</a>
             <a href="tel:{PHONE_LINK}" class="border border-line bg-white text-ink text-[13px] font-semibold tracking-[0.14em] uppercase px-7 py-4 rounded hover:border-ink transition-colors flex items-center gap-2"><span class="material-symbols-outlined text-[18px]">call</span>{PHONE_DISPLAY}</a>
           </div>
         </div>
@@ -751,7 +750,7 @@ def index_page() -> str:
 def malerei_page() -> str:
     blocks = [
         ("Innen", "assets/team-streichen.jpg", "Malen, Spritzen, Tapezieren: Mit Spachtel, Pinsel, Spritzpistole und Tapetenbürste verschönern wir jeden Innenraum. Ob denkmalgeschützte Ratsherrenstube, modernes Bürogebäude oder Industriebau.", "innenmalerei.html"),
-        ("Aussen", "assets/fassade.jpg", "Ob Holz, Beton, Naturstein, Verputz, Metall oder Kunststoff: Wir bearbeiten jede Fassade fachmännisch. Eigene Roll- und Fassadengerüste machen uns schnell und flexibel.", "fassaden.html"),
+        ("Aussen", IMG_GERUEST, "Ob Holz, Beton, Naturstein, Verputz, Metall oder Kunststoff: Wir bearbeiten jede Fassade fachmännisch. Eigene Roll- und Fassadengerüste machen uns schnell und flexibel.", "fassaden.html"),
         ("Unser Spritzwerk", IMG_FARBEIMER, "Mit unserer modernen Spritzanlage für Industrie- und Bauteile lackieren wir auch grossflächige Gegenstände wie Jalousieläden im Thermo-Lackier-Verfahren.", "spritzwerk.html"),
         ("Kundengipserei", IMG_ROLLER, "Unsere Kundengipserei ist für Einsätze jeglicher Art ausgerüstet. Verputzarbeiten und Betonsanierungen erledigen wir prompt und unkompliziert.", "gipserei.html"),
     ]
@@ -996,7 +995,7 @@ def referenzen_page() -> str:
         for img, t, d in refs
     )
     body = dedent(f"""
-    {hero_light("Referenzen", "Spuren unserer Arbeit", "Auf Gebäudefassaden ebenso wie in Wohn- und Geschäftsräumen: Eine Auswahl von Projekten aus Luzern und der Innerschweiz.", "assets/fassade.jpg", "Offerte anfragen")}
+    {hero_light("Referenzen", "Spuren unserer Arbeit", "Auf Gebäudefassaden ebenso wie in Wohn- und Geschäftsräumen: Eine Auswahl von Projekten aus Luzern und der Innerschweiz.", "assets/referenz-hero.jpg", "Offerte anfragen")}
 
     <section class="bg-mist border-y border-line">
       <div class="max-w-6xl mx-auto px-6 py-20">
@@ -1012,7 +1011,7 @@ def referenzen_page() -> str:
         "referenzen",
         "Referenzen | Bühlmann Söhne AG, Maler Luzern",
         "Referenzprojekte der Bühlmann Söhne AG: Fassadenrenovationen, Wohnungsrenovationen, Neubauten und Geschäftsräume in Luzern und der Innerschweiz.",
-        "assets/fassade.jpg",
+        "assets/referenz-hero.jpg",
         body,
     )
 
@@ -1108,7 +1107,7 @@ def jobs_page() -> str:
 # ---------------------------------------------------------------------------
 def kontakt_page() -> str:
     body = dedent(f"""
-    {hero_light("Kontakt", "Wir freuen uns auf Ihr Projekt", "Rufen Sie uns an, schreiben Sie uns oder besuchen Sie uns im Rothenbad in Luzern. Wir beraten Sie gerne persönlich.", IMG_LUZERN_UFER, "Anrufen: " + PHONE_DISPLAY)}
+    {hero_light("Kontakt", "Wir freuen uns auf Ihr Projekt", "Rufen Sie uns an, schreiben Sie uns oder besuchen Sie uns im Rothenbad in Luzern. Wir beraten Sie gerne persönlich.", IMG_LUZERN_UFER, "E-Mail schreiben", "mailto:" + EMAIL)}
 
     <section class="bg-mist border-y border-line">
       <div class="max-w-6xl mx-auto px-6 py-20 grid md:grid-cols-2 gap-12">
@@ -1121,7 +1120,7 @@ def kontakt_page() -> str:
             </div>
             <div class="bg-white border border-line rounded-lg px-6 py-5 flex items-start gap-4">
               <span class="material-symbols-outlined text-ink mt-0.5">call</span>
-              <div><span class="font-semibold text-ink block mb-0.5">Telefon</span><a href="tel:{PHONE_LINK}" class="text-ink-soft text-[15px] hover:text-ink">{PHONE_DISPLAY}</a><span class="text-ink-soft text-[15px]"> · Fax {FAX_DISPLAY}</span></div>
+              <div><span class="font-semibold text-ink block mb-0.5">Telefon</span><a href="tel:{PHONE_LINK}" class="text-ink-soft text-[15px] hover:text-ink">{PHONE_DISPLAY}</a></div>
             </div>
             <div class="bg-white border border-line rounded-lg px-6 py-5 flex items-start gap-4">
               <span class="material-symbols-outlined text-ink mt-0.5">mail</span>
