@@ -1,5 +1,12 @@
 # Changelog
 
+## v2.6.1 — 2026-07-27
+
+- Neuer Sponsor-Abschnitt auf der Startseite: "Stolzer Sponsor des FC Luzern",
+  gross/plakativ (Navy-Band, gelb). Fussball-Symbol als Platzhalter bis das
+  offizielle FCL-Logo (assets/fcl-logo.png) eingesetzt wird
+
+
 ## v2.6.0 — 2026-07-27
 
 - Mobile-Header aufgeraeumt: solides weisses Header-Band statt halbtransparent

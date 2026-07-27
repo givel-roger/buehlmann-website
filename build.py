@@ -7,7 +7,7 @@ Texte sind modernisiert, Fakten unverändert (Gründung 1935, Rothenbad 18 usw.)
 from pathlib import Path
 from textwrap import dedent
 
-VERSION = "2.6.0"
+VERSION = "2.6.1"
 SITE_URL = "https://www.bs-luzern.ch"
 ROOT = Path(__file__).parent
 
@@ -747,6 +747,21 @@ def index_page() -> str:
           <p class="text-ink-soft text-[16px] leading-relaxed mb-4">1935 von Harry Bühlmann in einer einfachen Garage an der Dammstrasse gegründet, ist die Bühlmann Söhne AG heute ein moderner Betrieb im eigenen Gebäude im Rothenbad, Luzern.</p>
           <p class="text-ink-soft text-[16px] leading-relaxed mb-8">Geschäftsführer Patrick Bühlmann führt das Unternehmen mit 10 Malern und 3 Mitarbeitenden in der Administration. Moderne Maschinen und ein umfangreicher Wagenpark sorgen für effizientes Arbeiten. Und weil uns der Nachwuchs wichtig ist, bilden wir regelmässig Malerlehrlinge aus.</p>
           <a href="unternehmen.html" class="text-[13px] font-semibold tracking-[0.14em] uppercase text-ink border-b-2 border-accent pb-1">Geschichte und Leitbild</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-ink text-white overflow-hidden">
+      <div class="max-w-6xl mx-auto px-6 py-14 md:py-20 grid md:grid-cols-[auto_1fr] gap-8 md:gap-14 items-center">
+        <div class="mx-auto md:mx-0 bg-white rounded-2xl p-6 md:p-8 flex items-center justify-center w-40 h-40 md:w-52 md:h-52 shrink-0">
+          <img src="assets/fcl-logo.png" alt="FC Luzern" class="w-full h-full object-contain" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+          <span class="material-symbols-outlined text-ink" style="display:none;font-size:110px;">sports_soccer</span>
+        </div>
+        <div class="text-center md:text-left">
+          <span class="eyebrow text-accent block mb-3 text-base md:text-lg tracking-[0.3em]">Sponsor</span>
+          <h2 class="font-display text-4xl md:text-6xl leading-[1.05] mb-5">Stolzer Sponsor des<br class="hidden md:block" /> FC&nbsp;Luzern</h2>
+          <span class="accent-bar mb-6"></span>
+          <p class="text-white/80 text-lg leading-relaxed max-w-xl mx-auto md:mx-0">Wir unterstützen den Fussball in unserer Region. Als Luzerner Familienbetrieb stehen wir hinter dem FC Luzern, mit Herzblut und Farbe.</p>
         </div>
       </div>
     </section>
