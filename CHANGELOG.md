@@ -1,5 +1,10 @@
 # Changelog
 
+## v2.4.4 — 2026-07-26
+
+- Fax restlos entfernt (auch aus den unsichtbaren SEO-/Schema.org-Daten)
+
+
 ## v2.4.3 — 2026-07-26
 
 - Kontakt-Hero: doppelte Telefonnummer entfernt, erster Knopf jetzt "E-Mail schreiben"

@@ -7,13 +7,12 @@ Texte sind modernisiert, Fakten unverändert (Gründung 1935, Rothenbad 18 usw.)
 from pathlib import Path
 from textwrap import dedent
 
-VERSION = "2.4.3"
+VERSION = "2.4.4"
 SITE_URL = "https://www.bs-luzern.ch"
 ROOT = Path(__file__).parent
 
 PHONE_DISPLAY = "041 269 88 50"
 PHONE_LINK = "+41412698850"
-FAX_DISPLAY = "041 269 88 60"
 EMAIL = "info@bs-luzern.ch"
 ADDRESS = "Rothenbad 18"
 CITY = "6015 Luzern"
@@ -524,7 +523,7 @@ def schema_org(page_url: str, extra: str = "") -> str:
         '{"@context":"https://schema.org","@graph":[{"@type":"LocalBusiness","@id":"' + SITE_URL + '/#org",'
         '"name":"Bühlmann Söhne AG","image":"' + SITE_URL + '/assets/logo.png","logo":"' + SITE_URL + '/assets/logo.png",'
         '"slogan":"Wir setzen Zeichen mit Farbe",'
-        '"telephone":"+41 41 269 88 50","faxNumber":"+41 41 269 88 60","email":"' + EMAIL + '",'
+        '"telephone":"+41 41 269 88 50","email":"' + EMAIL + '",'
         '"url":"' + page_url + '",'
         '"address":{"@type":"PostalAddress","streetAddress":"' + ADDRESS + '","addressLocality":"Luzern","postalCode":"6015","addressCountry":"CH"},'
         '"areaServed":["Luzern","Emmen","Kriens","Hergiswil","Alpnach","Nidwalden","Obwalden","Innerschweiz"],'
