@@ -7,7 +7,7 @@ Texte sind modernisiert, Fakten unverändert (Gründung 1935, Rothenbad 18 usw.)
 from pathlib import Path
 from textwrap import dedent
 
-VERSION = "2.6.1"
+VERSION = "2.6.2"
 SITE_URL = "https://www.bs-luzern.ch"
 ROOT = Path(__file__).parent
 
@@ -752,17 +752,15 @@ def index_page() -> str:
     </section>
 
     <section class="bg-ink text-white overflow-hidden">
-      <div class="max-w-6xl mx-auto px-6 py-14 md:py-20 grid md:grid-cols-[auto_1fr] gap-8 md:gap-14 items-center">
-        <div class="mx-auto md:mx-0 bg-white rounded-2xl p-6 md:p-8 flex items-center justify-center w-40 h-40 md:w-52 md:h-52 shrink-0">
+      <div class="max-w-4xl mx-auto px-6 py-14 md:py-20 text-center flex flex-col items-center">
+        <span class="eyebrow text-accent block mb-6 text-lg md:text-2xl tracking-[0.4em]">Sponsor</span>
+        <div class="bg-white rounded-2xl p-6 md:p-8 flex items-center justify-center w-44 h-44 md:w-56 md:h-56 mb-8">
           <img src="assets/fcl-logo.png" alt="FC Luzern" class="w-full h-full object-contain" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
-          <span class="material-symbols-outlined text-ink" style="display:none;font-size:110px;">sports_soccer</span>
+          <span class="material-symbols-outlined text-ink" style="display:none;font-size:120px;">sports_soccer</span>
         </div>
-        <div class="text-center md:text-left">
-          <span class="eyebrow text-accent block mb-3 text-base md:text-lg tracking-[0.3em]">Sponsor</span>
-          <h2 class="font-display text-4xl md:text-6xl leading-[1.05] mb-5">Stolzer Sponsor des<br class="hidden md:block" /> FC&nbsp;Luzern</h2>
-          <span class="accent-bar mb-6"></span>
-          <p class="text-white/80 text-lg leading-relaxed max-w-xl mx-auto md:mx-0">Wir unterstützen den Fussball in unserer Region. Als Luzerner Familienbetrieb stehen wir hinter dem FC Luzern, mit Herzblut und Farbe.</p>
-        </div>
+        <h2 class="font-display text-3xl md:text-5xl leading-[1.1] mb-5">Stolzer Sponsor des FC&nbsp;Luzern</h2>
+        <span class="accent-bar mb-6"></span>
+        <p class="text-white/80 text-lg leading-relaxed max-w-xl">Als Luzerner Familienbetrieb stehen wir hinter dem FC Luzern, mit Herzblut und Farbe.</p>
       </div>
     </section>
 

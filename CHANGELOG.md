@@ -1,5 +1,11 @@
 # Changelog
 
+## v2.6.2 — 2026-07-27
+
+- Sponsor-Abschnitt neu zentriert: "Sponsor" gross oben, Wappen darunter
+  (Platzhalter bis offizielles FCL-Logo geliefert)
+
+
 ## v2.6.1 — 2026-07-27
 
 - Neuer Sponsor-Abschnitt auf der Startseite: "Stolzer Sponsor des FC Luzern",
