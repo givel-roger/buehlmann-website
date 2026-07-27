@@ -7,7 +7,7 @@ Texte sind modernisiert, Fakten unverändert (Gründung 1935, Rothenbad 18 usw.)
 from pathlib import Path
 from textwrap import dedent
 
-VERSION = "2.4.4"
+VERSION = "2.5.0"
 SITE_URL = "https://www.bs-luzern.ch"
 ROOT = Path(__file__).parent
 
@@ -1133,22 +1133,59 @@ def kontakt_page() -> str:
         </div>
         <div>
           <h2 class="font-display text-2xl text-ink mb-8">Nachricht schreiben</h2>
-          <form class="bg-white border border-line rounded-lg p-8 space-y-5" onsubmit="event.preventDefault(); const f=this; const b=encodeURIComponent('Name: '+f.name.value+'\\nTelefon: '+f.tel.value+'\\n\\n'+f.msg.value); location.href='mailto:{EMAIL}?subject='+encodeURIComponent('Anfrage über bs-luzern.ch')+'&body='+b;">
-            <p class="text-[14px] text-ink-soft">Füllen Sie das Formular aus, es öffnet sich Ihre E-Mail-App mit der fertigen Nachricht an uns.</p>
+          <form id="kontaktform" class="bg-white border border-line rounded-lg p-8 space-y-5">
+            <p class="text-[14px] text-ink-soft">Wir melden uns so rasch wie möglich bei Ihnen zurück.</p>
             <div>
               <label class="block text-[14px] font-semibold text-ink mb-1.5" for="name">Name*</label>
-              <input required id="name" name="name" type="text" class="w-full rounded border-line focus:border-ink focus:ring-accent" />
+              <input required id="name" name="name" type="text" autocomplete="name" class="w-full rounded border-line focus:border-ink focus:ring-accent" />
+            </div>
+            <div>
+              <label class="block text-[14px] font-semibold text-ink mb-1.5" for="email">E-Mail*</label>
+              <input required id="email" name="email" type="email" autocomplete="email" class="w-full rounded border-line focus:border-ink focus:ring-accent" />
             </div>
             <div>
               <label class="block text-[14px] font-semibold text-ink mb-1.5" for="tel">Telefon</label>
-              <input id="tel" name="tel" type="tel" class="w-full rounded border-line focus:border-ink focus:ring-accent" />
+              <input id="tel" name="tel" type="tel" autocomplete="tel" class="w-full rounded border-line focus:border-ink focus:ring-accent" />
             </div>
             <div>
               <label class="block text-[14px] font-semibold text-ink mb-1.5" for="msg">Nachricht*</label>
               <textarea required id="msg" name="msg" rows="5" class="w-full rounded border-line focus:border-ink focus:ring-accent"></textarea>
             </div>
+            <input type="text" name="website" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
             <button type="submit" class="bg-ink text-white text-[13px] font-semibold tracking-[0.14em] uppercase px-7 py-4 rounded hover:bg-[#1a2a55] transition-colors w-full">Nachricht senden</button>
+            <p id="kontaktstatus" class="text-[14px] hidden" role="status"></p>
           </form>
+          <script>
+          (function () {{
+            var f = document.getElementById('kontaktform');
+            if (!f) return;
+            var s = document.getElementById('kontaktstatus');
+            f.addEventListener('submit', function (e) {{
+              e.preventDefault();
+              var btn = f.querySelector('button[type=submit]');
+              btn.disabled = true; btn.textContent = 'Wird gesendet …';
+              s.className = 'text-[14px] text-ink-soft'; s.textContent = '';
+              var data = {{ name: f.name.value, email: f.email.value, tel: f.tel.value, msg: f.msg.value, website: f.website.value }};
+              fetch('/api/kontakt', {{ method: 'POST', headers: {{ 'content-type': 'application/json' }}, body: JSON.stringify(data) }})
+                .then(function (r) {{ return r.json().then(function (j) {{ return {{ ok: r.ok, j: j }}; }}); }})
+                .then(function (res) {{
+                  if (res.ok && res.j.ok) {{
+                    f.reset();
+                    s.className = 'text-[14px] text-green-700 font-semibold';
+                    s.textContent = 'Vielen Dank! Ihre Nachricht ist bei uns eingegangen.';
+                  }} else {{
+                    s.className = 'text-[14px] text-red-600 font-semibold';
+                    s.textContent = (res.j && res.j.error) || 'Es ist ein Fehler aufgetreten. Bitte rufen Sie uns an: {PHONE_DISPLAY}.';
+                  }}
+                }})
+                .catch(function () {{
+                  s.className = 'text-[14px] text-red-600 font-semibold';
+                  s.textContent = 'Verbindung fehlgeschlagen. Bitte rufen Sie uns an: {PHONE_DISPLAY}.';
+                }})
+                .finally(function () {{ btn.disabled = false; btn.textContent = 'Nachricht senden'; }});
+            }});
+          }})();
+          </script>
         </div>
       </div>
     </section>

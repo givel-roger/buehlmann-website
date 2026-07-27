@@ -1,5 +1,13 @@
 # Changelog
 
+## v2.5.0 — 2026-07-27
+
+- Echtes Kontaktformular: Backend (Node, Brevo) verschickt Anfragen serverseitig
+  an info@bs-luzern.ch (Antworten-an = Besucher), plus Sicherungskopie auf dem Server
+- Formular mit E-Mail-Feld, Bot-Schutz (Honeypot) und Erfolgs-/Fehlermeldung
+- mailto-Formular abgeloest
+
+
 ## v2.4.4 — 2026-07-26
 
 - Fax restlos entfernt (auch aus den unsichtbaren SEO-/Schema.org-Daten)

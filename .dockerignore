@@ -5,3 +5,7 @@ build.py
 code.html
 screen.png
 DESIGN.md
+
+.env
+data
+form-backend/node_modules

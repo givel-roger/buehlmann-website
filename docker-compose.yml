@@ -6,3 +6,14 @@ services:
     # Nur lokal erreichbar; der Host-nginx macht Reverse-Proxy + SSL
     ports:
       - "127.0.0.1:3016:80"
+
+  buehlmann-form:
+    build: ./form-backend
+    container_name: buehlmann-form
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      - ./data:/data          # Sicherungskopie der Anfragen
+    ports:
+      - "127.0.0.1:3017:8080"
