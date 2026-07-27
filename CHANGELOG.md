@@ -1,5 +1,11 @@
 # Changelog
 
+## v2.5.3 — 2026-07-27
+
+- Mobile: Logo und Kopfzeile kompakter (Logo 56px, Nav 80px), Desktop bleibt 200px;
+  Mobile-Ansicht durchgeprueft (Menue, Farbstudie, Formular, Inhaltsblöcke)
+
+
 ## v2.5.2 — 2026-07-27
 
 - Gerüst-Stockbild auf Fassaden-Seite und Malerei-Block "Aussen" ersetzt durch
