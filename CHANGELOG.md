@@ -1,5 +1,10 @@
 # Changelog
 
+## v2.5.6 — 2026-07-27
+
+- Mobile: zentriertes Logo deutlich groesser (96px), Leiste hoeher (112px)
+
+
 ## v2.5.5 — 2026-07-27
 
 - Mobile: Logo mittig zentriert, Menue-Knopf rechts (Desktop unveraendert: Logo links)
