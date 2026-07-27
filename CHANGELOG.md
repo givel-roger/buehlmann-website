@@ -1,5 +1,11 @@
 # Changelog
 
+## v2.5.1 — 2026-07-27
+
+- Kontaktformular zusaetzlich unten auf der Startseite (Abschnitt "Bereit fuer Ihr Projekt?")
+- Formular als wiederverwendbare Funktion; Live-Test erfolgreich (Brevo akzeptiert, Sicherungskopie ok)
+
+
 ## v2.5.0 — 2026-07-27
 
 - Echtes Kontaktformular: Backend (Node, Brevo) verschickt Anfragen serverseitig

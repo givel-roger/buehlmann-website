@@ -7,7 +7,7 @@ Texte sind modernisiert, Fakten unverändert (Gründung 1935, Rothenbad 18 usw.)
 from pathlib import Path
 from textwrap import dedent
 
-VERSION = "2.5.0"
+VERSION = "2.5.1"
 SITE_URL = "https://www.bs-luzern.ch"
 ROOT = Path(__file__).parent
 
@@ -600,6 +600,66 @@ def cta_section(title: str) -> str:
     """).strip()
 
 
+def contact_form(fid: str = "kontaktform") -> str:
+    """Wiederverwendbares Kontaktformular (sendet an /api/kontakt)."""
+    sid = fid + "-status"
+    return dedent(f"""
+    <form id="{fid}" class="bg-white border border-line rounded-lg p-8 space-y-5">
+      <p class="text-[14px] text-ink-soft">Wir melden uns so rasch wie möglich bei Ihnen zurück.</p>
+      <div>
+        <label class="block text-[14px] font-semibold text-ink mb-1.5" for="{fid}-name">Name*</label>
+        <input required id="{fid}-name" name="name" type="text" autocomplete="name" class="w-full rounded border-line focus:border-ink focus:ring-accent" />
+      </div>
+      <div>
+        <label class="block text-[14px] font-semibold text-ink mb-1.5" for="{fid}-email">E-Mail*</label>
+        <input required id="{fid}-email" name="email" type="email" autocomplete="email" class="w-full rounded border-line focus:border-ink focus:ring-accent" />
+      </div>
+      <div>
+        <label class="block text-[14px] font-semibold text-ink mb-1.5" for="{fid}-tel">Telefon</label>
+        <input id="{fid}-tel" name="tel" type="tel" autocomplete="tel" class="w-full rounded border-line focus:border-ink focus:ring-accent" />
+      </div>
+      <div>
+        <label class="block text-[14px] font-semibold text-ink mb-1.5" for="{fid}-msg">Nachricht*</label>
+        <textarea required id="{fid}-msg" name="msg" rows="5" class="w-full rounded border-line focus:border-ink focus:ring-accent"></textarea>
+      </div>
+      <input type="text" name="website" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
+      <button type="submit" class="bg-ink text-white text-[13px] font-semibold tracking-[0.14em] uppercase px-7 py-4 rounded hover:bg-[#1a2a55] transition-colors w-full">Nachricht senden</button>
+      <p id="{sid}" class="text-[14px] hidden" role="status"></p>
+    </form>
+    <script>
+    (function () {{
+      var f = document.getElementById('{fid}');
+      if (!f) return;
+      var s = document.getElementById('{sid}');
+      f.addEventListener('submit', function (e) {{
+        e.preventDefault();
+        var btn = f.querySelector('button[type=submit]');
+        btn.disabled = true; btn.textContent = 'Wird gesendet …';
+        s.className = 'text-[14px] text-ink-soft'; s.textContent = '';
+        var data = {{ name: f.name.value, email: f.email.value, tel: f.tel.value, msg: f.msg.value, website: f.website.value }};
+        fetch('/api/kontakt', {{ method: 'POST', headers: {{ 'content-type': 'application/json' }}, body: JSON.stringify(data) }})
+          .then(function (r) {{ return r.json().then(function (j) {{ return {{ ok: r.ok, j: j }}; }}); }})
+          .then(function (res) {{
+            if (res.ok && res.j.ok) {{
+              f.reset();
+              s.className = 'text-[14px] text-green-700 font-semibold';
+              s.textContent = 'Vielen Dank! Ihre Nachricht ist bei uns eingegangen.';
+            }} else {{
+              s.className = 'text-[14px] text-red-600 font-semibold';
+              s.textContent = (res.j && res.j.error) || 'Es ist ein Fehler aufgetreten. Bitte rufen Sie uns an: {PHONE_DISPLAY}.';
+            }}
+          }})
+          .catch(function () {{
+            s.className = 'text-[14px] text-red-600 font-semibold';
+            s.textContent = 'Verbindung fehlgeschlagen. Bitte rufen Sie uns an: {PHONE_DISPLAY}.';
+          }})
+          .finally(function () {{ btn.disabled = false; btn.textContent = 'Nachricht senden'; }});
+      }});
+    }})();
+    </script>
+    """).strip()
+
+
 # ---------------------------------------------------------------------------
 # Startseite
 # ---------------------------------------------------------------------------
@@ -731,7 +791,26 @@ def index_page() -> str:
       </div>
     </section>
 
-    {cta_section("Bereit für Ihr Projekt?")}
+    <section id="kontakt" class="bg-mist border-y border-line">
+      <div class="max-w-6xl mx-auto px-6 py-20 grid md:grid-cols-2 gap-12 items-start">
+        <div>
+          <span class="eyebrow text-ink-soft block mb-4">Kontakt</span>
+          <h2 class="font-display text-3xl md:text-4xl text-ink mb-5">Bereit für Ihr Projekt?</h2>
+          <span class="accent-bar mb-6"></span>
+          <p class="text-ink-soft text-[16px] leading-relaxed mb-8">Schreiben Sie uns direkt oder rufen Sie an. Kostenlose Vor-Ort-Besichtigung und persönliche Beratung.</p>
+          <div class="space-y-3">
+            <a href="tel:{PHONE_LINK}" class="flex items-center gap-3 text-ink hover:text-ink-soft"><span class="material-symbols-outlined">call</span><span class="font-semibold">{PHONE_DISPLAY}</span></a>
+            <a href="mailto:{EMAIL}" class="flex items-center gap-3 text-ink hover:text-ink-soft"><span class="material-symbols-outlined">mail</span><span class="font-semibold">{EMAIL}</span></a>
+            <div class="flex items-center gap-3 text-ink-soft"><span class="material-symbols-outlined">location_on</span><span>{ADDRESS}, {CITY}</span></div>
+          </div>
+        </div>
+        <div>
+          {contact_form("homeform")}
+        </div>
+      </div>
+    </section>
+
+    {cta_section("Wir freuen uns auf Sie")}
     """).strip()
 
     return page_shell(
@@ -1133,59 +1212,7 @@ def kontakt_page() -> str:
         </div>
         <div>
           <h2 class="font-display text-2xl text-ink mb-8">Nachricht schreiben</h2>
-          <form id="kontaktform" class="bg-white border border-line rounded-lg p-8 space-y-5">
-            <p class="text-[14px] text-ink-soft">Wir melden uns so rasch wie möglich bei Ihnen zurück.</p>
-            <div>
-              <label class="block text-[14px] font-semibold text-ink mb-1.5" for="name">Name*</label>
-              <input required id="name" name="name" type="text" autocomplete="name" class="w-full rounded border-line focus:border-ink focus:ring-accent" />
-            </div>
-            <div>
-              <label class="block text-[14px] font-semibold text-ink mb-1.5" for="email">E-Mail*</label>
-              <input required id="email" name="email" type="email" autocomplete="email" class="w-full rounded border-line focus:border-ink focus:ring-accent" />
-            </div>
-            <div>
-              <label class="block text-[14px] font-semibold text-ink mb-1.5" for="tel">Telefon</label>
-              <input id="tel" name="tel" type="tel" autocomplete="tel" class="w-full rounded border-line focus:border-ink focus:ring-accent" />
-            </div>
-            <div>
-              <label class="block text-[14px] font-semibold text-ink mb-1.5" for="msg">Nachricht*</label>
-              <textarea required id="msg" name="msg" rows="5" class="w-full rounded border-line focus:border-ink focus:ring-accent"></textarea>
-            </div>
-            <input type="text" name="website" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
-            <button type="submit" class="bg-ink text-white text-[13px] font-semibold tracking-[0.14em] uppercase px-7 py-4 rounded hover:bg-[#1a2a55] transition-colors w-full">Nachricht senden</button>
-            <p id="kontaktstatus" class="text-[14px] hidden" role="status"></p>
-          </form>
-          <script>
-          (function () {{
-            var f = document.getElementById('kontaktform');
-            if (!f) return;
-            var s = document.getElementById('kontaktstatus');
-            f.addEventListener('submit', function (e) {{
-              e.preventDefault();
-              var btn = f.querySelector('button[type=submit]');
-              btn.disabled = true; btn.textContent = 'Wird gesendet …';
-              s.className = 'text-[14px] text-ink-soft'; s.textContent = '';
-              var data = {{ name: f.name.value, email: f.email.value, tel: f.tel.value, msg: f.msg.value, website: f.website.value }};
-              fetch('/api/kontakt', {{ method: 'POST', headers: {{ 'content-type': 'application/json' }}, body: JSON.stringify(data) }})
-                .then(function (r) {{ return r.json().then(function (j) {{ return {{ ok: r.ok, j: j }}; }}); }})
-                .then(function (res) {{
-                  if (res.ok && res.j.ok) {{
-                    f.reset();
-                    s.className = 'text-[14px] text-green-700 font-semibold';
-                    s.textContent = 'Vielen Dank! Ihre Nachricht ist bei uns eingegangen.';
-                  }} else {{
-                    s.className = 'text-[14px] text-red-600 font-semibold';
-                    s.textContent = (res.j && res.j.error) || 'Es ist ein Fehler aufgetreten. Bitte rufen Sie uns an: {PHONE_DISPLAY}.';
-                  }}
-                }})
-                .catch(function () {{
-                  s.className = 'text-[14px] text-red-600 font-semibold';
-                  s.textContent = 'Verbindung fehlgeschlagen. Bitte rufen Sie uns an: {PHONE_DISPLAY}.';
-                }})
-                .finally(function () {{ btn.disabled = false; btn.textContent = 'Nachricht senden'; }});
-            }});
-          }})();
-          </script>
+          {contact_form("kontaktform")}
         </div>
       </div>
     </section>
