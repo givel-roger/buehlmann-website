@@ -1,5 +1,10 @@
 # Changelog
 
+## v2.5.5 — 2026-07-27
+
+- Mobile: Logo mittig zentriert, Menue-Knopf rechts (Desktop unveraendert: Logo links)
+
+
 ## v2.5.4 — 2026-07-27
 
 - Mobile Abstaende allgemein reduziert (Abschnitts-Padding, Grid-Abstaende, Hero)

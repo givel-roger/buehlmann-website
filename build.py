@@ -7,7 +7,7 @@ Texte sind modernisiert, Fakten unverändert (Gründung 1935, Rothenbad 18 usw.)
 from pathlib import Path
 from textwrap import dedent
 
-VERSION = "2.5.4"
+VERSION = "2.5.5"
 SITE_URL = "https://www.bs-luzern.ch"
 ROOT = Path(__file__).parent
 
@@ -448,14 +448,14 @@ def header_html(active: str) -> str:
       </div>
     </div>
     <nav class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-line">
-      <div class="max-w-6xl mx-auto px-6 flex items-center justify-between h-20 md:h-52 gap-6">
-        <a href="index.html" class="flex items-center shrink-0">
+      <div class="relative max-w-6xl mx-auto px-6 flex items-center justify-between h-20 md:h-52 gap-6">
+        <a href="index.html" class="flex items-center shrink-0 absolute left-1/2 -translate-x-1/2 md:static md:left-auto md:translate-x-0">
           <img src="assets/logo.png" alt="Bühlmann Söhne AG, Maler und Gipser in Luzern" class="h-14 md:h-[200px] w-auto logo-anim" />
         </a>
         <div class="hidden md:flex items-center gap-7">
         {nav_html(active)}
         </div>
-        <div class="flex items-center gap-3">
+        <div class="flex items-center gap-3 ml-auto md:ml-0">
           <a href="kontakt.html" class="hidden sm:block bg-ink text-white text-[13px] font-semibold tracking-[0.14em] uppercase px-5 py-3 rounded hover:bg-[#1a2a55] transition-colors whitespace-nowrap">Offerte anfragen</a>
           <button type="button" class="md:hidden p-2 text-ink" aria-label="Menü öffnen" onclick="document.getElementById('mobilemenu').classList.toggle('hidden')">
             <span class="material-symbols-outlined text-[28px]">menu</span>
