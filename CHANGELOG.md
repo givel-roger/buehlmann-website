@@ -1,5 +1,10 @@
 # Changelog
 
+## v2.6.3 — 2026-07-27
+
+- Offizielles FC-Luzern-Wappen im Sponsor-Abschnitt eingesetzt (Platzhalter ersetzt)
+
+
 ## v2.6.2 — 2026-07-27
 
 - Sponsor-Abschnitt neu zentriert: "Sponsor" gross oben, Wappen darunter

@@ -7,7 +7,7 @@ Texte sind modernisiert, Fakten unverändert (Gründung 1935, Rothenbad 18 usw.)
 from pathlib import Path
 from textwrap import dedent
 
-VERSION = "2.6.2"
+VERSION = "2.6.3"
 SITE_URL = "https://www.bs-luzern.ch"
 ROOT = Path(__file__).parent
 
